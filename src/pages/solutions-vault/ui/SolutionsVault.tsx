@@ -1,23 +1,40 @@
 import { motion } from "motion/react";
 import { Footer } from "@/widgets/footer/ui/Footer";
 
-export default function SolutionsProject() {
+export default function SolutionsVault() {
   const handleDemoClick = () => {
     window.location.hash = "#/contact";
   };
 
   const features = [
-    { title: "Tasks & Sprints", desc: "Centralise tasks & sprints data and documents — every record, one source of truth." },
-    { title: "Gantt Charts", desc: "Built-in gantt charts workflows with audit trail." },
-    { title: "Timesheets", desc: "Built-in timesheets workflows with audit trail." },
-    { title: "Resource Allocation", desc: "Built-in resource allocation workflows with audit trail." },
-    { title: "Project Budgeting", desc: "Built-in project budgeting workflows with audit trail." },
-    { title: "Milestone Tracking", desc: "Built-in milestone tracking workflows with audit trail." },
-    { title: "DORA Metrics", desc: "Built-in dora metrics workflows with audit trail." }
-  ];
+    {
+        "title": "Drag-and-drop Upload",
+        "desc": "Centralise drag-and-drop upload data and documents — every record, one source of truth."
+    },
+    {
+        "title": "OCR & Entity Extraction",
+        "desc": "Built-in ocr & entity extraction workflows with audit trail."
+    },
+    {
+        "title": "Auto-routing to Modules",
+        "desc": "Built-in auto-routing to modules workflows with audit trail."
+    },
+    {
+        "title": "Sensitivity Tiering",
+        "desc": "Built-in sensitivity tiering workflows with audit trail."
+    },
+    {
+        "title": "Retention Schedules",
+        "desc": "Built-in retention schedules workflows with audit trail."
+    },
+    {
+        "title": "Access Audit Trail",
+        "desc": "Built-in access audit trail workflows with audit trail."
+    }
+];
 
   return (
-    <div className="w-full flex flex-col items-center min-h-screen bg-background text-foreground pt-[120px] font-['Mirage_Display_Medium','Mirage_Display_Medium_Placeholder',sans-serif]" data-name="SolutionsProjectPage">
+    <div className="w-full flex flex-col items-center min-h-screen bg-background text-foreground pt-[120px] font-['Mirage_Display_Medium','Mirage_Display_Medium_Placeholder',sans-serif]" data-name="SolutionsVaultPage">
       
       {/* Top Tagline */}
       <section className="w-full max-w-[1120px] px-6 pt-6">
@@ -26,7 +43,7 @@ export default function SolutionsProject() {
           animate={{ opacity: 1, y: 0 }}
           className="text-[14px] font-semibold uppercase tracking-[3px] text-[#0040C1]"
         >
-          PROJECT SOLUTION
+          DOCUMENT VAULT
         </motion.span>
       </section>
 
@@ -40,9 +57,9 @@ export default function SolutionsProject() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-blue-500/20 via-transparent to-transparent pointer-events-none" />
           
           <div className="relative z-10 max-w-[600px] flex flex-col gap-2">
-            <span className="bg-white/10 text-white font-semibold text-[12px] uppercase tracking-widest px-3 py-1 rounded-[4px] self-start mb-2">AGILE READY</span>
+            <span className="bg-white/10 text-white font-semibold text-[12px] uppercase tracking-widest px-3 py-1 rounded-[4px] self-start mb-2">ENTERPRISE READY</span>
             <h1 className="text-[38px] md:text-[48px] font-semibold text-white tracking-tight leading-none">
-              Project Management
+              DOCUMENT VAULT
             </h1>
           </div>
         </motion.div>
@@ -54,14 +71,14 @@ export default function SolutionsProject() {
         {/* Left Title */}
         <div className="md:col-span-7 flex flex-col items-start gap-4">
           <h2 className="text-[32px] md:text-[44px] lg:text-[56px] font-sans font-medium tracking-tighter uppercase leading-[1.1] text-transparent bg-clip-text bg-gradient-to-b from-white to-[#8a93a2]">
-            One Platform from Brief to Delivery
+            One Platform for Every Business Document
           </h2>
         </div>
 
         {/* Right Copy & CTA */}
         <div className="md:col-span-5 flex flex-col items-start gap-6">
           <p className="text-[16px] leading-[28px] text-muted-foreground">
-            Run projects with the discipline of an engineering team. Tasks, sprints, Gantt charts, time logging, resource allocation, milestone tracking. Connect to Finance for billable utilisation and to Compliance for project-level evidence.
+            One-touch document intake. Upload a bill, receipt, contract, certificate, or scan — OCR and entity extraction produce a draft transaction in the right module. Sensitivity tiering (T1-T5) governs access. Retention schedules per statutory category. Every access audit-traced.
           </p>
           <motion.button 
             whileHover={{ scale: 1.03, y: -2 }}
@@ -75,7 +92,7 @@ export default function SolutionsProject() {
 
       </section>
 
-      {/* Grid of 9 Cards */}
+      {/* Grid of Cards */}
       <section className="w-full max-w-[1120px] px-6 py-[40px]">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((item, idx) => (

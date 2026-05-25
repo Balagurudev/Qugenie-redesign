@@ -9,7 +9,7 @@ export default function SolutionsHRMS() {
   const hrmsFeatures = [
     {
       title: "Employee Profiles",
-      desc: "Centralised employee profiles, data and documents — every record, one source of truth."
+      desc: "Centralise employee profiles data and documents — every record, one source of truth."
     },
     {
       title: "Biometric Attendance",

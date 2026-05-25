@@ -7,15 +7,13 @@ export default function SolutionsInventory() {
   };
 
   const features = [
-    { title: "Multi-Location Sync", desc: "Track stock movements across endless warehouses in real-time." },
-    { title: "Serialized Barcoding", desc: "Print and scan item-level barcodes for flawless fulfillment." },
-    { title: "Automated Reorders", desc: "Set minimum thresholds to trigger automated purchase orders." },
-    { title: "Batch & Expiry", desc: "Strict FEFO/FIFO controls for perishable or time-sensitive goods." },
-    { title: "Stock Valuation", desc: "Instant valuation updates using moving average or standard cost methods." },
-    { title: "Warehouse Routing", desc: "Optimized pick-and-pack workflows for faster outbound logistics." },
-    { title: "Quality Inspections", desc: "Mandatory quality checks upon goods receipt or before dispatch." },
-    { title: "Return Management", desc: "Seamlessly handle RMAs, restocks, and supplier chargebacks." },
-    { title: "Inventory Analytics", desc: "Identify dead stock, fast movers, and seasonal trends instantly." }
+    { title: "Vendor & Purchase Orders", desc: "Centralise vendor & purchase orders data and documents — every record, one source of truth." },
+    { title: "Multi-warehouse Inventory", desc: "Built-in multi-warehouse inventory workflows with audit trail." },
+    { title: "Batch & Serial Tracking", desc: "Built-in batch & serial tracking workflows with audit trail." },
+    { title: "Asset Lifecycle", desc: "Built-in asset lifecycle workflows with audit trail." },
+    { title: "Maintenance Scheduling", desc: "Built-in maintenance scheduling workflows with audit trail." },
+    { title: "Supply Chain Visibility", desc: "Built-in supply chain visibility workflows with audit trail." },
+    { title: "Barcode & QR Integration", desc: "Built-in barcode & qr integration workflows with audit trail." }
   ];
 
   return (
@@ -56,14 +54,14 @@ export default function SolutionsInventory() {
         {/* Left Title */}
         <div className="md:col-span-7 flex flex-col items-start gap-4">
           <h2 className="text-[32px] md:text-[44px] lg:text-[56px] font-sans font-medium tracking-tighter uppercase leading-[1.1] text-transparent bg-clip-text bg-gradient-to-b from-white to-[#8a93a2]">
-            Flawless Fulfillment at Every Scale
+            One Platform from Procurement to Delivery
           </h2>
         </div>
 
         {/* Right Copy & CTA */}
         <div className="md:col-span-5 flex flex-col items-start gap-6">
           <p className="text-[16px] leading-[28px] text-muted-foreground">
-            QuGenie Inventory gives you absolute control over your supply chain. From the receiving dock to the customer's door, track every unit with precision.
+            End-to-end operations management. Vendor management and purchase orders flow into multi-warehouse inventory with batch and serial tracking. Fixed asset lifecycle and maintenance scheduling. One operations record across procurement, warehouse, and asset.
           </p>
           <motion.button 
             whileHover={{ scale: 1.03, y: -2 }}

@@ -4,15 +4,16 @@ import { CosmicBeamBackground } from "@/components/ui/CosmicBeamBackground";
 const FONT = "'Mirage Display Medium','Mirage Display Medium Placeholder',sans-serif";
 
 const solutions = [
-  { title: "HRMS", description: "Manage employee lifecycle, attendance, payroll, and appraisals in a single, unified HR core.", linkHash: "#/solutions/hrms" },
-  { title: "Sales CRM & E-Commerce", description: "Omnichannel commerce engines built for lightning-fast orders and billing pipelines.", linkHash: "#/solutions/sales" },
-  { title: "Finance & Accounts", description: "Double-entry general ledger, real-time GST filings, and granular asset depreciation tracking.", linkHash: "#/solutions/finance" },
-  { title: "Inventory & Warehouse", description: "Multi-location inventory tracking, serialized barcodes, and automated reorder pipelines.", linkHash: "#/solutions/inventory" },
-  { title: "Procurement & SCM", description: "Vendor portals, automated RFQs, and purchase order tracking aligned with operational budgets.", linkHash: "#/solutions/procurement" },
-  { title: "Project Management", description: "Timesheets, milestone tracking, and task allocation mapped directly to client invoices.", linkHash: "#/solutions/project" },
-  { title: "Manufacturing", description: "Bill of materials (BOM), shop-floor execution logs, and capacity planning for modern plants.", linkHash: "#/solutions/manufacturing" },
-  { title: "CRM & Customer Support", description: "Unified client profiles, helpdesk tickets, and feedback surveys synced with sales histories.", linkHash: "#/solutions/support" },
-  { title: "HR Talent & Recruitment", description: "Applicant tracking system (ATS), pre-employment evaluations, and automated offer rollouts.", linkHash: "#/solutions/recruitment" },
+  { title: "HRMS", description: "Hire to retire — profiles, attendance, payroll, performance, appraisals.", linkHash: "#/solutions/hrms" },
+  { title: "Sales, CRM & E-Commerce", description: "Lead to cash — pipelines, quotations, orders, invoices, storefront.", linkHash: "#/solutions/sales" },
+  { title: "Finance & Accounts", description: "GL, AR, AP, banking, taxation, e-invoicing — real-time, audit-ready.", linkHash: "#/solutions/finance" },
+  { title: "Inventory & Operations", description: "Procurement, inventory, assets, supply chain — under one record.", linkHash: "#/solutions/inventory" },
+  { title: "India Compliance", description: "Audit-ready by construction — PF, ESI, PT, TDS, GST, MCA, LWF.", linkHash: "#/solutions/compliance" },
+  { title: "Communications & Engagement", description: "Notifications, newsfeed, polls, announcements — multi-channel delivery.", linkHash: "#/solutions/communications" },
+  { title: "Document Vault", description: "Upload once — OCR, classification, retention, audit trail.", linkHash: "#/solutions/vault" },
+  { title: "Learning & Development", description: "Skill matrices, course catalogues, certifications, learning paths.", linkHash: "#/solutions/learning" },
+  { title: "BI & Analytics", description: "Per-module dashboards plus aggregate MIS — read everything, change nothing.", linkHash: "#/solutions/analytics" },
+  { title: "Project Management", description: "Tasks, sprints, timesheets, milestones — delivery with audit trail.", linkHash: "#/solutions/project" },
 ];
 
 export function Services() {
@@ -30,7 +31,7 @@ export function Services() {
           From hire to retire. From quote to cash.
         </h2>
         <p style={{ fontFamily: FONT, fontSize: 18, fontWeight: 400, color: "var(--text-subtle)", lineHeight: 1.6, letterSpacing: "-0.015em", margin: "-32px 0 0 0" }}>
-          Modular components built to scale. Plug into our shared data core, choose your starting point, and expand at your own pace.
+          Ten convergent modules covering every operational surface of the modern enterprise. Pick what you need today. Add the rest whenever.
         </p>
 
         {/* 3×3 Grid */}
@@ -65,10 +66,10 @@ export function Services() {
         <div style={{ width: "100%", background: "var(--surface-card)", border: "1px solid var(--surface-border)", borderRadius: 16, padding: "32px 40px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 32, boxShadow: "0 2px 12px rgba(0,0,0,0.02)", fontFamily: FONT, transition: "background 0.3s ease" }}>
           <div style={{ display: "flex", flexDirection: "column", gap: 6, maxWidth: 680 }}>
             <h4 style={{ fontSize: 18, fontWeight: 600, color: "var(--text-heading)", margin: 0, letterSpacing: "-0.02em" }}>
-              Need a custom tailormade solution?
+              Need a sector-tailored solution?
             </h4>
             <p style={{ fontSize: 15, color: "var(--text-subtle)", lineHeight: 1.6, margin: 0, fontWeight: 400 }}>
-              Collaborate directly with our engineering team to build a bespoke operational module for your unique enterprise.
+              Manufacturing, healthcare, retail, logistics, construction — we ship sector-aware overlays on top of the convergent core.
             </p>
           </div>
           <button

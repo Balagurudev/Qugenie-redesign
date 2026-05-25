@@ -26,6 +26,11 @@ import SolutionsManufacturing from "@/pages/solutions-manufacturing/ui/Solutions
 import SolutionsSupport from "@/pages/solutions-support/ui/SolutionsSupport";
 import SolutionsRecruitment from "@/pages/solutions-recruitment/ui/SolutionsRecruitment";
 import SolutionsQuikynet from "@/pages/solutions-quikynet/ui/SolutionsQuikynet";
+import SolutionsCompliance from "@/pages/solutions-compliance/ui/SolutionsCompliance";
+import SolutionsCommunications from "@/pages/solutions-communications/ui/SolutionsCommunications";
+import SolutionsVault from "@/pages/solutions-vault/ui/SolutionsVault";
+import SolutionsLearning from "@/pages/solutions-learning/ui/SolutionsLearning";
+import SolutionsAnalytics from "@/pages/solutions-analytics/ui/SolutionsAnalytics";
 import AboutUsPage from "@/pages/about-us/ui/AboutUsPage";
 import ContactPage from "@/pages/contact/ui/ContactPage";
 
@@ -67,6 +72,16 @@ export default function App() {
         setPage("solutions-recruitment");
       } else if (hash === "#/solutions/quikynet") {
         setPage("solutions-quikynet");
+      } else if (hash === "#/solutions/compliance") {
+        setPage("solutions-compliance");
+      } else if (hash === "#/solutions/communications") {
+        setPage("solutions-communications");
+      } else if (hash === "#/solutions/vault") {
+        setPage("solutions-vault");
+      } else if (hash === "#/solutions/learning") {
+        setPage("solutions-learning");
+      } else if (hash === "#/solutions/analytics") {
+        setPage("solutions-analytics");
       } else if (hash === "#/about-us") {
         setPage("about-us");
       } else if (hash === "#/contact") {
@@ -115,6 +130,11 @@ export default function App() {
       {page === "solutions-support" && <SolutionsSupport />}
       {page === "solutions-recruitment" && <SolutionsRecruitment />}
       {page === "solutions-quikynet" && <SolutionsQuikynet />}
+      {page === "solutions-compliance" && <SolutionsCompliance />}
+      {page === "solutions-communications" && <SolutionsCommunications />}
+      {page === "solutions-vault" && <SolutionsVault />}
+      {page === "solutions-learning" && <SolutionsLearning />}
+      {page === "solutions-analytics" && <SolutionsAnalytics />}
       {page === "about-us" && <AboutUsPage />}
       {page === "contact" && <ContactPage />}
     </div>

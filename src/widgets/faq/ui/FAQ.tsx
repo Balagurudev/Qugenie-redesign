@@ -5,12 +5,14 @@ import { Plus, Minus } from "lucide-react";
 const FONT = "'Mirage Display Medium','Mirage Display Medium Placeholder',sans-serif";
 
 const faqs = [
-  { question: "What is a sovereign enterprise platform?", answer: "A sovereign enterprise platform means you own the source code, the server, and the database. There is no recurring monthly subscription, no vendor lock-in, and your data never leaves your control." },
-  { question: "How do we handle modular upgrades?", answer: "Upgrades are completely modular and optional. You can pull the latest audited builds from our repository and deploy them locally with a single-click script, without disrupting current features." },
-  { question: "What are the hosting requirements?", answer: "Our lightweight Go/React architecture is highly optimized. It can run on as little as a dual-core CPU with 4GB RAM for smaller offices, or scale up to multi-node clusters on private clouds." },
-  { question: "How does local AI data privacy work?", answer: "We configure and run local LLMs (like Llama 3 or Mistral) directly on your physical hardware or secure VPS node. Your operational ledger data is analyzed entirely in-situ, with zero external API calls." },
-  { question: "What support packages are available?", answer: "We offer custom SLAs ranging from 9-to-5 general tech assistance to dedicated 24/7 incident support, custom development hours, and automated backup monitoring." },
-  { question: "Can we integrate existing legacy systems?", answer: "Yes. QuGenie comes out-of-the-box with a standard modern REST API. We assist in migrating data from legacy systems (like Tally, SAP, or spreadsheets) and setting up real-time integrations." },
+  { question: "Can we host QuGenie on our own servers?", answer: "Yes. QuGenie is built for on-premise deployment first. You can run the entire stack on your own infrastructure — air-gapped if required — with no telemetry pipelines back to us. Custom SLAs available." },
+  { question: "How is QuGenie different from SAP, Oracle, or Microsoft Dynamics?", answer: "We don't charge per-user licenses or force telemetry pipelines. QuGenie gives you full sovereignty over your data and infrastructure, with agentic AI built directly into the core rather than bolted on." },
+  { question: "Can we start with just one or two modules?", answer: "Yes. Our platform doesn't punish incremental adoption. You can pick the modules you need today and add the rest at your pace. Every transaction joins the shared ledger from day one." },
+  { question: "How does the AI work, exactly?", answer: "We run agentic AI directly on your hardware or secure cloud node. It provides insight, audit, and automation natively. Your operational data is analyzed entirely in-situ with zero external API calls." },
+  { question: "Is our data secure? What about compliance?", answer: "Absolutely. QuGenie uses a chained-hash ledger to make every transaction tamper-proof. It also includes built-in statutory engines for India-first compliance, generating audit packs on demand." },
+  { question: "What's the implementation timeline?", answer: "Because we eliminated middleware tax and bloated enterprise lag, standard implementations run in days, not years. We get your operations running quickly and predictably." },
+  { question: "Can we migrate from our current ERP?", answer: "Yes. QuGenie includes a modern REST API out of the box. We assist your team in migrating data from legacy systems like Tally or SAP and setting up real-time integrations." },
+  { question: "How is QuGenie priced?", answer: "We charge zero license fees forever. There are no per-user taxes or forced subscriptions. You pay a predictable, flat cost for implementation and support, letting your business scale freely." },
 ];
 
 export function FAQ() {

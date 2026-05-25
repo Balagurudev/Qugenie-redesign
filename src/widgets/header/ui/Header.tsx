@@ -62,15 +62,16 @@ function ThemeToggle() {
 
 function MenuSolutions({ onClose }: { onClose: () => void }) {
   const items = [
-    { title: "HRMS", hash: "#/solutions/hrms", desc: "Manage employee lifecycle, attendance, payroll, and appraisals." },
-    { title: "Sales CRM & E-Commerce", hash: "#/solutions/sales", desc: "Omnichannel commerce engines for lightning-fast orders." },
-    { title: "Finance & Accounts", hash: "#/solutions/finance", desc: "Double-entry ledger, real-time GST filings, and tracking." },
-    { title: "Inventory & Warehouse", hash: "#/solutions/inventory", desc: "Multi-location inventory tracking and serialized barcodes." },
-    { title: "Procurement & SCM", hash: "#/solutions/procurement", desc: "Vendor portals, automated RFQs, and PO tracking." },
-    { title: "Project Management", hash: "#/solutions/project", desc: "Timesheets, milestone tracking, and task allocation." },
-    { title: "Manufacturing", hash: "#/solutions/manufacturing", desc: "Bill of materials (BOM) and shop-floor execution logs." },
-    { title: "CRM & Customer Support", hash: "#/solutions/support", desc: "Unified client profiles, helpdesk tickets, and feedback." },
-    { title: "HR Talent & Recruitment", hash: "#/solutions/recruitment", desc: "Applicant tracking system (ATS) and offer rollouts." },
+    { title: "HRMS", hash: "#/solutions/hrms", desc: "Hire to retire — profiles, attendance, payroll, performance, appraisals." },
+    { title: "Sales, CRM & E-Commerce", hash: "#/solutions/sales", desc: "Lead to cash — pipelines, quotations, orders, invoices, storefront." },
+    { title: "Finance & Accounts", hash: "#/solutions/finance", desc: "GL, AR, AP, banking, taxation, e-invoicing — real-time, audit-ready." },
+    { title: "Inventory & Operations", hash: "#/solutions/inventory", desc: "Procurement, inventory, assets, supply chain — under one record." },
+    { title: "India Compliance", hash: "#/solutions/compliance", desc: "Audit-ready by construction — PF, ESI, PT, TDS, GST, MCA, LWF." },
+    { title: "Communications & Engagement", hash: "#/solutions/communications", desc: "Notifications, newsfeed, polls, announcements — multi-channel delivery." },
+    { title: "Document Vault", hash: "#/solutions/vault", desc: "Upload once — OCR, classification, retention, audit trail." },
+    { title: "Learning & Development", hash: "#/solutions/learning", desc: "Skill matrices, course catalogues, certifications, learning paths." },
+    { title: "BI & Analytics", hash: "#/solutions/analytics", desc: "Per-module dashboards plus aggregate MIS — read everything, change nothing." },
+    { title: "Project Management", hash: "#/solutions/project", desc: "Tasks, sprints, timesheets, milestones — delivery with audit trail." },
   ];
 
   return (

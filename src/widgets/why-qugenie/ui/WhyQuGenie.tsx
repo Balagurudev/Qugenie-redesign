@@ -3,12 +3,12 @@ import { ShieldCheck, Coins, BookOpenCheck, PackagePlus, EyeOff, Gauge } from "l
 const FONT = "'Mirage Display Medium','Mirage Display Medium Placeholder',sans-serif";
 
 const reasons = [
-  { icon: ShieldCheck, title: "Sovereign Node Ownership", description: "You own the server, you own the database. Deploy on your local infrastructure or private cloud. Zero vendor lock-in." },
-  { icon: Coins, title: "Zero License Fees Forever", description: "No monthly subscriptions or per-user taxes. Pay once for implementation and updates, run freely." },
-  { icon: BookOpenCheck, title: "Audit-Ready by Design", description: "Double-entry financial records and comprehensive compliance engines keep your business audit-proof." },
-  { icon: PackagePlus, title: "Modular Expansion Path", description: "Install only what you need today. Add inventory, payroll, or CRM tomorrow with a single-click." },
-  { icon: EyeOff, title: "Sovereign AI Core", description: "Your private local AI models analyze financial logs and automate workflows. Your business intelligence never leaves your site." },
-  { icon: Gauge, title: "Lightning Fast Speed", description: "A lightweight Go/React stack designed to run beautifully on modest server infrastructure. No bloated enterprise lag." },
+  { icon: ShieldCheck, title: "Sovereign by Construction", description: "Your data stays where you put it. On-premise, on a sovereign cloud you control, or in our managed SaaS — your call. No vendor lock-in. No telemetry pipelines you didn't sign up for." },
+  { icon: Coins, title: "Convergent, Not Connected", description: "One database, one canonical truth. Every module reads and writes the same data. No middleware tax. No reconciliation jobs. No bus to break." },
+  { icon: BookOpenCheck, title: "Audit-Ready by Default", description: "Chained-hash ledger across every transaction. Reconstruct exactly what was true at any point in the past — who changed it, when, and why. Compliance teams stop fearing audits." },
+  { icon: PackagePlus, title: "Agentic AI — Built In", description: "Insight, audit, automation, and embodied intelligence — native to the platform, not stitched on. Four pillars of agentic capability surface as concrete operational outcomes, not bolt-on chatbots." },
+  { icon: EyeOff, title: "Modular Adoption", description: "Pick the modules you need today. Add the rest at your pace. The platform doesn't punish incremental adoption — every transaction joins the shared ledger from day one." },
+  { icon: Gauge, title: "India-First Compliance", description: "Thirteen statutory engines — PF, ESI, PT, TDS, GST, MCA, LWF, and sector overlays. Compliance built into the platform, not bolted on. Audit packs generated on demand." },
 ];
 
 export function WhyQuGenie() {
@@ -22,13 +22,13 @@ export function WhyQuGenie() {
         {/* Top Centered Header */}
         <div className="flex flex-col items-center text-center gap-6 max-w-[800px]">
           <span style={{ fontFamily: FONT, fontSize: 13, fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", color: "#5586ff" }}>
-            WHY QUGENIE
+            WHY CHOOSE US
           </span>
           <h2 className="text-[32px] md:text-[44px] lg:text-[56px] font-sans font-medium tracking-tighter uppercase leading-[1.1] text-transparent bg-clip-text bg-gradient-to-b from-white to-[#8a93a2] text-center">
             Six reasons QuGenie wins where the giants stall.
           </h2>
           <p style={{ fontFamily: FONT, fontSize: 18, fontWeight: 400, color: "#8B949E", lineHeight: 1.6, letterSpacing: "-0.015em", maxWidth: "700px" }}>
-            Traditional ERPs require long consultants, massive licensing budgets, and years to deploy. We built a system that shifts the power back to you.
+            SAP, Oracle, and Microsoft built their stacks for a world that no longer exists. QuGenie was built for the one that does.
           </p>
         </div>
 

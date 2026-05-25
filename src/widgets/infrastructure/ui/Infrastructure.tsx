@@ -18,7 +18,7 @@ export function Infrastructure() {
           Your infrastructure. Your call.
         </h2>
         <p style={{ fontFamily: FONT, fontSize: 18, fontWeight: 400, color: "var(--text-subtle)", lineHeight: 1.6, letterSpacing: "-0.015em", margin: "-32px 0 0 0" }}>
-          Deploy wherever your data security demands it. We provide turnkey options for any enterprise architecture.
+          Cloud SaaS for speed, on-premise for sovereignty — same platform, same data model, same audit trail.
         </p>
 
         {/* Two cards */}
@@ -28,11 +28,11 @@ export function Infrastructure() {
             <div className="absolute inset-0 bg-[radial-gradient(150%_80%_at_50%_0%,var(--brand-600)_0%,transparent_70%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none z-0" />
             <div className="relative z-10 flex flex-col gap-5">
               <div className="flex items-center justify-center w-[52px] h-[52px] rounded-xl bg-[var(--icon-brand-bg)] text-[var(--icon-brand-color)] group-hover:bg-white/15 group-hover:text-white transition-colors duration-500">
-                <Server size={24} />
+                <Cloud size={24} />
               </div>
-              <h3 className="text-[22px] font-semibold text-[var(--text-heading)] group-hover:text-white tracking-[-0.025em] leading-[1.2] m-0 transition-colors duration-500">Local Server</h3>
+              <h3 className="text-[22px] font-semibold text-[var(--text-heading)] group-hover:text-white tracking-[-0.025em] leading-[1.2] m-0 transition-colors duration-500">CLOUD SAAS</h3>
               <p className="text-[15px] text-[var(--text-subtle)] group-hover:text-white/90 leading-[1.65] m-0 font-normal transition-colors duration-500">
-                Deploy on a physical server in your office or warehouse. Maximum control, air-gapped security, and absolute offline operations.
+                Managed by us, sovereign cloud in India — running in days, predictable monthly cost.
               </p>
             </div>
           </div>
@@ -42,11 +42,11 @@ export function Infrastructure() {
             <div className="absolute inset-0 bg-[radial-gradient(150%_80%_at_50%_0%,var(--brand-600)_0%,transparent_70%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none z-0" />
             <div className="relative z-10 flex flex-col gap-5">
               <div className="flex items-center justify-center w-[52px] h-[52px] rounded-xl bg-[var(--icon-brand-bg)] text-[var(--icon-brand-color)] group-hover:bg-white/15 group-hover:text-white transition-colors duration-500">
-                <Cloud size={24} />
+                <Server size={24} />
               </div>
-              <h3 className="text-[22px] font-semibold text-[var(--text-heading)] group-hover:text-white tracking-[-0.025em] leading-[1.2] m-0 transition-colors duration-500">Private Cloud</h3>
+              <h3 className="text-[22px] font-semibold text-[var(--text-heading)] group-hover:text-white tracking-[-0.025em] leading-[1.2] m-0 transition-colors duration-500">ON-PREMISE</h3>
               <p className="text-[15px] text-[var(--text-subtle)] group-hover:text-white/90 leading-[1.65] m-0 font-normal transition-colors duration-500">
-                Deploy on AWS, Azure, Google Cloud, or custom VPS. Get automated nightly backups, load balancers, and global high-availability access.
+                Your servers, your perimeter — complete data sovereignty, no vendor lock-in, air-gapped supported.
               </p>
             </div>
           </div>

@@ -7,15 +7,13 @@ export default function SolutionsSales() {
   };
 
   const features = [
-    { title: "Lead Management", desc: "Capture, track, and convert leads into long-term clients with our seamless workflows." },
-    { title: "Omnichannel Commerce", desc: "Integrate your online and offline stores for lightning-fast unified orders." },
-    { title: "Pipeline Tracking", desc: "Visualize your sales pipeline and forecast revenue with high precision." },
-    { title: "Quotation Builder", desc: "Generate professional, tax-compliant quotations in seconds." },
-    { title: "Automated Follow-ups", desc: "Never miss a deal with automated intelligent email and SMS reminders." },
-    { title: "Sales Analytics", desc: "Deep insights into agent performance and regional sales metrics." },
-    { title: "Client Portals", desc: "Self-service portals for clients to track orders and raise tickets." },
-    { title: "Contract Management", desc: "Digitally manage agreements, SLAs, and subscription renewals." },
-    { title: "Mobile CRM", desc: "Empower your field agents with full capabilities on their mobile devices." }
+    { title: "Lead & Opportunity Pipeline", desc: "Centralise lead & opportunity pipeline data and documents — every record, one source of truth." },
+    { title: "Quotation Management", desc: "Built-in quotation management workflows with audit trail." },
+    { title: "Order Fulfilment", desc: "Built-in order fulfilment workflows with audit trail." },
+    { title: "Automated Invoicing", desc: "Built-in automated invoicing workflows with audit trail." },
+    { title: "E-Commerce Storefront", desc: "Built-in e-commerce storefront workflows with audit trail." },
+    { title: "Customer Support", desc: "Built-in customer support workflows with audit trail." },
+    { title: "Multi-currency & Tax", desc: "Built-in multi-currency & tax workflows with audit trail." }
   ];
 
   return (
@@ -56,14 +54,14 @@ export default function SolutionsSales() {
         {/* Left Title */}
         <div className="md:col-span-7 flex flex-col items-start gap-4">
           <h2 className="text-[32px] md:text-[44px] lg:text-[56px] font-sans font-medium tracking-tighter uppercase leading-[1.1] text-transparent bg-clip-text bg-gradient-to-b from-white to-[#8a93a2]">
-            Unify Sales, Boost Conversions
+            One Platform from First Touch to Final Invoice
           </h2>
         </div>
 
         {/* Right Copy & CTA */}
         <div className="md:col-span-5 flex flex-col items-start gap-6">
           <p className="text-[16px] leading-[28px] text-muted-foreground">
-            QuGenie CRM engines bring together omnichannel retail, B2B pipelines, and e-commerce into one powerful hub. Drive sales faster without the data silos.
+            From first touch to fulfilment. Lead capture and pipeline management flow into quotations, orders, invoices, and after-sales support. E-commerce storefront integrated where applicable. One customer record across every touchpoint.
           </p>
           <motion.button 
             whileHover={{ scale: 1.03, y: -2 }}

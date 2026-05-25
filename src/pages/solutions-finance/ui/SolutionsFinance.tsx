@@ -7,15 +7,13 @@ export default function SolutionsFinance() {
   };
 
   const features = [
-    { title: "General Ledger", desc: "Robust double-entry accounting that complies with global standards." },
-    { title: "Real-time GST Filings", desc: "Automated tax calculation and one-click regulatory report generation." },
-    { title: "Accounts Payable", desc: "Streamlined vendor invoice processing and automated payment scheduling." },
-    { title: "Accounts Receivable", desc: "Proactive tracking of customer dues with automated dunning." },
-    { title: "Asset Depreciation", desc: "Granular tracking of fixed assets and automatic depreciation entries." },
-    { title: "Bank Reconciliation", desc: "Connect with your bank feeds for rapid, error-free matching." },
-    { title: "Budgeting & Planning", desc: "Set departmental budgets and track variance in real-time." },
-    { title: "Multi-Currency", desc: "Handle global transactions with automated exchange rate adjustments." },
-    { title: "Financial Dashboards", desc: "Get a bird's-eye view of your cash flow, P&L, and balance sheet." }
+    { title: "General Ledger", desc: "Centralise general ledger data and documents — every record, one source of truth." },
+    { title: "Accounts Payable & Receivable", desc: "Built-in accounts payable & receivable workflows with audit trail." },
+    { title: "Banking Integration", desc: "Built-in banking integration workflows with audit trail." },
+    { title: "Fixed Asset Management", desc: "Built-in fixed asset management workflows with audit trail." },
+    { title: "E-Invoicing (IRN)", desc: "Built-in e-invoicing (irn) workflows with audit trail." },
+    { title: "Period Close", desc: "Built-in period close workflows with audit trail." },
+    { title: "Cost Centres & Budgeting", desc: "Built-in cost centres & budgeting workflows with audit trail." }
   ];
 
   return (
@@ -56,14 +54,14 @@ export default function SolutionsFinance() {
         {/* Left Title */}
         <div className="md:col-span-7 flex flex-col items-start gap-4">
           <h2 className="text-[32px] md:text-[44px] lg:text-[56px] font-sans font-medium tracking-tighter uppercase leading-[1.1] text-transparent bg-clip-text bg-gradient-to-b from-white to-[#8a93a2]">
-            Real-time Visibility Into Your Capital
+            One Platform for Financial Truth in Real Time
           </h2>
         </div>
 
         {/* Right Copy & CTA */}
         <div className="md:col-span-5 flex flex-col items-start gap-6">
           <p className="text-[16px] leading-[28px] text-muted-foreground">
-            QuGenie Finance eliminates month-end reconciliation nightmares. Enjoy a unified ledger that automatically syncs with inventory, payroll, and sales for perfect financial integrity.
+            Total control of financial health. General ledger, accounts payable and receivable, banking integration, fixed assets, period close, and e-invoicing — every transaction audit-traced from creation to filing.
           </p>
           <motion.button 
             whileHover={{ scale: 1.03, y: -2 }}
