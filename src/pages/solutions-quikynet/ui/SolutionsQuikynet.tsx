@@ -14,6 +14,21 @@ import step1Img from "@/assets/quikynet_step1.png";
 import step2Img from "@/assets/quikynet_step2.png";
 import step3Img from "@/assets/quikynet_step3.jpg";
 import step4Img from "@/assets/quikynet_step4.png";
+import convergenceImg from "@/assets/quikynet_qugenie_convergence.png";
+
+import indCom1 from "@/assets/ind_community_1.png";
+import indCom2 from "@/assets/ind_community_2.png";
+import indCom3 from "@/assets/ind_community_3.png";
+import indStu1 from "@/assets/ind_student_1.png";
+import indStu2 from "@/assets/ind_student_2.png";
+import indStu3 from "@/assets/ind_student_3.png";
+import indMar1 from "@/assets/ind_market_1.png";
+import indMar2 from "@/assets/ind_market_2.png";
+import indMar3 from "@/assets/ind_market_3.png";
+import indVis1 from "@/assets/ind_visitor_1.png";
+import indVis2 from "@/assets/ind_visitor_2.png";
+import indVis3 from "@/assets/ind_visitor_3.png";
+
 export default function SolutionsQuikynet() {
   const handleStartClick = () => {
     window.location.hash = "#/contact";
@@ -23,9 +38,9 @@ export default function SolutionsQuikynet() {
     {
       id: 1,
       images: [
-        'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=200&auto=format&fit=crop'
+        indCom1,
+        indCom2,
+        indCom3
       ],
       alt: 'Community Networking',
       desc: 'Create or join professional communities. Share announcements, job posts, and updates. Host digital networking events to build your network beyond contacts.'
@@ -33,9 +48,9 @@ export default function SolutionsQuikynet() {
     {
       id: 2,
       images: [
-        'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=200&auto=format&fit=crop'
+        indStu1,
+        indStu2,
+        indStu3
       ],
       alt: 'Student Catalogue',
       desc: 'Great student IDs with digital portfolios integration. Instant access to achievements, skills, and certifications. Perfect for colleges seeking institutional placement.'
@@ -43,9 +58,9 @@ export default function SolutionsQuikynet() {
     {
       id: 3,
       images: [
-        'https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1531545514256-b1400bc00f31?q=80&w=200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=200&auto=format&fit=crop'
+        indMar1,
+        indMar2,
+        indMar3
       ],
       alt: 'Marketplace',
       desc: 'Showcase works or services. Discover trusted professionals and partners. Grow brand visibility within the Quikynet ecosystem.'
@@ -53,9 +68,9 @@ export default function SolutionsQuikynet() {
     {
       id: 4,
       images: [
-        'https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=200&auto=format&fit=crop'
+        indVis1,
+        indVis2,
+        indVis3
       ],
       alt: 'Visitor Management',
       desc: 'Simplify how you welcome and track visitors. Real-time visitor logs, analytics, and customisable badges powered by Quikynet identity.'
@@ -133,22 +148,22 @@ export default function SolutionsQuikynet() {
     {
       num: "007",
       title: "Premium Metal NFC Cards",
-      tagline: "Premium Metal NFC Card",
+      tagline: "Quikynet - Premium Metal NFC Card",
       desc: "Crafted from premium stainless steel. One-tap NFC + QR access to your digital profile. Fully customisable with your logo and brand theme. Weatherproof and long-lasting.",
       image: metalCardImg
     },
     {
       num: "008",
       title: "Smart PVC NFC Cards",
-      tagline: "Smart PVC NFC Card",
-      desc: "3D ready-to-use design templates. Durable NFC technology. Waterproof, durable, and flexible. Modern simplicity meets smart functionality.",
+      tagline: "Quikynet - Smart PVC NFC Card",
+      desc: "20+ ready-to-use design templates. One-tap NFC technology. Waterproof, durable, and flexible. Modern simplicity meets smart functionality.",
       image: pvcCardImg
     },
     {
       num: "009",
       title: "Q-TAG Keychains",
-      tagline: "Q-TAG Keychains",
-      desc: "Compact, stylish, and scannable QR keychains. Instantly share your Quikynet profile close to businesses, events, and personal branding. Carry your digital identity everywhere.",
+      tagline: "Quikynet - Q-TAG Keychain",
+      desc: "Compact, stylish, and scannable QR keychains. Instantly share your Quikynet profile. Ideal for businesses, events, and personal branding. Carry your digital identity everywhere.",
       image: keychainImg
     }
   ];
@@ -270,10 +285,6 @@ export default function SolutionsQuikynet() {
             <GlareCard key={prod.num} className="flex flex-col items-center justify-between py-8 px-6 cursor-pointer">
               {/* Outer rounded container with border */}
               <div className="relative bg-black/40 border border-slate-800/80 rounded-[32px] w-full px-[20px] pb-2 pt-16 backdrop-blur-[1px]">
-                {/* Corner accents - bottom-left L shape */}
-                <div className="absolute bottom-[68px] left-[22px] w-5 h-5 before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-full before:h-[2px] before:bg-amber-500/80 before:rounded-sm after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-[2px] after:h-full after:bg-amber-500/80 after:rounded-sm" />
-                {/* Corner accents - top-right L shape */}
-                <div className="absolute top-[72px] right-[22px] w-5 h-5 before:content-[''] before:absolute before:top-0 before:right-0 before:w-full before:h-[2px] before:bg-amber-500/80 before:rounded-sm after:content-[''] after:absolute after:top-0 after:right-0 after:w-[2px] after:h-full after:bg-amber-500/80 after:rounded-sm" />
 
                 {/* Visual Product Image Container */}
                 <div className="flex justify-center items-center min-h-[200px] rounded-[20px] bg-slate-900/60 overflow-hidden">
@@ -309,24 +320,8 @@ export default function SolutionsQuikynet() {
           </p>
         </div>
 
-        <div className="md:col-span-5 h-[260px] bg-secondary border border-border rounded-[20px] relative overflow-hidden flex flex-col justify-center items-center p-6">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/10 via-transparent to-transparent pointer-events-none" />
-
-          <div className="flex gap-6 items-center">
-            {/* Logo 1 */}
-            <div className="w-16 h-16 rounded-full bg-[#0040C1]/10 flex items-center justify-center text-[#0040C1] border border-[#0040C1]/30">
-              Q
-            </div>
-            <span className="text-[24px] font-semibold text-muted-foreground">×</span>
-            {/* Logo 2 */}
-            <div className="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center text-green-600 border border-green-500/30">
-              QG
-            </div>
-          </div>
-
-          <div className="absolute bottom-4 text-[11px] font-mono tracking-widest text-[#0040C1] uppercase mt-4">
-            IMG-010 // Quikynet × QuGenie — Convergence Visual
-          </div>
+        <div className="md:col-span-5 h-[260px] bg-secondary border border-border rounded-[20px] relative overflow-hidden flex flex-col justify-center items-center p-0">
+          <img src={convergenceImg} alt="Quikynet x QuGenie Convergence" className="w-full h-full object-cover" />
         </div>
       </section>
 
