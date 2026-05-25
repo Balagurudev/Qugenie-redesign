@@ -69,7 +69,7 @@ function Actions() {
         className="bg-white relative rounded-[8px] cursor-pointer shadow-[0_1px_2px_rgba(16,24,40,0.05)] border border-[#d0d5dd]"
       >
         <div className="flex gap-[12px] items-center justify-center px-[28px] py-[16px]">
-          <p className="font-['Mirage_Display_Medium','Mirage_Display_Medium_Placeholder',sans-serif] font-semibold leading-[28px] text-[#344054] text-[18px] whitespace-nowrap">Try now with Demo</p>
+          <p className="font-['Mirage_Display_Medium','Mirage_Display_Medium_Placeholder',sans-serif] font-semibold leading-[28px] text-[#344054] text-[18px] whitespace-nowrap">Signup with Quikynet</p>
         </div>
       </motion.div>
       <motion.div
@@ -79,7 +79,7 @@ function Actions() {
         className="bg-[#0040C1] relative rounded-[8px] cursor-pointer"
       >
         <div className="flex gap-[12px] items-center justify-center px-[28px] py-[16px] border border-[#0040C1] rounded-[8px]">
-          <p className="font-['Mirage_Display_Medium','Mirage_Display_Medium_Placeholder',sans-serif] font-semibold leading-[28px] text-[18px] text-white whitespace-nowrap">See platforms</p>
+          <p className="font-['Mirage_Display_Medium','Mirage_Display_Medium_Placeholder',sans-serif] font-semibold leading-[28px] text-[18px] text-white whitespace-nowrap">Book a Free Demo</p>
         </div>
       </motion.div>
     </motion.div>

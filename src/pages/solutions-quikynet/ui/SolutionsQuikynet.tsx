@@ -10,7 +10,10 @@ import { Newsletter } from "@/widgets/newsletter/ui/Newsletter";
 import metalCardImg from "@/assets/quikynet_metal_card.png";
 import pvcCardImg from "@/assets/quikynet_pvc_card.png";
 import keychainImg from "@/assets/quikynet_keychain.png";
-
+import step1Img from "@/assets/quikynet_step1.png";
+import step2Img from "@/assets/quikynet_step2.png";
+import step3Img from "@/assets/quikynet_step3.jpg";
+import step4Img from "@/assets/quikynet_step4.png";
 export default function SolutionsQuikynet() {
   const handleStartClick = () => {
     window.location.hash = "#/contact";
@@ -70,8 +73,8 @@ export default function SolutionsQuikynet() {
           <p className="text-zinc-400 text-sm md:text-base mb-8 max-w-md">
             Sign up in seconds to access your personalized Quikynet dashboard and start building your digital identity.
           </p>
-          <div className="w-full">
-            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop" className="rounded-[16px] object-cover h-48 md:h-72 lg:h-[400px] w-full shadow-lg border border-white/5" alt="Step 1" />
+          <div className="w-full flex justify-center">
+            <img src={step1Img} className="rounded-[16px] object-contain h-48 md:h-72 lg:h-[400px] w-auto max-w-full shadow-lg border border-white/5" alt="Step 1" />
           </div>
         </div>
       )
@@ -86,8 +89,8 @@ export default function SolutionsQuikynet() {
           <p className="text-zinc-400 text-sm md:text-base mb-8 max-w-md">
             Choose the perfect networking package that fits your business needs, and check out with our secure payment gateway.
           </p>
-          <div className="w-full">
-            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=1200&auto=format&fit=crop" className="rounded-[16px] object-cover h-48 md:h-72 lg:h-[400px] w-full shadow-lg border border-white/5" alt="Step 2" />
+          <div className="w-full flex justify-center">
+            <img src={step2Img} className="rounded-[16px] object-contain h-48 md:h-72 lg:h-[400px] w-auto max-w-full shadow-lg border border-white/5" alt="Step 2" />
           </div>
         </div>
       )
@@ -102,8 +105,8 @@ export default function SolutionsQuikynet() {
           <p className="text-zinc-400 text-sm md:text-base mb-8 max-w-md">
             Personalize your profile with your professional information, contact details, and a high-quality headshot.
           </p>
-          <div className="w-full">
-            <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1200&auto=format&fit=crop" className="rounded-[16px] object-cover h-48 md:h-72 lg:h-[400px] w-full shadow-lg border border-white/5" alt="Step 3" />
+          <div className="w-full flex justify-center">
+            <img src={step3Img} className="rounded-[16px] object-contain h-48 md:h-72 lg:h-[400px] w-auto max-w-full shadow-lg border border-white/5" alt="Step 3" />
           </div>
         </div>
       )
@@ -118,8 +121,8 @@ export default function SolutionsQuikynet() {
           <p className="text-zinc-400 text-sm md:text-base mb-8 max-w-md">
             Finalize your aesthetic by picking a custom theme layout, and publish your new digital business card!
           </p>
-          <div className="w-full">
-            <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop" className="rounded-[16px] object-cover h-48 md:h-72 lg:h-[400px] w-full shadow-lg border border-white/5" alt="Step 4" />
+          <div className="w-full flex justify-center">
+            <img src={step4Img} className="rounded-[16px] object-contain h-48 md:h-72 lg:h-[400px] w-auto max-w-full shadow-lg border border-white/5" alt="Step 4" />
           </div>
         </div>
       )
