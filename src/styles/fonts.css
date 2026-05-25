@@ -1,0 +1,27 @@
+/* ─── Mirage Display Medium ───────────────────────────────────────────────── */
+/* Primary typeface for QuGenie per style foundations spec:
+   font.family.primary = Mirage Display Medium
+   font.family.stack   = Mirage Display Medium, Mirage Display Medium Placeholder, sans-serif */
+
+@font-face {
+  font-family: 'Mirage Display Medium';
+  src: local('Mirage Display Medium'),
+       local('MirageDisplayMedium'),
+       url('/fonts/MirageDisplayMedium.woff2') format('woff2'),
+       url('/fonts/MirageDisplayMedium.woff')  format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Invisible placeholder while the real font loads (prevents FOUT shifts) */
+@font-face {
+  font-family: 'Mirage Display Medium Placeholder';
+  src: local('Arial');
+  font-weight: 500;
+  font-style: normal;
+  size-adjust: 100%;
+  ascent-override: 90%;
+  descent-override: 20%;
+  line-gap-override: 0%;
+}
