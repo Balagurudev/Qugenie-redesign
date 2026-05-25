@@ -170,16 +170,7 @@ export function Footer() {
                     Contact
                   </button>
                 </li>
-                <li>
-                  <button onClick={() => handleLinkClick("#/")} className="hover:text-white transition-colors cursor-pointer text-left">
-                    Careers
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => handleLinkClick("#/")} className="hover:text-white transition-colors cursor-pointer text-left">
-                    Press
-                  </button>
-                </li>
+
               </ul>
             </div>
 
