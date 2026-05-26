@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { Footer } from "@/widgets/footer/ui/Footer";
-import { Brain, BarChart3, ShieldCheck, Zap, GitBranch, Eye, RefreshCw, Cpu, ArrowRight, Check, X } from "lucide-react";
+import { Brain, BarChart3, ShieldCheck, Zap, GitBranch, Eye, RefreshCw, Cpu, ArrowRight, ArrowDown, Check, X } from "lucide-react";
 import StackingCards from "@/widgets/stacking-cards/ui/StackingCards";
 import { Newsletter } from "@/widgets/newsletter/ui/Newsletter";
 
@@ -67,57 +67,85 @@ const stats = [
   { value: "∞", label: "Audit Depth" },
 ];
 
+const AIERPHeroBackground = () => (
+  <div className="absolute inset-0 z-0 overflow-hidden bg-[#020614] pointer-events-none">
+    {/* Deep background ambient light */}
+    <div className="absolute top-0 right-0 w-[100%] h-[100%] bg-[radial-gradient(ellipse_at_top_right,_#0B2466_0%,_transparent_75%)] opacity-90" />
+    
+    {/* Top Right intense light flare */}
+    <div className="absolute top-[-10%] right-[-10%] w-[50%] aspect-square rounded-full bg-[#004EEB] opacity-50 blur-[100px]" />
+    <div className="absolute top-[-5%] right-[-5%] w-[30%] aspect-square rounded-full bg-[#2986FF] opacity-80 blur-[60px]" />
+    <div className="absolute top-[-5%] right-[-2%] w-[15%] aspect-square rounded-full bg-[#FFFFFF] opacity-100 blur-[20px]" />
+    
+    {/* Sharp Diagonal Light Rays (Lens Flare) */}
+    <div className="absolute top-[-5%] right-[10%] w-[40%] h-[2px] bg-white opacity-50 blur-[2px] rotate-[-35deg]" />
+    <div className="absolute top-[5%] right-[-5%] w-[2px] h-[50%] bg-white opacity-50 blur-[2px] rotate-[-35deg]" />
+    <div className="absolute top-[-20%] right-[-10%] w-[60%] h-[150%] bg-[linear-gradient(215deg,_rgba(255,255,255,0.2)_0%,_transparent_20%)] blur-[4px]" />
+
+    {/* The High-Resolution Glowing Arches */}
+    <div className="absolute bottom-0 left-0 right-0 h-[100%] opacity-90 mix-blend-screen">
+      <svg className="w-full h-full" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMax slice">
+        <defs>
+          <linearGradient id="arch-grad" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.8" />
+            <stop offset="10%" stopColor="#00D4FF" stopOpacity="0.7" />
+            <stop offset="30%" stopColor="#1B52EB" stopOpacity="0.4" />
+            <stop offset="60%" stopColor="#020614" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+
+        {/* 5 Layered Concentric Arches for high fidelity depth */}
+        <circle cx="720" cy="1150" r="600" fill="none" stroke="url(#arch-grad)" strokeWidth="60" className="blur-[4px]" />
+        <circle cx="720" cy="1150" r="700" fill="none" stroke="url(#arch-grad)" strokeWidth="80" className="blur-[6px]" />
+        <circle cx="720" cy="1150" r="820" fill="none" stroke="url(#arch-grad)" strokeWidth="100" className="blur-[8px]" />
+        <circle cx="720" cy="1150" r="960" fill="none" stroke="url(#arch-grad)" strokeWidth="120" className="blur-[12px]" />
+        <circle cx="720" cy="1150" r="1120" fill="none" stroke="url(#arch-grad)" strokeWidth="140" className="blur-[16px]" />
+      </svg>
+    </div>
+
+    {/* Fade out to background */}
+    <div className="absolute bottom-0 left-0 right-0 h-[150px] bg-gradient-to-t from-background to-transparent" />
+  </div>
+);
+
 export default function PlatformAgentic() {
   const nav = (hash: string) => { window.location.hash = hash; window.scrollTo({ top: 0, behavior: "smooth" }); };
 
   return (
-    <div className="w-full flex flex-col items-center min-h-screen bg-background text-foreground pt-[120px]" style={{ fontFamily: FONT }} data-name="AIERPPage">
+    <div className="w-full flex flex-col items-center min-h-screen bg-background text-white" style={{ fontFamily: FONT }} data-name="AIERPPage">
       {/* ── HERO ── */}
-      <section className="w-full max-w-[1120px] mx-auto px-6 pt-[60px] pb-[80px] flex flex-col gap-6 relative z-10 items-start text-left">
-        <motion.span initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="text-[#0040C1] text-[12px] font-bold tracking-[4px] uppercase block">
-          AI-DRIVEN ERP
-        </motion.span>
-        
-        <div className="w-full flex flex-col justify-start items-start">
-          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}
-            className="text-left text-[44px] md:text-[56px] font-['Mirage_Display_Medium','Mirage_Display_Medium_Placeholder',sans-serif] font-medium tracking-tight leading-[1.1] text-foreground max-w-[900px] mt-4 mb-6 m-0 p-0 uppercase">
-            Unlock the power of agentic intelligence.
-          </motion.h1>
-        </div>
-        
-        <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
-          className="text-[18px] md:text-[20px] leading-[30px] text-muted-foreground max-w-[800px]">
-          Four pillars of intelligence, each reasoning over one sovereign data core — not chatbots, not autocomplete, but concrete operational signal.
-        </motion.p>
-        
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.22 }} className="flex flex-wrap gap-4 mt-2 justify-start">
-          <motion.button whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.98 }} onClick={() => nav("#/contact")}
-            className="bg-[#0040C1] text-white font-semibold text-[15px] px-[26px] py-[14px] rounded-[8px] cursor-pointer shadow-sm hover:shadow-[0_8px_20px_rgba(0,64,193,0.3)] transition-all flex items-center gap-2">
-            Book a Free Demo <ArrowRight size={16} />
-          </motion.button>
-          <motion.button whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.98 }} onClick={() => nav("#/platform/silos")}
-            className="bg-transparent text-foreground border border-border font-semibold text-[15px] px-[26px] py-[14px] rounded-[8px] cursor-pointer hover:bg-secondary transition-all">
-            See the platform architecture
+      <div className="relative w-full min-h-[95vh] flex flex-col justify-center pt-[120px] pb-[80px]">
+        <AIERPHeroBackground />
+        <section className="w-full max-w-[1120px] mx-auto px-6 flex flex-col gap-6 relative z-10 items-start text-left">
+          <motion.span initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="text-[#0040C1] text-[12px] font-bold tracking-[4px] uppercase block">
+            AI-DRIVEN ERP
+          </motion.span>
+          
+          <div className="w-full flex flex-col justify-start items-start">
+            <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}
+              className="text-left text-[44px] md:text-[56px] font-['Mirage_Display_Medium','Mirage_Display_Medium_Placeholder',sans-serif] font-medium tracking-tight leading-[1.1] text-white max-w-[900px] mt-4 mb-6 m-0 p-0 uppercase">
+              Unlock the power of agentic intelligence.
+            </motion.h1>
+          </div>
+          
+          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
+            className="text-[17px] md:text-[19px] leading-[28px] text-zinc-300 max-w-[700px] font-light">
+            Four pillars of intelligence, each reasoning over one sovereign data core — not chatbots, not autocomplete, but concrete operational signal.
+          </motion.p>
+          
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.22 }} className="flex flex-wrap gap-4 mt-2 justify-start">
+            <motion.button whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.98 }} onClick={() => nav("#/contact")}
+              className="bg-[#0040C1] text-white font-semibold text-[15px] px-[26px] py-[14px] rounded-[8px] cursor-pointer shadow-sm hover:shadow-[0_8px_20px_rgba(0,64,193,0.3)] transition-all flex items-center gap-2">
+              Book a Free Demo <ArrowRight size={16} />
+            </motion.button>
+            <motion.button whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.98 }} onClick={() => nav("#/platform/silos")}
+              className="bg-transparent text-white border border-[#ffffff33] font-semibold text-[15px] px-[26px] py-[14px] rounded-[8px] cursor-pointer hover:bg-[#ffffff11] transition-all">
+              See the platform architecture
             </motion.button>
           </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} 
-          className="mt-16 w-full flex flex-col gap-10 bg-card/30 rounded-[24px] p-8 md:p-12 relative overflow-hidden"
-        >
-          {/* Subtle background glow */}
-          <div className="absolute top-[-50%] right-[-10%] w-[60%] h-[150%] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-500/10 via-transparent to-transparent pointer-events-none blur-[80px]" />
-          
-          <div className="flex flex-col md:flex-row gap-8 justify-between items-start relative z-10">
-            <h3 className="text-[32px] md:text-[44px] font-semibold text-foreground max-w-[400px] leading-[1.1] tracking-[-0.02em]">
-              Four pillars, one architecture.
-            </h3>
-            <p className="text-[16px] md:text-[18px] leading-[28px] text-muted-foreground max-w-[540px]">
-              Most ERP vendors bolt a chat assistant onto a legacy data model and call it AI. QuGenie inverts that. Intelligence is part of the architecture — four distinct pillars, each reasoning over the same canonical store, each producing a concrete operational outcome rather than a conversational one.
-            </p>
-          </div>
-
-        </motion.div>
-      </section>
+        </section>
+      </div>
 
       {/* ── ARCHITECTURE - STACKING CARDS ── */}
       <section style={{ width: "100%" }}>

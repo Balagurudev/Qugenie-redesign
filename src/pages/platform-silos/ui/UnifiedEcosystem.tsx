@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { ArrowRight, Blocks, Database, Workflow, SlidersHorizontal } from "lucide-react";
 import { MaskContainer } from "@/components/ui/svg-mask-effect";
+import heroBgFinal from "@/assets/hero_bg_final.png";
 
 const capabilities = [
   {
@@ -45,13 +46,23 @@ export function UnifiedEcosystem() {
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-70%"]);
 
   return (
-    <div className="w-full flex flex-col items-center pt-24 pb-0 -mb-24 px-6 relative" ref={containerRef}>
+    <div className="w-full flex flex-col items-center pb-0 -mb-24 px-6 relative" ref={containerRef}>
       
-      {/* Background Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1000px] h-[500px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[rgba(0,64,193,0.15)] via-transparent to-transparent pointer-events-none" />
+      {/* Background Image */}
+      <div className="absolute top-0 left-0 right-0 h-[100vh] overflow-hidden pointer-events-none z-0">
+        <img 
+          src={heroBgFinal} 
+          alt="Unified Ecosystem Background" 
+          className="absolute inset-0 w-full h-full object-cover opacity-90"
+        />
+        {/* Deep fade out to match the page background */}
+        <div className="absolute bottom-0 left-0 right-0 h-[250px] bg-gradient-to-t from-background to-transparent" />
+        <div className="absolute inset-0 bg-background/20" /> {/* Slight dark wash to ensure text readability */}
+      </div>
 
       {/* Hero Section */}
-      <div className="w-full max-w-[800px] flex flex-col items-start md:items-center text-left md:text-center gap-6 relative z-10 mb-20">
+      <div className="w-full min-h-[95vh] flex flex-col justify-center items-center relative z-10 pt-24 pb-12">
+        <div className="w-full max-w-[800px] flex flex-col items-start md:items-center text-left md:text-center gap-6">
         <motion.span 
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -96,6 +107,7 @@ export function UnifiedEcosystem() {
             See agentic intelligence
           </button>
         </motion.div>
+        </div>
       </div>
 
       {/* Problem Card */}

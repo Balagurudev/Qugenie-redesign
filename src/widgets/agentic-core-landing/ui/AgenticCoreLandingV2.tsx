@@ -1,7 +1,6 @@
 import { ArrowRight, Sparkles, Shield, Link, Cpu } from "lucide-react";
 import BorderGlow from "@/components/ui/border-glow";
 import { CosmicBeamBackground } from "@/components/ui/CosmicBeamBackground";
-import { PixelCanvas } from "@/shared/ui/pixel-logo-grid";
 
 const FONT = "'Mirage Display Medium','Mirage Display Medium Placeholder',sans-serif";
 
@@ -12,12 +11,12 @@ const tiles = [
   { icon: Cpu, title: "Embodied", description: "Physical - Embodied Intelligence" },
 ];
 
-export function AgenticCoreLanding() {
+export function AgenticCoreLandingV2() {
   return (
     <CosmicBeamBackground beamPosition="bottom-right">
       <section
-        style={{ width: "100%", borderBottom: "1px solid rgba(255,255,255,0.05)", display: "flex", flexDirection: "column", alignItems: "center", padding: "80px 0" }}
-        data-name="Agentic Core"
+        style={{ width: "100%", borderBottom: "1px solid rgba(255,255,255,0.05)", display: "flex", justifyContent: "center", padding: "80px 0" }}
+        data-name="Agentic Core V2"
       >
       <div style={{ width: "100%", maxWidth: 1200, padding: "0 24px", display: "flex", flexDirection: "column", gap: 48 }}>
 
@@ -35,24 +34,29 @@ export function AgenticCoreLanding() {
           {tiles.map((t, i) => {
             const Icon = t.icon;
             return (
-              <div
+              <BorderGlow
                 key={i}
-                className="group relative flex flex-col gap-4 p-8 overflow-hidden rounded-[20px] bg-[#020108] border border-white/10 transition-shadow duration-300 isolate hover:border-white/20"
-                style={{ fontFamily: FONT, height: "100%", minHeight: "220px" }}
+                className="w-full h-full"
+                edgeSensitivity={36}
+                glowColor="220 100 60"
+                backgroundColor="#03010a"
+                borderRadius={28}
+                glowRadius={31}
+                glowIntensity={2.1}
+                coneSpread={25}
+                animated={false}
+                colors={['#5586ff', '#0040C1', '#002060']}
               >
-                {/* Pixel Canvas Hover Effect */}
-                <PixelCanvas colors={['#3B82F6', '#2563EB', '#1D4ED8', '#1E3A8A']} gap={4} speed={40} />
-                
-                <div className="relative z-10 flex flex-col gap-4 h-full">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 text-white border border-white/10 shadow-sm transition-transform duration-300">
-                    <Icon size={22} className="stroke-[1.5]" />
+                <div style={{ display: "flex", flexDirection: "column", gap: 16, padding: "28px", height: "100%", fontFamily: FONT }}>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 48, height: 48, borderRadius: 12, background: "rgba(255, 255, 255, 0.1)", color: "#fff" }}>
+                    <Icon size={22} />
                   </div>
-                  <div className="flex flex-col gap-2 mt-auto pt-4">
-                    <h3 className="text-[17px] font-semibold text-white tracking-tight leading-tight m-0">{t.title}</h3>
-                    <p className="text-[13px] text-white/60 leading-[1.65] tracking-tight m-0 font-normal">{t.description}</p>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                    <h3 style={{ fontSize: 18, fontWeight: 600, color: "#fff", letterSpacing: "-0.02em", lineHeight: 1.25, margin: 0 }}>{t.title}</h3>
+                    <p style={{ fontSize: 14, color: "rgba(255, 255, 255, 0.7)", lineHeight: 1.65, letterSpacing: "-0.01em", margin: 0, fontWeight: 400 }}>{t.description}</p>
                   </div>
                 </div>
-              </div>
+              </BorderGlow>
             );
           })}
         </div>
@@ -70,4 +74,4 @@ export function AgenticCoreLanding() {
   );
 }
 
-export default AgenticCoreLanding;
+export default AgenticCoreLandingV2;

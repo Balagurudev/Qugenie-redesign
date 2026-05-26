@@ -5,6 +5,7 @@ import { AboutUs } from "@/widgets/about-us/ui/AboutUs";
 import { Services } from "@/widgets/services/ui/Services";
 import { WhyQuGenie } from "@/widgets/why-qugenie/ui/WhyQuGenie";
 import { AgenticCoreLanding } from "@/widgets/agentic-core-landing/ui/AgenticCoreLanding";
+import { AgenticCoreLandingV2 } from "@/widgets/agentic-core-landing/ui/AgenticCoreLandingV2";
 import { Infrastructure } from "@/widgets/infrastructure/ui/Infrastructure";
 import { FAQ } from "@/widgets/faq/ui/FAQ";
 import { Newsletter } from "@/widgets/newsletter/ui/Newsletter";
@@ -108,6 +109,7 @@ export default function App() {
           <Services />
           <WhyQuGenie />
           <AgenticCoreLanding />
+          {/* <AgenticCoreLandingV2 /> */}
           <Infrastructure />
           <FAQ />
           {/* <Newsletter /> */}

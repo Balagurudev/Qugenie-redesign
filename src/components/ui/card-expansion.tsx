@@ -78,9 +78,9 @@ function GridCard({ item, onClick }: { item: TeamMember, onClick: (rect: DOMRect
       className="w-full cursor-pointer rounded-[24px] overflow-hidden flex flex-col relative group h-[420px] md:h-[460px] p-[2px] shadow-lg hover:shadow-[0_8px_30px_rgba(0,93,255,0.25)] transition-all duration-500"
     >
       {/* Animated Rotating Border Effect (visible on hover) */}
-      <div className="absolute inset-[-100%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg,transparent_0%,transparent_60%,#38bdf8_80%,#005dff_100%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+      <div className="absolute inset-[-100%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg,transparent_0%,transparent_60%,rgba(0,64,193,0.5)_80%,rgba(0,64,193,1)_100%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
       {/* Blurred copy for the neon glow bleed */}
-      <div className="absolute inset-[-100%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg,transparent_0%,transparent_60%,#38bdf8_80%,#005dff_100%)] blur-[16px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+      <div className="absolute inset-[-100%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg,transparent_0%,transparent_60%,rgba(0,64,193,0.5)_80%,rgba(0,64,193,1)_100%)] blur-[16px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
       
       {/* Static subtle border (visible when not hovered) */}
       <div className="absolute inset-0 border border-white/5 rounded-[24px] group-hover:opacity-0 transition-opacity duration-500 pointer-events-none z-10" />
@@ -96,10 +96,10 @@ function GridCard({ item, onClick }: { item: TeamMember, onClick: (rect: DOMRect
            <h3 className="text-white text-xl md:text-2xl lg:text-[26px] font-bold font-['Mirage_Display_Medium','Mirage_Display_Medium_Placeholder',sans-serif] leading-tight mb-3 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">{item.name}</h3>
            
            <div className="flex items-end justify-between gap-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500 delay-75">
-             <p className="text-[#004EEB] text-xs md:text-sm font-semibold tracking-wider uppercase leading-snug">{item.role}</p>
+             <p className="text-primary text-xs md:text-sm font-semibold tracking-wider uppercase leading-snug">{item.role}</p>
              
-             <div className="w-8 h-8 shrink-0 rounded-full border border-[#38bdf8]/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 -translate-x-4 group-hover:translate-x-0 bg-[#005dff]/20">
-               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+             <div className="w-8 h-8 shrink-0 rounded-full border border-primary/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 -translate-x-4 group-hover:translate-x-0 bg-primary/20">
+               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-primary" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                  <path d="M5 12h14"></path>
                  <path d="m12 5 7 7-7 7"></path>
                </svg>
@@ -228,7 +228,7 @@ function ExpandedCard({ item: initialItem, allItems, rect, onClose }: { item: Te
        >
          <button 
            onClick={handleClose}
-           className="absolute top-6 right-6 z-50 text-white bg-black/40 p-3 rounded-full hover:bg-[#0040C1] transition-colors"
+           className="absolute top-6 right-6 z-50 text-white bg-black/40 p-3 rounded-full hover:bg-primary transition-colors"
          >
            <X size={24} />
          </button>
@@ -251,15 +251,9 @@ function ExpandedCard({ item: initialItem, allItems, rect, onClose }: { item: Te
               <div className="max-w-[1200px] w-full mx-auto relative pointer-events-auto">
                 <div>
                   <h3 className="text-white text-4xl md:text-6xl font-bold mb-2 font-['Mirage_Display_Medium','Mirage_Display_Medium_Placeholder',sans-serif]">{currentItem.name}</h3>
-                  <p className="text-[#004EEB] text-xl font-semibold tracking-wide mb-8">{currentItem.role}</p>
+                  <p className="text-primary text-xl font-semibold tracking-wide mb-8">{currentItem.role}</p>
                   
                   <p className="text-lg md:text-xl text-white/90 leading-relaxed font-light max-w-[800px]">{currentItem.desc}</p>
-                  
-                  <div className="mt-8 flex items-center gap-4 text-white/60 pt-4">
-                    <span className="text-sm font-semibold uppercase tracking-widest text-[#004EEB]">{currentItem.num}</span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-white/20" />
-                    <span className="text-sm">{currentItem.imgTag}</span>
-                  </div>
                 </div>
 
                 {/* Other Team Members Nav */}
@@ -275,7 +269,7 @@ function ExpandedCard({ item: initialItem, allItems, rect, onClose }: { item: Te
                         <img 
                           src={other.image} 
                           alt={other.name} 
-                          className="absolute inset-0 w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-500" 
+                          className="absolute inset-0 w-full h-full object-cover object-top rounded-full group-hover:scale-110 transition-transform duration-500" 
                         />
                         {/* Dark Overlay */}
                         <div className="absolute inset-0 bg-black/50 group-hover:bg-black/10 transition-colors z-10" />
@@ -297,29 +291,29 @@ function ExpandedCard({ item: initialItem, allItems, rect, onClose }: { item: Te
           0% {
             transform: rotate(90deg);
             box-shadow:
-              0 6px 12px 0 #38bdf8 inset,
-              0 12px 18px 0 #005dff inset,
-              0 36px 36px 0 #1e40af inset,
-              0 0 3px 1.2px rgba(56, 189, 248, 0.3),
-              0 0 6px 1.8px rgba(0, 93, 255, 0.2);
+              0 6px 12px 0 rgba(0, 64, 193, 0.4) inset,
+              0 12px 18px 0 rgba(0, 64, 193, 0.6) inset,
+              0 36px 36px 0 rgba(0, 64, 193, 0.8) inset,
+              0 0 3px 1.2px rgba(0, 64, 193, 0.3),
+              0 0 6px 1.8px rgba(0, 64, 193, 0.2);
           }
           50% {
             transform: rotate(270deg);
             box-shadow:
-              0 6px 12px 0 #60a5fa inset,
-              0 12px 6px 0 #0284c7 inset,
-              0 24px 36px 0 #005dff inset,
-              0 0 3px 1.2px rgba(56, 189, 248, 0.3),
-              0 0 6px 1.8px rgba(0, 93, 255, 0.2);
+              0 6px 12px 0 rgba(0, 64, 193, 0.5) inset,
+              0 12px 6px 0 rgba(0, 64, 193, 0.7) inset,
+              0 24px 36px 0 rgba(0, 64, 193, 0.9) inset,
+              0 0 3px 1.2px rgba(0, 64, 193, 0.3),
+              0 0 6px 1.8px rgba(0, 64, 193, 0.2);
           }
           100% {
             transform: rotate(450deg);
             box-shadow:
-              0 6px 12px 0 #4dc8fd inset,
-              0 12px 18px 0 #005dff inset,
-              0 36px 36px 0 #1e40af inset,
-              0 0 3px 1.2px rgba(56, 189, 248, 0.3),
-              0 0 6px 1.8px rgba(0, 93, 255, 0.2);
+              0 6px 12px 0 rgba(0, 64, 193, 0.4) inset,
+              0 12px 18px 0 rgba(0, 64, 193, 0.6) inset,
+              0 36px 36px 0 rgba(0, 64, 193, 0.8) inset,
+              0 0 3px 1.2px rgba(0, 64, 193, 0.3),
+              0 0 6px 1.8px rgba(0, 64, 193, 0.2);
           }
         }
 

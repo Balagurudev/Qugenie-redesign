@@ -1,5 +1,6 @@
 import { ArrowRight, Server, Cloud } from "lucide-react";
 import { CosmicBeamBackground } from "@/components/ui/CosmicBeamBackground";
+import BorderGlow from "@/components/ui/border-glow";
 
 const FONT = "'Mirage Display Medium','Mirage Display Medium Placeholder',sans-serif";
 
@@ -24,32 +25,56 @@ export function Infrastructure() {
         {/* Two cards */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, fontFamily: FONT }}>
           {/* Local Server */}
-          <div className="group flex flex-col gap-5 p-9 rounded-2xl border border-[var(--surface-border)] bg-[var(--surface-card)] shadow-[0_2px_16px_rgba(0,0,0,0.02)] transition-colors duration-500 hover:border-transparent cursor-pointer relative overflow-hidden">
-            <div className="absolute inset-0 bg-[radial-gradient(150%_80%_at_50%_0%,var(--brand-600)_0%,transparent_70%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none z-0" />
-            <div className="relative z-10 flex flex-col gap-5">
-              <div className="flex items-center justify-center w-[52px] h-[52px] rounded-xl bg-[var(--icon-brand-bg)] text-[var(--icon-brand-color)] group-hover:bg-white/15 group-hover:text-white transition-colors duration-500">
-                <Cloud size={24} />
+          <BorderGlow
+            className="w-full h-full cursor-pointer"
+            edgeSensitivity={40}
+            glowColor="220 100 60"
+            backgroundColor="#050610"
+            borderRadius={24}
+            glowRadius={35}
+            glowIntensity={2.5}
+            coneSpread={30}
+            animated={false}
+            colors={['#4096ff', '#0040C1', '#001a4d']}
+          >
+            <div className="group relative z-10 flex flex-col gap-5 p-9 h-full">
+              <div className="flex items-center justify-center w-[52px] h-[52px] rounded-xl bg-white/5 text-white/90 border border-white/10 shadow-sm group-hover:scale-105 transition-transform duration-300">
+                <Cloud size={24} className="stroke-[1.5]" />
               </div>
-              <h3 className="text-[22px] font-semibold text-[var(--text-heading)] group-hover:text-white tracking-[-0.025em] leading-[1.2] m-0 transition-colors duration-500">CLOUD SAAS</h3>
-              <p className="text-[15px] text-[var(--text-subtle)] group-hover:text-white/90 leading-[1.65] m-0 font-normal transition-colors duration-500">
-                Managed by us, sovereign cloud in India — running in days, predictable monthly cost.
-              </p>
+              <div className="flex flex-col gap-2 mt-auto">
+                <h3 className="text-[22px] font-semibold text-white tracking-[-0.025em] leading-[1.2] m-0">CLOUD SAAS</h3>
+                <p className="text-[15px] text-white/60 leading-[1.65] m-0 font-normal group-hover:text-white/80 transition-colors">
+                  Managed by us, sovereign cloud in India — running in days, predictable monthly cost.
+                </p>
+              </div>
             </div>
-          </div>
+          </BorderGlow>
 
           {/* Private Cloud */}
-          <div className="group flex flex-col gap-5 p-9 rounded-2xl border border-[var(--surface-border)] bg-[var(--surface-card)] shadow-[0_2px_16px_rgba(0,0,0,0.02)] transition-colors duration-500 hover:border-transparent cursor-pointer relative overflow-hidden">
-            <div className="absolute inset-0 bg-[radial-gradient(150%_80%_at_50%_0%,var(--brand-600)_0%,transparent_70%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none z-0" />
-            <div className="relative z-10 flex flex-col gap-5">
-              <div className="flex items-center justify-center w-[52px] h-[52px] rounded-xl bg-[var(--icon-brand-bg)] text-[var(--icon-brand-color)] group-hover:bg-white/15 group-hover:text-white transition-colors duration-500">
-                <Server size={24} />
+          <BorderGlow
+            className="w-full h-full cursor-pointer"
+            edgeSensitivity={40}
+            glowColor="220 100 60"
+            backgroundColor="#050610"
+            borderRadius={24}
+            glowRadius={35}
+            glowIntensity={2.5}
+            coneSpread={30}
+            animated={false}
+            colors={['#4096ff', '#0040C1', '#001a4d']}
+          >
+            <div className="group relative z-10 flex flex-col gap-5 p-9 h-full">
+              <div className="flex items-center justify-center w-[52px] h-[52px] rounded-xl bg-white/5 text-white/90 border border-white/10 shadow-sm group-hover:scale-105 transition-transform duration-300">
+                <Server size={24} className="stroke-[1.5]" />
               </div>
-              <h3 className="text-[22px] font-semibold text-[var(--text-heading)] group-hover:text-white tracking-[-0.025em] leading-[1.2] m-0 transition-colors duration-500">ON-PREMISE</h3>
-              <p className="text-[15px] text-[var(--text-subtle)] group-hover:text-white/90 leading-[1.65] m-0 font-normal transition-colors duration-500">
-                Your servers, your perimeter — complete data sovereignty, no vendor lock-in, air-gapped supported.
-              </p>
+              <div className="flex flex-col gap-2 mt-auto">
+                <h3 className="text-[22px] font-semibold text-white tracking-[-0.025em] leading-[1.2] m-0">ON-PREMISE</h3>
+                <p className="text-[15px] text-white/60 leading-[1.65] m-0 font-normal group-hover:text-white/80 transition-colors">
+                  Your servers, your perimeter — complete data sovereignty, no vendor lock-in, air-gapped supported.
+                </p>
+              </div>
             </div>
-          </div>
+          </BorderGlow>
         </div>
 
         {/* Link */}

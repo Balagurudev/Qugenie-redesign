@@ -68,16 +68,16 @@ export const Card = ({
   return (
     <div
       ref={container}
-      className='h-[50vh] flex items-center justify-center sticky top-[18vh] px-4'
+      className='h-[60vh] flex items-start justify-center sticky top-[45vh] px-4'
       style={{ fontFamily: "'Mirage Display Medium','Mirage Display Medium Placeholder',sans-serif" }}
     >
       <motion.div
         style={{
           scale,
-          top: `calc(-10vh + ${i * 20}px)`,
+          top: `calc(${i * 20}px)`,
           border: borderStyle,
         }}
-        className='flex flex-col relative -top-[5%] h-[430px] w-full max-w-[800px] rounded-[4px] p-8 origin-top shadow-2xl justify-between overflow-hidden text-white backdrop-blur-md'
+        className='flex flex-col relative h-[430px] w-full max-w-[800px] rounded-[4px] p-8 origin-top shadow-2xl justify-between overflow-hidden text-white backdrop-blur-md pointer-events-auto'
       >
         {/* Base Inactive Theme Card Background */}
         <div className='absolute inset-0 bg-gradient-to-br from-[#0a0815] to-[#020106] z-0' />
@@ -189,27 +189,31 @@ const StackingCards = forwardRef<HTMLElement>((_, ref) => {
 
   return (
     <div ref={container} className='bg-[#03010a] relative w-full' data-name="StackingCardsSection">
-      <section className='text-white h-[45vh] w-full bg-[#03010a] grid place-content-center relative overflow-hidden'>
-        <div className='absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(0,64,193,0.12)_0%,_transparent_65%)] pointer-events-none' />
-        <div className='absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#1f293733_1px,transparent_1px),linear-gradient(to_bottom,#1f293733_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)] pointer-events-none' />
-
-        <div className='relative z-10 text-center px-6 flex flex-col items-center gap-3'>
+      
+      {/* 1. STICKY BACKGROUND & TEXT THAT STAYS ON SCREEN */}
+      <div className="sticky top-0 h-screen w-full z-0 overflow-hidden pointer-events-none flex flex-col items-center justify-start pt-[12vh]">
+        {/* Background Layers */}
+        <div className='absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(0,64,193,0.12)_0%,_transparent_65%)]' />
+        <div className='absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#1f293733_1px,transparent_1px),linear-gradient(to_bottom,#1f293733_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)]' />
+        
+        {/* Text Content */}
+        <div className='relative z-10 text-center px-6 flex flex-col items-center gap-3 w-full max-w-[800px]'>
           <span className='text-[10px] font-bold uppercase tracking-[4px] text-[#34d399]'>
             ARCHITECTURE
           </span>
-          <h1 className='text-3xl md:text-5xl font-bold tracking-tight leading-tight max-w-[800px] text-white font-["Mirage_Display_Medium",sans-serif]'>
+          <h1 className='text-3xl md:text-5xl font-bold tracking-tight leading-tight text-white font-["Mirage_Display_Medium",sans-serif]'>
             Four Pillars.<br />One Unified Core.
           </h1>
-          <p className='text-xs md:text-sm text-zinc-400 mt-1 max-w-[440px] leading-relaxed'>
-            Scroll down to explore how structural agentic intelligence powers every module of QuGenie.
+          <p className='text-[15px] md:text-[17px] leading-[28px] text-zinc-300 mt-4 mb-4'>
+            Most ERP vendors bolt a chat assistant onto a legacy data model and call it AI. QuGenie inverts that. Intelligence is part of the architecture — four distinct pillars, each reasoning over the same canonical store, each producing a concrete operational outcome rather than a conversational one.
           </p>
-          <div className='text-xl mt-3 opacity-50 animate-bounce'>
+          <div className='text-xl opacity-50 animate-bounce'>
             ↓
           </div>
         </div>
-      </section>
+      </div>
 
-      <section className='text-white w-full bg-[#03010a] pb-[5vh]'>
+      <section className='text-white w-full pb-[20vh] relative z-10'>
         {projects.map((project, i) => {
           const targetScale = 1 - (projects.length - i) * 0.04;
           return (
