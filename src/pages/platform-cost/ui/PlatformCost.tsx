@@ -172,9 +172,6 @@ export default function PlatformCost() {
 
         {/* Left Column Header */}
         <div className="lg:col-span-7 flex flex-col items-start gap-4">
-          <span className="text-[12px] font-bold tracking-[0.2em] text-[#5586ff] uppercase">
-            ECONOMICS
-          </span>
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

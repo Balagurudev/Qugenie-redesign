@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { CosmicBeamBackground } from "@/components/ui/CosmicBeamBackground";
+import { PixelCanvas } from "@/shared/ui/pixel-logo-grid";
 
 const FONT = "'Mirage Display Medium','Mirage Display Medium Placeholder',sans-serif";
 
@@ -42,8 +43,8 @@ export function Services() {
               onClick={() => { window.location.hash = sol.linkHash; window.scrollTo({ top: 0, behavior: "smooth" }); }}
               className="group relative overflow-hidden flex flex-col p-7 rounded-2xl cursor-pointer min-h-[200px] border transition-all duration-500 hover:border-transparent hover:shadow-[0_12px_30px_rgba(0,64,193,0.22)] bg-[var(--surface-card)] border-[var(--surface-border)] shadow-[0_2px_12px_rgba(0,0,0,0.03)]"
             >
-              {/* Radial Hover Gradient */}
-              <div className="absolute inset-0 bg-[radial-gradient(150%_80%_at_50%_0%,var(--brand-600)_0%,transparent_70%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none z-0" />
+              {/* Pixel Canvas Hover Effect */}
+              <PixelCanvas colors={['#3B82F6', '#2563EB', '#1D4ED8', '#1E3A8A']} gap={4} speed={40} />
               
               <div className="relative z-10 flex flex-col justify-between h-full">
                 <div className="flex flex-col gap-2.5">

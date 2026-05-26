@@ -75,23 +75,21 @@ export function AboutUs() {
 
 
         {/* The Big Grid Card */}
+        {/*
         <div className="relative w-full rounded-[16px] border border-[#1f2233] overflow-hidden mt-4 bg-[#050814] min-h-[500px] flex items-center shadow-2xl">
 
-          {/* Vertical Grid Lines Background */}
           <div className="absolute inset-0 flex justify-between px-16 pointer-events-none opacity-20">
             {[...Array(9)].map((_, i) => (
               <div key={i} className="h-full w-px bg-blue-400/20" />
             ))}
           </div>
 
-          {/* Radial Gradient Glow */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div className="w-[600px] h-[600px] bg-blue-600/20 blur-[120px] rounded-full" />
           </div>
 
           <div className="relative z-10 w-full flex flex-col md:flex-row items-center justify-between px-12 py-16 gap-12">
 
-            {/* Left Content */}
             <div className="flex flex-col gap-8 max-w-[420px]">
               <h3 className="text-left m-0 p-0" style={{ fontFamily: FONT, fontSize: 46, fontWeight: 600, lineHeight: 1.15, letterSpacing: "-0.02em", color: "#ffffff" }}>
                 DATA SILOS ARE SLOWING YOU DOWN
@@ -101,28 +99,23 @@ export function AboutUs() {
               </p>
             </div>
 
-            {/* Right Floating Badges */}
             <div className="relative w-full md:w-[500px] h-[340px]">
 
-              {/* Badge 1 - Top Right */}
               <div className="absolute top-[8%] right-[5%] bg-[#13162b] border border-[#2b345e] rounded-[8px] px-5 py-3 flex items-center gap-4 shadow-[0_12px_40px_rgba(0,0,0,0.6)] backdrop-blur-md hover:-translate-y-1 transition-transform cursor-pointer">
                 <span className="text-[14px] text-gray-200 font-medium tracking-wide">Reconciliation tax</span>
                 <div className="w-2.5 h-2.5 rounded-full bg-gray-400" />
               </div>
 
-              {/* Badge 2 - Middle Left */}
               <div className="absolute top-[36%] left-[2%] bg-[#13162b] border border-[#2b345e] rounded-[8px] px-5 py-3 flex items-center gap-4 shadow-[0_12px_40px_rgba(0,0,0,0.6)] backdrop-blur-md hover:-translate-y-1 transition-transform cursor-pointer">
                 <span className="text-[14px] text-gray-200 font-medium tracking-wide">Middleware overhead</span>
                 <div className="w-2.5 h-2.5 rounded-full bg-gray-400" />
               </div>
 
-              {/* Badge 3 - Bottom Left (Moved up) */}
               <div className="absolute bottom-[26%] left-[10%] bg-[#13162b] border border-[#2b345e] rounded-[8px] px-5 py-3 flex items-center gap-4 shadow-[0_12px_40px_rgba(0,0,0,0.6)] backdrop-blur-md hover:-translate-y-1 transition-transform cursor-pointer">
                 <span className="text-[14px] text-gray-200 font-medium tracking-wide">Fragmented workflows</span>
                 <div className="w-3 h-4 bg-gray-400 rounded-[2px]" />
               </div>
 
-              {/* Badge 4 - Bottom Right (Moved down) */}
               <div className="absolute bottom-[2%] right-[5%] bg-[#13162b] border border-[#2b345e] rounded-[8px] px-5 py-3 flex items-center gap-4 shadow-[0_12px_40px_rgba(0,0,0,0.6)] backdrop-blur-md hover:-translate-y-1 transition-transform cursor-pointer">
                 <span className="text-[14px] text-gray-200 font-medium tracking-wide">Isolated data silos</span>
                 <div className="w-3.5 h-3.5 border-2 border-gray-400 rounded-full" />
@@ -131,6 +124,7 @@ export function AboutUs() {
             </div>
           </div>
         </div>
+        */}
       </div>
     </section>
   );

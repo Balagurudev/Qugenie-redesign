@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
+import { LoadingAnimation } from "@/widgets/loading-animation/ui/LoadingAnimation";
 import { Header } from "@/widgets/header/ui/Header";
 import { Hero } from "@/widgets/hero/ui/Hero";
 import { AboutUs } from "@/widgets/about-us/ui/AboutUs";
@@ -37,6 +38,7 @@ import ContactPage from "@/pages/contact/ui/ContactPage";
 
 export default function App() {
   const [page, setPage] = useState("home");
+  const [showLoading, setShowLoading] = useState(true);
 
   useEffect(() => {
     const handleHash = () => {
@@ -99,18 +101,26 @@ export default function App() {
   }, []);
 
   return (
-    <div className="bg-background text-foreground content-stretch flex flex-col items-center relative w-full overflow-x-clip min-h-screen">
-      <Header />
+    <>
+      {showLoading && (
+        <LoadingAnimation onComplete={() => setShowLoading(false)} />
+      )}
+      
+      <div 
+        className="bg-background text-foreground content-stretch flex flex-col items-center relative w-full overflow-x-clip min-h-screen"
+        style={{ opacity: showLoading ? 0 : 1, transition: "opacity 1s ease-in-out", pointerEvents: showLoading ? "none" : "auto" }}
+      >
+        <Header />
 
       {page === "home" && (
         <>
           <Hero />
-          <AboutUs />
+          {/* <AboutUs /> */}
           <Services />
           <WhyQuGenie />
-          <AgenticCoreLanding />
+          {/* <AgenticCoreLanding /> */}
           {/* <AgenticCoreLandingV2 /> */}
-          <Infrastructure />
+          {/* <Infrastructure /> */}
           <FAQ />
           {/* <Newsletter /> */}
           <Footer />
@@ -139,6 +149,7 @@ export default function App() {
       {page === "solutions-analytics" && <SolutionsAnalytics />}
       {page === "about-us" && <AboutUsPage />}
       {page === "contact" && <ContactPage />}
-    </div>
+      </div>
+    </>
   );
 }
