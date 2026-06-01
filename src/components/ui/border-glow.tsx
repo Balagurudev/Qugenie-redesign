@@ -1,4 +1,5 @@
 import { useRef, useCallback, useState, useEffect, type ReactNode } from 'react';
+import { useThemeCustomizer } from "@/contexts/ThemeCustomizerContext";
 
 interface BorderGlowProps {
   children?: ReactNode;
@@ -86,6 +87,15 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
   colors = ['#c084fc', '#f472b6', '#38bdf8'],
   fillOpacity = 0.5,
 }) => {
+  const { designSystem } = useThemeCustomizer();
+  if (designSystem === 'ebay') {
+    return (
+      <div className={`relative p-2 rounded-[16px] border border-[#333] bg-[#111] hover:-translate-y-2 transition-transform h-full ${className}`}>
+        {children}
+      </div>
+    );
+  }
+
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [cursorAngle, setCursorAngle] = useState(45);

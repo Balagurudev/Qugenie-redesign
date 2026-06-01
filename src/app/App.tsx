@@ -1,4 +1,6 @@
 import { useEffect, useState, Suspense } from "react";
+import { ThemeCustomizerProvider, useThemeCustomizer } from "@/contexts/ThemeCustomizerContext";
+import { EbayHeader } from "@/widgets/ebay/EbayHeader";
 import { LoadingAnimation } from "@/widgets/loading-animation/ui/LoadingAnimation";
 import { Header } from "@/widgets/header/ui/Header";
 import { Hero } from "@/widgets/hero/ui/Hero";
@@ -36,9 +38,10 @@ import SolutionsAnalytics from "@/pages/solutions-analytics/ui/SolutionsAnalytic
 import AboutUsPage from "@/pages/about-us/ui/AboutUsPage";
 import ContactPage from "@/pages/contact/ui/ContactPage";
 
-export default function App() {
+function AppContent() {
   const [page, setPage] = useState("home");
   const [showLoading, setShowLoading] = useState(true);
+  const { designSystem } = useThemeCustomizer();
 
   useEffect(() => {
     const handleHash = () => {
@@ -110,7 +113,7 @@ export default function App() {
         className="bg-background text-foreground content-stretch flex flex-col items-center relative w-full overflow-x-clip min-h-screen"
         style={{ opacity: showLoading ? 0 : 1, transition: "opacity 1s ease-in-out", pointerEvents: showLoading ? "none" : "auto" }}
       >
-        <Header />
+        {designSystem === "cinematic" ? <Header /> : <EbayHeader />}
 
       {page === "home" && (
         <>
@@ -151,5 +154,13 @@ export default function App() {
       {page === "contact" && <ContactPage />}
       </div>
     </>
+  );
+}
+
+export default function App() {
+  return (
+    <ThemeCustomizerProvider>
+      <AppContent />
+    </ThemeCustomizerProvider>
   );
 }

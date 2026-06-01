@@ -1,10 +1,18 @@
 import { motion, useScroll, useTransform, useMotionValueEvent, AnimatePresence, MotionValue } from "motion/react";
 import { useRef, useState } from "react";
 import { Footer } from "@/widgets/footer/ui/Footer";
-import { Box, Lock, Search, Settings, Sparkles, CreditCard, Users, Network, BarChart3, Database, Server, TrendingUp } from "lucide-react";
+import { Box, Lock, Search, Settings, Sparkles, CreditCard, Users, Network, BarChart3, Database, Server, TrendingUp, User, MapPin, FileText, AlertTriangle, CheckCircle2 } from "lucide-react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { Newsletter } from "@/widgets/newsletter/ui/Newsletter";
 import BorderGlow from "@/components/ui/border-glow";
+import { useThemeCustomizer } from "@/contexts/ThemeCustomizerContext";
+import imgHeroMockup from "@/assets/hero_mockup.png";
+
+import imgWhy1 from "@/assets/why_1.png";
+import imgWhy2 from "@/assets/why_2.png";
+import imgWhy3 from "@/assets/why_3.png";
+import imgWhy4 from "@/assets/why_4.png";
+import imgWhy5 from "@/assets/why_5.png";
 
 const costFeatures = [
   { text: "More transactions", icon: CreditCard },
@@ -162,6 +170,27 @@ export default function PlatformCost() {
     { text: "Vendor lock-in pricing (switching becomes costly once data is large)", icon: Lock }
   ];
 
+  const { designSystem } = useThemeCustomizer();
+
+  if (designSystem === "ebay") {
+    return (
+      <div className="bg-[#FAFAF9] dark:bg-background text-[#111111] dark:text-white min-h-screen w-full flex flex-col pt-32 pb-32" style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" }}>
+        
+        <EbayCostTopSections />
+
+        <EbayCostSection />
+
+        <div className="mt-32">
+          <Newsletter 
+            title="See how QuGenie's on-premise and hybrid models give you predictable costs, full ownership, and long-term savings without hidden SaaS escalations."
+            description=""
+            buttonText="Book a Free Demo"
+          />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full flex flex-col items-center min-h-screen bg-[#03010a] text-white pt-[120px] font-['Mirage_Display_Medium','Mirage_Display_Medium_Placeholder',sans-serif]" data-name="PlatformCostPage">
       
@@ -236,12 +265,12 @@ export default function PlatformCost() {
               >
                 {/* Glowing Icon Box */}
                 <div className="w-[64px] h-[64px] bg-[#5586ff] rounded-[16px] flex items-center justify-center text-white text-[20px] font-bold shadow-[0_0_24px_rgba(85,134,255,0.3)] relative overflow-hidden transition-transform duration-500 group-hover:scale-105">
-                  <div className="absolute inset-0 bg-white/20 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-out" />
+                  <div className="absolute inset-0 bg-white dark:bg-[#111111]/20 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-out" />
                   <Icon className="w-7 h-7 relative z-10" />
                 </div>
                 
                 {/* Separator Line */}
-                <div className="w-full h-[1px] bg-white/10 group-hover:bg-[#5586ff]/50 transition-colors duration-500" />
+                <div className="w-full h-[1px] bg-white dark:bg-[#111111]/10 group-hover:bg-[#5586ff]/50 transition-colors duration-500" />
 
                 {/* Title & Description */}
                 <div className="flex flex-col gap-2 pr-4">
@@ -357,3 +386,188 @@ const GridItem = ({
     </li>
   );
 };
+
+function EbayCostSection() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const images = [imgWhy1, imgWhy2, imgWhy3, imgWhy4, imgWhy5];
+
+  const items = [
+    { title: "Infrastructure Investment", desc: "Your server cost is largely upfront or predictable. Data growth does not trigger recurring vendor charges." },
+    { title: "Zero Data-Based Billing", desc: "Whether you store 10 GB or 10 TB — your ERP cost does not increase proportionally." },
+    { title: "No Per-User Escalation Pressure", desc: "Growth in team size does not force constant pricing-tier upgrades." },
+    { title: "No Forced Subscription Cycles", desc: "You are not tied to perpetual monthly cost increases driven by vendor pricing changes." },
+    { title: "Higher Long-Term ROI", desc: "Over 3-7 years, total cost of ownership drops significantly compared to SaaS alternatives." },
+  ];
+
+  return (
+    <div className="max-w-[1280px] w-full mx-auto px-6 md:px-12 mt-32 flex flex-col gap-12">
+      
+      {/* Section Heading */}
+      <div className="w-full flex flex-col items-center text-center">
+        <h2 className="text-[48px] leading-[60px] md:text-[48px] md:leading-[60px] font-sans font-medium uppercase tracking-tight text-[#111] dark:text-white max-w-[900px]">
+          QUGENIE ON-PREMISE COST THAT STABILISES, NOT EXPLODES
+        </h2>
+        <p className="text-[18px] leading-[28px] md:text-[18px] md:leading-[28px] text-[#555] dark:text-[#A6A6A6] max-w-[800px] mt-6">
+          QuGenie's on-premise-first architecture flips this model entirely. Instead of renting infrastructure forever, you own your environment. Here is how that changes the economics.
+        </p>
+      </div>
+
+      <div className="flex flex-col lg:flex-row gap-4 h-auto items-stretch">
+        {/* Left side: List of 5 cards */}
+        <div className="flex-1 flex flex-col gap-4">
+        {items.map((item, idx) => {
+          const isActive = activeIndex === idx; 
+          return (
+            <div 
+              key={idx} 
+              onMouseEnter={() => setActiveIndex(idx)}
+              className={`group flex-1 rounded-[24px] p-6 lg:p-8 flex flex-col justify-between transition-all duration-500 cursor-pointer ${
+                isActive 
+                  ? "bg-[var(--primary)] text-white shadow-lg scale-[1.02] -translate-y-1 z-10" 
+                  : "bg-white dark:bg-[#111111] text-[#111] dark:text-white border border-[#E5E5E5] dark:border-[#333] shadow-sm hover:shadow-md hover:-translate-y-1 hover:bg-neutral-50 dark:hover:bg-[#1a1a1a]"
+              }`}
+            >
+              {/* Top Right Title */}
+              <div className="w-full flex justify-end mb-6">
+                <h3 className="text-[30px] leading-[38px] md:text-[30px] md:leading-[38px] font-sans font-medium uppercase tracking-wide text-right max-w-[320px]">
+                  {item.title}
+                </h3>
+              </div>
+              
+              {/* Bottom Left & Right */}
+              <div className="flex items-end justify-between w-full mt-auto">
+                <p className={`text-[12px] leading-[18px] md:text-[12px] md:leading-[18px] font-bold uppercase tracking-[1.5px] max-w-[260px] transition-colors duration-300 ${isActive ? "text-white/80" : "text-[#555] dark:text-[#A6A6A6]"}`}>
+                  {item.desc}
+                </p>
+                <div className="flex-shrink-0 ml-4 pb-1 transform transition-transform duration-500 ease-out group-hover:translate-x-2 group-hover:-translate-y-2">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={isActive ? "#ffffff" : "var(--primary)"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-90">
+                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                    <polyline points="7 7 17 7 17 17"></polyline>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Right side: Image Panel */}
+      <div className="flex-1 relative rounded-[24px] overflow-hidden min-h-[500px] lg:min-h-full bg-[var(--primary)] shadow-[0_8px_32px_color-mix(in_srgb,var(--primary)_20%,transparent)]">
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={activeIndex}
+            src={images[activeIndex]}
+            initial={{ opacity: 0, filter: "blur(8px)", scale: 1.05 }}
+            animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
+            exit={{ opacity: 0, filter: "blur(8px)", scale: 0.95 }}
+            transition={{ duration: 0.5 }}
+            className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60"
+            alt="Feature Preview"
+          />
+        </AnimatePresence>
+
+        {/* Gradient Overlay for Text Readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#000000]/90 via-[#000000]/30 to-transparent pointer-events-none" />
+        
+      </div>
+      
+      </div>
+    </div>
+  );
+}
+
+function EbayCostTopSections() {
+  const [activeCard, setActiveCard] = useState(0);
+
+  return (
+    <div className="w-full bg-[#FAFAF9] dark:bg-[#0a0a0a] py-16 lg:py-24 mt-8">
+      <div className="max-w-[1280px] w-full mx-auto px-6 md:px-12 flex flex-col gap-16 md:gap-24">
+        
+        {/* Top Header Split */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+          <h1 className="text-[48px] leading-[60px] md:text-[48px] md:leading-[60px] font-sans font-normal uppercase tracking-tight text-[#111] dark:text-white">
+            THE HIDDEN COST OF SAAS ERP — AND WHY IT KEEPS RISING
+          </h1>
+          <p className="text-[18px] leading-[28px] md:text-[18px] md:leading-[28px] text-[#555] dark:text-[#A6A6A6] lg:pt-2">
+            Most modern ERP platforms are built on a SaaS (cloud) model that appears affordable at the beginning — low upfront cost, quick deployment, and minimal infrastructure responsibility. But what is rarely highlighted is how the cost structure evolves over time.
+          </p>
+        </div>
+
+        {/* 1st Image Section (Cards) */}
+        <div className="flex flex-col gap-8 pt-8 border-t border-[#E5E5E5] dark:border-[#333]">
+          <h2 className="text-[48px] leading-[60px] md:text-[48px] md:leading-[60px] font-sans font-medium text-[#111] dark:text-white tracking-tight">
+            As your business grows, your data grows exponentially, not linearly:
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+            {[
+              { icon: Users, text: "More transactions" },
+              { icon: User, text: "More customers" },
+              { icon: MapPin, text: "More employees,\ncommunications" },
+              { icon: FileText, text: "More documents,\nanalytics" }
+            ].map((item, i) => {
+              const isDark = activeCard === i;
+              return (
+                <div 
+                  key={i} 
+                  onMouseEnter={() => setActiveCard(i)}
+                  className={`flex flex-col justify-between p-6 rounded-[16px] min-h-[280px] transition-all duration-300 cursor-pointer ${
+                    isDark 
+                      ? "bg-[var(--primary)] text-white shadow-lg -translate-y-1" 
+                      : "bg-white dark:bg-[#111] text-[#111] dark:text-white border border-[#E5E5E5] dark:border-[#333] shadow-sm hover:shadow-md"
+                  }`}
+                >
+                  <div className="flex justify-start items-start w-full">
+                    <item.icon className={`w-8 h-8 transition-colors duration-300 ${isDark ? "text-white" : "text-[var(--primary)]"}`} strokeWidth={1.5} />
+                  </div>
+                  <div className="mt-auto pt-8">
+                    <span className={`text-[16px] leading-[24px] md:text-[16px] md:leading-[24px] whitespace-pre-line transition-colors duration-300 ${isDark ? "text-white font-medium" : "text-[#555] dark:text-[#A6A6A6]"}`}>
+                      {item.text}
+                    </span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* 2nd Image Section (Stacked Layout) */}
+        <div className="flex flex-col gap-12 lg:gap-16 pt-12 border-t border-[#E5E5E5] dark:border-[#333]">
+          
+          <div className="flex flex-col gap-6 max-w-[800px]">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#E5E5E5] dark:border-[#333] bg-white dark:bg-[#111] text-[12px] font-semibold tracking-[1px] uppercase text-[#555] dark:text-[#aaa] w-fit shadow-sm">
+              The Reality
+            </div>
+            <h2 className="text-[48px] leading-[60px] md:text-[48px] md:leading-[60px] font-sans font-medium text-[#111] dark:text-white tracking-tight">
+              In SaaS ERP systems, this directly translates into:
+            </h2>
+            <p className="text-[18px] leading-[28px] md:text-[18px] md:leading-[28px] text-[#555] dark:text-[#A6A6A6]">
+              Over a 3-5 year horizon, organisations often realise they are no longer paying for software — they are paying continuously for their own data growth. In essence: the more successful your business becomes, the more expensive your ERP becomes.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 mt-4 max-w-[1000px]">
+            {[
+              { title: "Rising storage costs", desc: "Charged per GB/TB over time." },
+              { title: "Increased compute costs", desc: "More users, more processing, more automation." },
+              { title: "Recurring subscription escalations", desc: "Tier upgrades, feature unlocks." },
+              { title: "Vendor lock-in pricing", desc: "Switching becomes costly once data is large." },
+            ].map((item, i) => (
+              <div key={i} className="flex flex-col gap-3">
+                <div className="flex items-center gap-4">
+                  <div className="w-[3px] h-[30px] bg-[var(--primary)] rounded-full" />
+                  <h4 className="text-[30px] leading-[38px] md:text-[30px] md:leading-[38px] font-medium text-[#111] dark:text-white tracking-tight">{item.title}</h4>
+                </div>
+                <p className="text-[16px] leading-[24px] md:text-[16px] md:leading-[24px] text-[#555] dark:text-[#A6A6A6] lg:pr-8">
+                  {item.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  );
+}

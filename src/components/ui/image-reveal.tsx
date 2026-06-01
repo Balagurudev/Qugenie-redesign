@@ -74,7 +74,7 @@ const ImageReveal = React.forwardRef<HTMLDivElement, ImageRevealProps>(
             key={image.id}
             className={cn(
               `cursor-pointer relative flex flex-col md:flex-row md:items-center justify-between transition-colors duration-300 py-8 px-4 md:px-8 group overflow-hidden border-b border-white/5 last:border-b-0`,
-              activeImage?.id === image.id ? 'bg-[#5586ff]/[0.02]' : 'bg-transparent'
+              activeImage?.id === image.id ? 'bg-[var(--glow-secondary)]/[0.02]' : 'bg-transparent'
             )}
             onMouseEnter={() => setActiveImage(image)}
           >
@@ -82,11 +82,11 @@ const ImageReveal = React.forwardRef<HTMLDivElement, ImageRevealProps>(
             {activeImage?.id === image.id && (
               <div className="absolute inset-0 pointer-events-none z-0">
                 {/* Soft ambient background glow */}
-                <div className="absolute bottom-0 left-0 w-full h-[80px] bg-[#5586ff] opacity-15 blur-[40px]" />
+                <div className="absolute bottom-0 left-0 w-full h-[80px] bg-[var(--glow-secondary)] opacity-15 blur-[40px]" />
                 {/* Bright bottom edge beam that reaches the edges perfectly */}
-                <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-[#5586ff]/80 via-[#5586ff] to-[#5586ff]/80" />
+                <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-[var(--glow-secondary)]/80 via-[var(--glow-secondary)] to-[var(--glow-secondary)]/80" />
                 {/* Intense center core without transparent gaps */}
-                <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-[#8ab4f8]/30 via-[#8ab4f8] to-[#8ab4f8]/30 shadow-[0_0_15px_3px_rgba(85,134,255,0.8)]" />
+                <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-[var(--glow-secondary)]/30 via-[var(--glow-secondary)] to-[var(--glow-secondary)]/30" style={{ boxShadow: "0 0 15px 3px var(--glow-secondary)" }} />
               </div>
             )}
             
@@ -96,7 +96,7 @@ const ImageReveal = React.forwardRef<HTMLDivElement, ImageRevealProps>(
                 className={cn(
                   `font-bold text-[22px] md:text-[28px] leading-[1.2] tracking-tight transition-colors duration-300 font-['Mirage_Display_Medium','Mirage_Display_Medium_Placeholder',sans-serif]`,
                   activeImage?.id === image.id
-                    ? 'text-[#5586ff]'
+                    ? 'text-[var(--glow-secondary)]'
                     : 'text-white'
                 )}
               >

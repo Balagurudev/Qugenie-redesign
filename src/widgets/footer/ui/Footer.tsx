@@ -29,8 +29,8 @@ export function Footer() {
       data-name="Footer"
     >
       {/* Decorative Blur Background */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#0040C1]/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#002266]/15 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--brand-800)]/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[var(--brand-950)]/15 rounded-full blur-[100px] pointer-events-none" />
 
       {/* Gigantic Background Watermark */}
       <div className="absolute bottom-[20px] left-1/2 -translate-x-1/2 text-[14vw] font-bold font-['Mirage_Display_Medium','Mirage_Display_Medium_Placeholder',sans-serif] text-[#0a0d1d] select-none pointer-events-none tracking-widest uppercase leading-none text-center w-full z-0">
@@ -41,7 +41,7 @@ export function Footer() {
       <div 
         className="absolute bottom-[20px] left-1/2 -translate-x-1/2 text-[14vw] font-bold font-['Mirage_Display_Medium','Mirage_Display_Medium_Placeholder',sans-serif] text-transparent bg-clip-text select-none pointer-events-none tracking-widest uppercase leading-none text-center w-full z-0"
         style={{
-          backgroundImage: "linear-gradient(90deg, #5586ff, #0040C1)",
+          backgroundImage: "linear-gradient(90deg, var(--glow-secondary), var(--brand-800))",
           WebkitBackgroundClip: "text",
           WebkitMaskImage: `radial-gradient(circle 350px at ${mousePos.x}px ${mousePos.y}px, black 10%, transparent 100%)`,
           maskImage: `radial-gradient(circle 350px at ${mousePos.x}px ${mousePos.y}px, black 10%, transparent 100%)`,

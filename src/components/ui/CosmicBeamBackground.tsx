@@ -85,7 +85,7 @@ export function CosmicBeamBackground({
     <div 
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className={`relative w-full overflow-hidden bg-[#030514] ${className}`}
+      className={`relative w-full overflow-hidden bg-background ${className}`}
     >
       {/* Base Dot Grid */}
       <div 
@@ -109,8 +109,8 @@ export function CosmicBeamBackground({
           className={`absolute w-[180%] md:w-[120%] h-[60%] md:h-[40%] pointer-events-none origin-center ${positionClass}`}
           style={{
             background: beamIntensity === "extreme" 
-              ? "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,255,255,1) 0%, rgba(135,206,250,0.9) 15%, rgba(0,80,255,0.6) 40%, transparent 100%)"
-              : "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,255,255,1) 0%, rgba(85,134,255,0.8) 15%, rgba(0,64,193,0.4) 40%, transparent 100%)",
+              ? "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,255,255,1) 0%, color-mix(in srgb, var(--primary) 80%, white 20%) 15%, color-mix(in srgb, var(--primary) 60%, transparent) 40%, transparent 100%)"
+              : "radial-gradient(ellipse 50% 50% at 50% 50%, rgba(255,255,255,1) 0%, color-mix(in srgb, var(--primary) 70%, white 30%) 15%, color-mix(in srgb, var(--primary) 40%, transparent) 40%, transparent 100%)",
             transform: `rotate(${angle})`,
             filter: beamIntensity === "extreme" ? "blur(60px) brightness(1.3)" : "blur(80px)",
             mixBlendMode: "screen"

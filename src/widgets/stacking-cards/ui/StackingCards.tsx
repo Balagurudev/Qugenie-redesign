@@ -51,12 +51,10 @@ export const Card = ({
     ['1px solid rgba(255, 255, 255, 0.05)', '1px solid rgba(0, 82, 235, 0.4)']
   );
 
-  // Active icon background transition
-  const iconBg = useTransform(
-    scrollYProgress,
-    [0.3, 0.85],
-    ['rgba(0, 64, 193, 0.1)', 'rgba(0, 82, 235, 0.25)']
-  );
+  // Active icon background transition - we can't interpolate var() directly to var() smoothly with framer motion
+  // unless we use useTransform to return the var string, but then it snaps.
+  // Instead, we'll keep the background transparent and use a pseudo element or just let the opacity handle it.
+  const iconBgOpacity = useTransform(scrollYProgress, [0.3, 0.85], [0.1, 0.25]);
 
   // Active icon color transition
   const iconColor = useTransform(
@@ -101,18 +99,23 @@ export const Card = ({
         <div className='relative z-10'>
           {/* Header Row */}
           <div className='flex items-center gap-4'>
-            <motion.div 
+              <motion.div 
               style={{
-                background: iconBg,
+                backgroundColor: 'var(--primary)',
+                opacity: iconBgOpacity,
               }}
-              className='w-[44px] h-[44px] md:w-[46px] md:h-[46px] rounded-xl flex items-center justify-center shrink-0 border border-white/10 shadow-[0_0_15px_rgba(0,82,235,0.2)]'
-            >
-              <motion.div style={{ color: iconColor }} className='flex items-center justify-center'>
+              className='absolute inset-0 rounded-xl'
+              />
+              <div
+                className='w-[44px] h-[44px] md:w-[46px] md:h-[46px] rounded-xl flex items-center justify-center shrink-0 border border-white/10 relative z-10'
+                style={{ boxShadow: '0 0 15px var(--glow-secondary)' }}
+              >
+              <motion.div style={{ color: iconColor }} className='flex items-center justify-center relative z-10'>
                 <Icon size={20} />
               </motion.div>
-            </motion.div>
+              </div>
             <div className='flex flex-col'>
-              <span className='text-[10px] md:text-[11px] font-bold uppercase tracking-[3px] text-[#2563eb]' style={{ textShadow: '0 0 10px rgba(37, 99, 235, 0.3)' }}>
+              <span className='text-[10px] md:text-[11px] font-bold uppercase tracking-[3px] text-[var(--glow-secondary)]' style={{ textShadow: '0 0 10px var(--glow-secondary)' }}>
                 {tag}
               </span>
               <h3 className='text-base md:text-lg font-bold text-white tracking-tight mt-0.5 font-["Mirage_Display_Medium",sans-serif]'>
@@ -156,7 +159,7 @@ const StackingCards = forwardRef<HTMLElement>((_, ref) => {
       p1: "Cross-module analytical signals surface the moment something diverges from policy or pattern. Receivables ageing past threshold. Leave balances out of band. GST input mismatched. Alerts come pre-explained — not 'something looks weird', but 'PO-2487 mismatched against Invoice-INV-993, vendor MSME flag inconsistent, suggested action: hold payment until reconciled.'",
       p2: "Static Intelligence reads the present state of the business across every module at once. Because every function writes to one canonical store, the analytical layer never has to reconcile conflicting copies — it reasons over a single truth. The result is signal that arrives where work happens, already carrying its own explanation and a recommended next action.",
       icon: Sparkles,
-      activeGradient: "radial-gradient(circle at 50% 50%, #0052eb 0%, #002273 60%, #03010a 100%)"
+      activeGradient: "radial-gradient(circle at 50% 50%, var(--glow-primary) 0%, var(--brand-950) 60%, #03010a 100%)"
     },
     {
       title: "Audits",
@@ -165,7 +168,7 @@ const StackingCards = forwardRef<HTMLElement>((_, ref) => {
       p1: "Chained-hash audit ledger across every module. Reconstruct exactly what was true at any point in the past — who changed it, when, and why. Audit packs generated on demand for statutory filings, board reviews, and external assurance. Compliance teams stop fearing audits and start running them as routine sanity checks.",
       p2: "Context-Temporal Intelligence treats context and time as a single fabric — the platform does not just know what is true, it knows what was true, and the path between the two. Every mutation is chained and hashed, so the historical record is tamper-evident by construction. An audit stops being a quarterly fire-drill and becomes a query.",
       icon: Shield,
-      activeGradient: "radial-gradient(circle at 50% 50%, #0a46eb 0%, #001f73 60%, #03010a 100%)"
+      activeGradient: "radial-gradient(circle at 50% 50%, var(--glow-secondary) 0%, var(--brand-900) 60%, #03010a 100%)"
     },
     {
       title: "Autonomic",
@@ -174,7 +177,7 @@ const StackingCards = forwardRef<HTMLElement>((_, ref) => {
       p1: "Approval routing, escalation, notification, reconciliation — engine-driven, not human-driven. Cross-module workflows coordinate without manual orchestration. Define policy once; the platform applies it everywhere. Leave requests, expense claims, credit approvals, and statutory filings flow through their own paths while humans focus on the exceptions.",
       p2: "Connected · Swarm Intelligence is the coordination layer: many small policy-driven processes acting in concert without a human conductor. Because the workflow engine sits inside the unified core rather than bolted on as middleware, a process started in one module completes in another with no integration seam. Humans are escalated to — they no longer route.",
       icon: Workflow,
-      activeGradient: "radial-gradient(circle at 50% 50%, #1b52eb 0%, #092073 60%, #03010a 100%)"
+      activeGradient: "radial-gradient(circle at 50% 50%, var(--glow-primary) 0%, var(--brand-800) 60%, #03010a 100%)"
     },
     {
       title: "Embodied",
@@ -183,7 +186,7 @@ const StackingCards = forwardRef<HTMLElement>((_, ref) => {
       p1: "Native integration with biometric attendance, IoT sensors, barcode and QR systems, edge devices, and (soon) humanoid floor agents. Operational reality flows into the data layer without an integration tax. The ERP isn't a passive recorder of what happened — it senses, acts, and learns at the edge.",
       p2: "Physical · Embodied Intelligence closes the loop between the operational record and the operational world. Attendance, inventory movement, sensor telemetry and floor activity enter the data layer as first-class events, not after-the-fact imports. The platform perceives the business as it actually runs — and increasingly, acts back on it.",
       icon: Cpu,
-      activeGradient: "radial-gradient(circle at 50% 50%, #2962eb 0%, #0d2873 60%, #03010a 100%)"
+      activeGradient: "radial-gradient(circle at 50% 50%, var(--glow-secondary) 0%, var(--brand-950) 60%, #03010a 100%)"
     }
   ];
 
@@ -193,7 +196,7 @@ const StackingCards = forwardRef<HTMLElement>((_, ref) => {
       {/* 1. STICKY BACKGROUND & TEXT THAT STAYS ON SCREEN */}
       <div className="sticky top-0 h-screen w-full z-0 overflow-hidden pointer-events-none flex flex-col items-center justify-start pt-[12vh]">
         {/* Background Layers */}
-        <div className='absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(0,64,193,0.12)_0%,_transparent_65%)]' />
+        <div className='absolute inset-0 bg-[radial-gradient(circle_at_center,var(--primary)_0%,transparent_65%)] opacity-15' />
         <div className='absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#1f293733_1px,transparent_1px),linear-gradient(to_bottom,#1f293733_1px,transparent_1px)] bg-[size:54px_54px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)]' />
         
         {/* Text Content */}

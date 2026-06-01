@@ -1,8 +1,9 @@
 import { motion, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { ArrowRight, Blocks, Database, Workflow, SlidersHorizontal } from "lucide-react";
 import { MaskContainer } from "@/components/ui/svg-mask-effect";
 import heroBgFinal from "@/assets/hero_bg_final.png";
+import { useThemeCustomizer } from "@/contexts/ThemeCustomizerContext";
 
 const capabilities = [
   {
@@ -35,15 +36,97 @@ const capabilities = [
   }
 ];
 
+const StickyCard = ({ cap, index, total }: { cap: any, index: number, total: number }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"]
+  });
+
+  const isLast = index === total - 1;
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0]);
+  const borderRadius = useTransform(scrollYProgress, [0, 1], ["0px", "200px"]);
+  
+  // transformOrigin: alternating left/right (0% or 100%) and top/bottom for the last one (0% or 100%)
+  const transformOrigin = isLast ? (index % 2 === 0 ? "0% 100%" : "100% 100%") : (index % 2 === 0 ? "0% 0%" : "100% 0%");
+
+  // Backgrounds: distinct light colors for light mode (white and light gray), dark grays for dark mode
+  const bgClassLight = index % 2 === 0 ? "bg-white" : "bg-[#f2f2f2]";
+  const bgClassDark = index % 2 === 0 ? "dark:bg-[#1a1a1a]" : "dark:bg-[#262626]";
+  
+  // Reduce spacing between cards by pulling subsequent cards up in the document flow
+  const marginTopClass = index > 0 ? "-mt-[30vh]" : "";
+
+  return (
+    <motion.div
+      ref={ref}
+      className={`sticky top-0 h-screen w-full flex flex-col justify-center items-center overflow-hidden border border-[#e5e5e5] dark:border-[#333] shadow-[0_-10px_40px_rgba(0,0,0,0.05)] dark:shadow-[0_-10px_40px_rgba(0,0,0,0.2)] ${bgClassLight} ${bgClassDark} ${marginTopClass}`}
+      style={{
+        scale: isLast ? 1 : scale,
+        borderRadius,
+        transformOrigin,
+      }}
+    >
+      <div className="max-w-[1440px] w-full mx-auto px-6 md:px-12 flex flex-col md:flex-row gap-12 items-center relative z-10">
+        <div className="flex-1 flex flex-col gap-6">
+          <span className="text-[14px] font-bold tracking-[2px] text-[var(--primary)] uppercase">CAPABILITY {cap.id}</span>
+          <h2 className="text-[48px] md:text-[64px] font-bold tracking-tight uppercase leading-[1.1] text-[#111111] dark:text-white">{cap.title}</h2>
+        </div>
+        <div className="flex-1 flex flex-col gap-6 md:pl-12">
+          <p className="text-[20px] leading-[1.6] text-[#555] dark:text-[#e0e0e0]">{cap.p1}</p>
+          <p className="text-[16px] leading-[1.5] text-[#777] dark:text-[#999]">{cap.p2}</p>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
 export function UnifiedEcosystem() {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollTargetRef = useRef<HTMLDivElement>(null);
+  const { designSystem } = useThemeCustomizer();
   
   const { scrollYProgress } = useScroll({
     target: scrollTargetRef,
   });
   
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-70%"]);
+
+  if (designSystem === "ebay") {
+    return (
+      <div className="bg-[#FAFAF9] dark:bg-background text-[#111111] dark:text-white w-full flex flex-col pt-32 pb-16 overflow-hidden border-b border-[#d1d1d1] dark:border-[#333]" style={{ fontFamily: "var(--font-family, 'Market Sans', 'DM Sans', sans-serif)" }}>
+        <div className="max-w-[1440px] w-full mx-auto px-6 md:px-12 flex flex-col mt-12">
+          
+          <span className="text-[14px] font-bold tracking-[2px] uppercase text-[var(--primary)] mb-4">
+            The Platform
+          </span>
+          <h1 className="text-[64px] md:text-[96px] font-bold leading-[0.95] tracking-[-0.04em] max-w-[900px] mb-8 uppercase text-[#111111] dark:text-white">
+            One Platform.<br/>Zero Silos.
+          </h1>
+          <p className="text-[20px] font-medium leading-[1.4] max-w-[700px] text-[#555] dark:text-[#A6A6A6] mb-12">
+            Every business function — hire to retire, lead to cash, procure to pay — flows through one sovereign architecture. No middleware, no glue code, no reconciliation tax.
+          </p>
+
+          <div className="mt-24 mb-16 border-t border-[#d1d1d1] dark:border-[#333] py-16">
+            <h2 className="text-[48px] md:text-[64px] font-bold leading-[1] tracking-[-0.03em] max-w-[800px] mb-8 uppercase text-[var(--primary)]">
+              The silo is the problem. Not the symptom.
+            </h2>
+            <p className="text-[20px] font-medium leading-[1.4] max-w-[900px] text-[#555] dark:text-[#A6A6A6]">
+              A typical enterprise runs payroll in one system, sales in another, finance in a third, and a small army of integrations and spreadsheets to keep them in rough agreement. Every silo is a copy of the truth that can drift from every other copy. QuGenie removes the silos rather than integrating them — one platform, one data model, one audit trail, every department.
+            </p>
+          </div>
+        </div>
+
+        {/* Sticky Sections Effect Wrapper */}
+        <div className="relative w-full">
+          {capabilities.map((cap, i) => (
+            <StickyCard key={cap.id} cap={cap} index={i} total={capabilities.length} />
+          ))}
+        </div>
+
+      </div>
+    );
+  }
 
   return (
     <div className="w-full flex flex-col items-center pb-0 -mb-24 px-6 relative" ref={containerRef}>

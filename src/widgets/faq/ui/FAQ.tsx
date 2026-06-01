@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useThemeCustomizer } from "@/contexts/ThemeCustomizerContext";
 import { AnimatePresence, motion } from "motion/react";
 import { Plus, Minus } from "lucide-react";
 
@@ -17,6 +18,58 @@ const faqs = [
 
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const { designSystem } = useThemeCustomizer();
+
+  if (designSystem === "ebay") {
+    return (
+      <section className="w-full bg-[#FAFAF9] dark:bg-background text-[#111111] dark:text-white flex justify-center py-32" style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" }}>
+        <div className="w-full max-w-[900px] px-6 flex flex-col gap-12">
+          
+          <div className="flex flex-col gap-2">
+            <span className="inline-block border border-[#d1d1d1] dark:border-[#333] text-[#555] dark:text-[#A6A6A6] text-[11px] font-bold px-3 py-1 rounded-[6px] w-fit mb-4 uppercase tracking-wider bg-white dark:bg-[#111111] shadow-sm">
+              Frequently Asked Questions
+            </span>
+            <h2 className="text-[40px] md:text-[56px] font-serif leading-[1.1] tracking-tight text-[#111] dark:text-white mb-12">
+              Questions, answered.
+            </h2>
+          </div>
+
+          <div className="border-t border-[#d1d1d1] dark:border-[#333]">
+            {faqs.map((faq, i) => (
+              <div key={i} className="border-b border-[#d1d1d1] dark:border-[#333] py-8">
+                <button
+                  onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                  className="w-full flex justify-between items-center gap-6 bg-transparent border-none cursor-pointer p-0 text-left group"
+                >
+                  <span className="text-[24px] font-serif text-[#111] dark:text-white tracking-tight group-hover:text-[#555] dark:text-[#A6A6A6] transition-colors">
+                    {faq.question}
+                  </span>
+                  <span className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full border border-[#d1d1d1] dark:border-[#333] text-[#111] dark:text-white group-hover:bg-[#111] group-hover:text-white transition-colors">
+                    {openIndex === i ? <Minus size={15} /> : <Plus size={15} />}
+                  </span>
+                </button>
+                <AnimatePresence initial={false}>
+                  {openIndex === i && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <p className="text-[18px] font-medium text-[#555] dark:text-[#A6A6A6] leading-[1.6] mt-6 pr-10">
+                        {faq.answer}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section

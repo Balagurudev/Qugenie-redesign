@@ -4,6 +4,8 @@ import { Shield, WifiOff, Building2, Server, HardDrive, Settings } from "lucide-
 import { CosmicParallaxBg } from '@/components/ui/parallax-cosmic-background';
 import { Footer } from "@/widgets/footer/ui/Footer";
 import { Newsletter } from "@/widgets/newsletter/ui/Newsletter";
+import { useThemeCustomizer } from "@/contexts/ThemeCustomizerContext";
+import imgHeroMockup from "@/assets/hero_mockup.png";
 
 export default function PlatformOnPremise() {
   const handleDemoClick = () => {
@@ -45,6 +47,38 @@ export default function PlatformOnPremise() {
       desc: "No vendor restrictions on customisation. Deploy, configure, and extend QuGenie exactly the way your business requires — with no approval from us."
     }
   ];
+
+  const { designSystem } = useThemeCustomizer();
+
+  if (designSystem === "ebay") {
+    return (
+      <div className="bg-[#FAFAF9] dark:bg-background text-[#111111] dark:text-white min-h-screen w-full flex flex-col pt-32 pb-32" style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" }}>
+        
+        {/* ── Bright Aesthetic Hero ── */}
+        <div className="max-w-[1280px] w-full mx-auto px-6 md:px-12 flex flex-col mt-12 gap-4 relative">
+          <span className="inline-block border border-[#d1d1d1] dark:border-[#333] text-[#555] dark:text-[#A6A6A6] text-[11px] font-bold px-3 py-1 rounded-[6px] w-fit uppercase tracking-wider bg-white dark:bg-[#111111] shadow-sm">
+            Platform Deployment
+          </span>
+          <h1 className="text-[56px] md:text-[72px] font-serif leading-[1.05] tracking-tight max-w-[900px] text-[#111] dark:text-white">
+            Why On-Premise and Why Almost No ERP Offers It Properly.
+          </h1>
+          <p className="text-[18px] font-medium leading-[1.6] text-[#555] dark:text-[#A6A6A6] max-w-[800px] mt-4">
+            On-premise ERP requires deep engineering maturity — it's far harder to package, deploy, and support than a simple SaaS product. Most modern ERP vendors have abandoned it entirely. QuGenie offers true on-premise deployment with high-availability architecture, clustered servers, automated failover, and offline capability for branch sites.
+          </p>
+        </div>
+
+        <EbayWhatYouGetSection />
+
+        <div className="mt-32">
+          <Newsletter 
+            title="QuGenie's on-premise-first architecture gives you full control over your data, infrastructure, and costs — without relying on vendor-controlled cloud systems."
+            description=""
+            buttonText="Request Demo"
+          />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full flex flex-col items-center min-h-screen bg-background text-foreground font-['Mirage_Display_Medium','Mirage_Display_Medium_Placeholder',sans-serif]" data-name="PlatformOnPremisePage">
@@ -91,42 +125,42 @@ const allOfferings = [
     num: "01",
     title: "100% Data Sovereignty",
     desc: "Your data never leaves your servers. No third-party cloud. No breach risk from vendor infrastructure. You own your data completely, legally, permanently.",
-    color: "#2970FF",
+    color: "var(--brand-500)",
     icon: Shield
   },
   {
     num: "02",
     title: "Offline Capability",
     desc: "Remote sites, warehouses, and branches keep working even without internet. Data syncs automatically when connectivity is restored.",
-    color: "#155EEF",
+    color: "var(--brand-600)",
     icon: WifiOff
   },
   {
     num: "03",
     title: "Ideal for Regulated Industries",
     desc: "Healthcare, finance, manufacturing — strict data-localisation and compliance requirements. QuGenie on-premise meets every standard.",
-    color: "#004EEB",
+    color: "var(--brand-700)",
     icon: Building2
   },
   {
     num: "04",
     title: "High-Availability Architecture",
     desc: "Clustered servers with automated failover. Branch-site offline replicas. Zero-downtime deployment patterns. Operations don't stop when one node does.",
-    color: "#0040C1",
+    color: "var(--brand-800)",
     icon: Server
   },
   {
     num: "05",
     title: "Works on Your Existing Hardware",
     desc: "No mandatory server upgrades. QuGenie runs efficiently on your current IT infrastructure — reducing total cost of ownership dramatically.",
-    color: "#00359E",
+    color: "var(--brand-900)",
     icon: HardDrive
   },
   {
     num: "06",
-    title: "Full Customisation Freedom",
+    title: "Full Customization Freedom",
     desc: "No vendor restrictions on customisations. Deploy, configure, and extend QuGenie exactly the way your business requires — with no approval from us.",
-    color: "#002266",
+    color: "var(--brand-950)",
     icon: Settings
   }
 ];
@@ -270,3 +304,37 @@ const WhatYouGetSection = () => {
     </>
   );
 };
+
+function EbayWhatYouGetSection() {
+  return (
+    <div className="w-full mt-32 px-6">
+      <div className="max-w-[1280px] mx-auto bg-white dark:bg-[#111111] rounded-[16px] p-8 md:p-12 lg:p-20 text-[#111111] dark:text-white flex flex-col font-sans border border-[#e5e5e5] dark:border-[#333] shadow-sm">
+        
+        {/* Top Header Section */}
+        <div className="grid grid-cols-1 gap-10 pb-16 items-end">
+          <div className="col-span-1">
+            <h2 className="text-[48px] md:text-[64px] font-medium tracking-tight leading-[1.05] max-w-[600px] text-[#111111] dark:text-white">
+              On-Premise: What You Get
+            </h2>
+          </div>
+        </div>
+
+        {/* List Section */}
+        <div className="flex flex-col w-full">
+          {allOfferings.map((item, idx) => (
+            <div key={idx} className="grid grid-cols-1 lg:grid-cols-12 border-t border-[#e5e5e5] dark:border-[#333] py-10 md:py-12 items-center group hover:bg-[var(--primary)] hover:border-transparent transition-all duration-500 ease-out rounded-[12px] px-4 -mx-4 cursor-pointer">
+              <div className="lg:col-span-7 xl:col-span-8 flex items-center pl-2 md:pl-8 mb-6 lg:mb-0">
+                <span className="text-[80px] md:text-[100px] font-light leading-none text-[#111] dark:text-white group-hover:text-white font-sans tracking-tighter transition-colors duration-500 ease-out">{idx + 1}</span>
+              </div>
+              <div className="lg:col-span-5 xl:col-span-4 flex flex-col gap-2 pr-4">
+                <span className="text-[18px] md:text-[20px] text-[#111] dark:text-white group-hover:text-white font-medium transition-colors duration-500 ease-out">{item.title}</span>
+                <span className="text-[15px] text-[#555] dark:text-[#A6A6A6] group-hover:text-white/90 leading-[1.5] transition-colors duration-500 ease-out">{item.desc}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+        
+      </div>
+    </div>
+  );
+}

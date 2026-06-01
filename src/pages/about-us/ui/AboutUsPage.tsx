@@ -4,15 +4,88 @@ import { Footer } from "@/widgets/footer/ui/Footer";
 import { ThreeDCarousel } from "@/components/ui/three-d-carousel";
 import { TeamCardExpansion } from "@/components/ui/card-expansion";
 import { Newsletter } from "@/widgets/newsletter/ui/Newsletter";
+import { useThemeCustomizer } from "@/contexts/ThemeCustomizerContext";
+import FlowArt, { FlowSection } from "@/components/ui/flow-art";
 
 export default function AboutUsPage() {
+  const { designSystem } = useThemeCustomizer();
   const handleContactClick = () => {
     window.location.hash = "#/contact";
   };
-
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [gridMousePos, setGridMousePos] = useState({ x: 0, y: 0 });
 
+  // ── Data arrays must be defined BEFORE any conditional return ──
+  const founderItems = [
+    {
+      id: "founder-1",
+      role: "Founder & CEO",
+      name: "Wg Cdr Srambikal Sudhakaran (Retd.)",
+      desc: "Founder and CEO of QuGates Technologies, which he established in December 2020 after a 23-year career in the Indian Air Force. He set QuGenie's founding thesis: that India needs sovereign, intelligent enterprise software it owns end-to-end — and built the company to deliver it.",
+      num: "018",
+      imgTag: "Founder Portrait — Founder & CEO",
+      image: "/src/assets/sudhakaran.jpg"
+    },
+    {
+      id: "founder-3",
+      role: "Co-Founder & Director",
+      name: "Dr Thiruvonasundari Duraiswamy",
+      desc: "Enthusiastic next-generation technologist with deep passion for EV engineering, MATLAB modeling, and AI/ML instrumentation to drive intelligent automation. Over 15 years of proven expertise in teaching, industrial training, and ramping up workforces for agile environments. Holds a doctorate from Amrita School of Engineering and was awarded a prestigious Gold Medal by Visvesvaraya Technological University for exceptional M.E. achievements. Passionate about enhancing workflows through agile-based culture, with deep experience in digitalization and automotive technologies.",
+      num: "029",
+      imgTag: "Co-Founder & Director — EV & AI/ML",
+      image: "/src/assets/sundari.jpg"
+    },
+    {
+      id: "founder-2",
+      role: "Co-Founder & Director",
+      name: "Ms Ritu Advani",
+      desc: "Passionate STEM educator and entrepreneur with over 10 years of experience in curriculum development for block-based and text-based coding, Android App Development, Machine Learning, AI, and STEM-based Robotic Education. Coach for world-level competitions: World Robotics Olympiad (WRO), FIRST Robotics, VEX Robotics, MIT App Inventor Appathon, Codeavour, Makebot CodingBee. Mentor of Change at Atal Innovation Mission (NITI Aayog). Founder of Coding Tale, on a mission to make STEM education accessible to all. President of Giants Group of Mumbai ONE, a nonprofit working in healthcare, education, women empowerment, and community welfare.",
+      num: "025",
+      imgTag: "Co-Founder & Director — STEM Education",
+      image: "/src/assets/ritu.jpg"
+    }
+  ];
+
+  const teamItems = [
+    {
+      id: "team-1",
+      role: "Engineering Lead",
+      name: "Profile coming soon",
+      desc: "Owns the QuGenie platform build — the bounded contexts, the event bus, the deployment topology.",
+      num: "021",
+      imgTag: "Engineering Lead — Platform Architecture",
+      image: "/src/assets/eng_1.png"
+    },
+    {
+      id: "team-2",
+      role: "Product Lead",
+      name: "Profile coming soon",
+      desc: "Owns the product surface — what gets built, in what order, and how it maps to real MSME workflows.",
+      num: "022",
+      imgTag: "Product Lead — Strategic Roadmap",
+      image: "/src/assets/prod_2.png"
+    },
+    {
+      id: "team-3",
+      role: "Operations Lead",
+      name: "Profile coming soon",
+      desc: "Owns infrastructure and delivery — the dual-LB topology, the on-premise deployments, the uptime.",
+      num: "023",
+      imgTag: "Operations Lead — System Delivery",
+      image: "/src/assets/ops_2.png"
+    },
+    {
+      id: "team-4",
+      role: "Customer Success Lead",
+      name: "Profile coming soon",
+      desc: "Owns the post-go-live relationship — onboarding, migration, and the named-partner promise.",
+      num: "024",
+      imgTag: "Customer Success Lead — Client Relations",
+      image: "/src/assets/cs_1.png"
+    }
+  ];
+
+  // ── useEffect must also be BEFORE any conditional return (Rules of Hooks) ──
   useEffect(() => {
     const gsap = (window as any).gsap;
     const ScrollTrigger = (window as any).ScrollTrigger;
@@ -182,74 +255,104 @@ export default function AboutUsPage() {
     };
   }, []);
 
-  const founderItems = [
-    {
-      id: "founder-1",
-      role: "Founder & CEO",
-      name: "Wg Cdr Srambikal Sudhakaran (Retd.)",
-      desc: "Founder and CEO of QuGates Technologies, which he established in December 2020 after a 23-year career in the Indian Air Force. He set QuGenie's founding thesis: that India needs sovereign, intelligent enterprise software it owns end-to-end — and built the company to deliver it.",
-      num: "018",
-      imgTag: "Founder Portrait — Founder & CEO",
-      image: "/src/assets/sudhakaran.jpg"
-    },
-    {
-      id: "founder-3",
-      role: "Co-Founder & Director",
-      name: "Dr Thiruvonasundari Duraiswamy",
-      desc: "Enthusiastic next-generation technologist with deep passion for EV engineering, MATLAB modeling, and AI/ML instrumentation to drive intelligent automation. Over 15 years of proven expertise in teaching, industrial training, and ramping up workforces for agile environments. Holds a doctorate from Amrita School of Engineering and was awarded a prestigious Gold Medal by Visvesvaraya Technological University for exceptional M.E. achievements. Passionate about enhancing workflows through agile-based culture, with deep experience in digitalization and automotive technologies.",
-      num: "029",
-      imgTag: "Co-Founder & Director — EV & AI/ML",
-      image: "/src/assets/sundari.jpg"
-    },
-    {
-      id: "founder-2",
-      role: "Co-Founder & Director",
-      name: "Ms Ritu Advani",
-      desc: "Passionate STEM educator and entrepreneur with over 10 years of experience in curriculum development for block-based and text-based coding, Android App Development, Machine Learning, AI, and STEM-based Robotic Education. Coach for world-level competitions: World Robotics Olympiad (WRO), FIRST Robotics, VEX Robotics, MIT App Inventor Appathon, Codeavour, Makebot CodingBee. Mentor of Change at Atal Innovation Mission (NITI Aayog). Founder of Coding Tale, on a mission to make STEM education accessible to all. President of Giants Group of Mumbai ONE, a nonprofit working in healthcare, education, women empowerment, and community welfare.",
-      num: "025",
-      imgTag: "Co-Founder & Director — STEM Education",
-      image: "/src/assets/ritu.jpg"
-    }
-  ];
+  // ── Conditional return for eBay design system (placed AFTER all hooks) ──
+  if (designSystem === "ebay") {
+    return (
+      <div className="text-[#111] dark:text-white w-full" style={{ fontFamily: "var(--font-family, 'Market Sans', 'DM Sans', sans-serif)" }}>
+        <FlowArt>
+          {/* Hero Section */}
+          <FlowSection className="bg-[#FAFAF9] dark:bg-[#000000] border-b border-[#E5E5E5] dark:border-[#222]">
+            <div className="flex flex-col gap-4 mt-24">
+              <span className="text-[14px] font-bold tracking-[2px] uppercase text-[var(--primary)]">
+                ABOUT US
+              </span>
+              <h1 className="text-[64px] md:text-[96px] font-bold leading-[0.95] tracking-[-0.04em] max-w-[900px] uppercase text-[#111] dark:text-white">
+                The people behind QuGenie.
+              </h1>
+            </div>
+            <p className="text-[20px] font-medium leading-[1.4] max-w-[800px] text-[#555] dark:text-[#A6A6A6]">
+              QuGenie is built by QuGates Technologies — a deep technology company founded in December 2023 in Bengaluru. We are engineers, operators, and domain practitioners who believe India's businesses deserve software that is sovereign by construction, thermal-hardened, and genuinely intelligent. This page is about the people who carry that conviction, and the values and mission that reaction to it.
+            </p>
+          </FlowSection>
 
-  const teamItems = [
-    {
-      id: "team-1",
-      role: "Engineering Lead",
-      name: "Profile coming soon",
-      desc: "Owns the QuGenie platform build — the bounded contexts, the event bus, the deployment topology.",
-      num: "021",
-      imgTag: "Engineering Lead — Platform Architecture",
-      image: "/src/assets/eng_1.png"
-    },
-    {
-      id: "team-2",
-      role: "Product Lead",
-      name: "Profile coming soon",
-      desc: "Owns the product surface — what gets built, in what order, and how it maps to real MSME workflows.",
-      num: "022",
-      imgTag: "Product Lead — Strategic Roadmap",
-      image: "/src/assets/prod_2.png"
-    },
-    {
-      id: "team-3",
-      role: "Operations Lead",
-      name: "Profile coming soon",
-      desc: "Owns infrastructure and delivery — the dual-LB topology, the on-premise deployments, the uptime.",
-      num: "023",
-      imgTag: "Operations Lead — System Delivery",
-      image: "/src/assets/ops_2.png"
-    },
-    {
-      id: "team-4",
-      role: "Customer Success Lead",
-      name: "Profile coming soon",
-      desc: "Owns the post-go-live relationship — onboarding, migration, and the named-partner promise.",
-      num: "024",
-      imgTag: "Customer Success Lead — Client Relations",
-      image: "/src/assets/cs_1.png"
-    }
-  ];
+          {/* Vision Section */}
+          <FlowSection className="bg-white dark:bg-[#0a0a0a] shadow-[0_-10px_30px_rgba(0,0,0,0.05)] border-t border-[#E5E5E5] dark:border-[#333]">
+            <div className="flex flex-col gap-4">
+              <span className="text-[14px] font-bold tracking-[2px] uppercase text-[var(--primary)] block">
+                OUR VISION
+              </span>
+              <h2 className="text-[32px] md:text-[44px] lg:text-[56px] font-sans font-medium tracking-tighter uppercase leading-[1.1] text-transparent bg-clip-text bg-gradient-to-b from-[#111] to-[#666] dark:from-white dark:to-[#8a93a2] max-w-[900px]">
+                An India where every enterprise — from a single-store MSME to a multi-state institution — runs on intelligent, self-sovereign software, on infrastructure it controls, without surrendering its data or its sovereignty to anyone.
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-[1440px]">
+              {[
+                { stat: "01", label: "Sovereignty", desc: "Sovereignty by construction — No dependency on SaaS vendors' decisions." },
+                { stat: "02", label: "Intelligent", desc: "Genuinely intelligent — Software that actually does work, not just stores data." },
+                { stat: "03", label: "A Right", desc: "Intelligence as a right, not a luxury reserved for large enterprises." }
+              ].map((item, idx) => (
+                <div key={idx} className="bg-[#FAFAF9] dark:bg-[#111] border border-[#E5E5E5] dark:border-[#333] p-8 flex flex-col min-h-[280px]">
+                  <div className="w-10 h-10 flex items-center justify-center bg-white dark:bg-[#222] text-[#111] dark:text-white font-bold mb-auto">
+                    {item.stat}
+                  </div>
+                  <div className="mt-auto pt-12">
+                    <h4 className="text-[24px] font-bold tracking-tight mb-2 text-[#111] dark:text-white">{item.label}</h4>
+                    <p className="text-[16px] leading-[1.4] text-[#555] dark:text-[#A6A6A6]">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </FlowSection>
+
+          {/* Mission Section */}
+          <FlowSection className="bg-[#FAFAF9] dark:bg-[#000000] shadow-[0_-10px_30px_rgba(0,0,0,0.05)] border-t border-[#E5E5E5] dark:border-[#222]">
+            <div className="flex flex-col gap-4">
+              <span className="text-[14px] font-bold tracking-[2px] uppercase text-[var(--primary)] block">
+                OUR MISSION
+              </span>
+              <p className="text-[20px] md:text-[28px] font-medium leading-[1.4] max-w-[800px] text-[#555] dark:text-[#A6A6A6]">
+                To build and deliver QuGenie — a modular, sovereign, agentic ERP — so that any Indian organization can run HR, Finance, CRM, Sales, Inventory, Operations, and compliance from one sovereign platform, configured to the way it actually works.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-[1440px]">
+              {[
+                { stat: "04", label: "Platform", desc: "Single platform that is configurable, pluggable, and reliable." },
+                { stat: "05", label: "Modularity", desc: "True modularity where the architecture, not the vendor, decides the roadmap." },
+                { stat: "06", label: "Guaranteed", desc: "Stand behind every deployment with a named partner and an honest, written guarantee." }
+              ].map((item, idx) => (
+                <div key={idx} className="bg-white dark:bg-[#111] border border-[#E5E5E5] dark:border-[#333] p-8 flex flex-col min-h-[280px]">
+                  <div className="w-10 h-10 flex items-center justify-center bg-[#F5F5F5] dark:bg-[#222] text-[#111] dark:text-white font-bold mb-auto">
+                    {item.stat}
+                  </div>
+                  <div className="mt-auto pt-12">
+                    <h4 className="text-[24px] font-bold tracking-tight mb-2 text-[#111] dark:text-white">{item.label}</h4>
+                    <p className="text-[16px] leading-[1.4] text-[#555] dark:text-[#A6A6A6]">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </FlowSection>
+
+          {/* Founders Section */}
+          <FlowSection className="bg-white dark:bg-[#0a0a0a] shadow-[0_-10px_30px_rgba(0,0,0,0.05)] border-t border-[#E5E5E5] dark:border-[#333]">
+             <div className="w-full h-full flex flex-col justify-center">
+                 <TeamCardExpansion items={founderItems} sectionTitle="Founders" subtitle="QuGenie exists because its founders chose to build the sovereign alternative rather than wait for one." />
+             </div>
+          </FlowSection>
+
+          {/* Team Section */}
+          <FlowSection className="bg-[#FAFAF9] dark:bg-[#000000] shadow-[0_-10px_30px_rgba(0,0,0,0.05)] border-t border-[#E5E5E5] dark:border-[#222]">
+             <div className="w-full h-full flex flex-col justify-center">
+                 <TeamCardExpansion items={teamItems} sectionTitle="The Team" />
+             </div>
+          </FlowSection>
+
+        </FlowArt>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full flex flex-col items-center min-h-screen bg-background text-foreground font-['Mirage_Display_Medium','Mirage_Display_Medium_Placeholder',sans-serif]" data-name="AboutUsPage">

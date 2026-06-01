@@ -18,17 +18,20 @@ interface TeamCardExpansionProps {
   subtitle?: string;
 }
 
+import { useThemeCustomizer } from "@/contexts/ThemeCustomizerContext";
+
 export function TeamCardExpansion({ items, sectionTitle, subtitle }: TeamCardExpansionProps) {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [activeRect, setActiveRect] = useState<DOMRect | null>(null);
   const activeItem = items.find(item => item.id === activeId);
+  const { designSystem } = useThemeCustomizer();
 
   return (
-    <div className={`w-full max-w-[1120px] mx-auto px-6 py-12 mt-12 border-t border-white/5 relative ${activeId ? 'z-[100]' : 'z-20'}`}>
+    <div className={`w-full max-w-[1120px] mx-auto px-6 py-12 mt-12 border-t border-[#E5E5E5] dark:border-white/5 relative ${activeId ? 'z-[100]' : 'z-20'}`}>
       <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-10">
-        <h2 className="text-3xl font-bold text-white tracking-tight min-w-[200px]">{sectionTitle}</h2>
+        <h2 className="text-3xl font-bold text-[#111] dark:text-white tracking-tight min-w-[200px]">{sectionTitle}</h2>
         {subtitle && (
-          <p className="text-white/60 text-sm max-w-[500px] leading-relaxed">
+          <p className="text-[#555] dark:text-white/60 text-sm max-w-[500px] leading-relaxed">
             {subtitle}
           </p>
         )}
@@ -39,6 +42,7 @@ export function TeamCardExpansion({ items, sectionTitle, subtitle }: TeamCardExp
           <GridCard 
             key={item.id} 
             item={item} 
+            designSystem={designSystem}
             onClick={(rect) => {
               setActiveRect(rect);
               setActiveId(item.id);
@@ -53,6 +57,7 @@ export function TeamCardExpansion({ items, sectionTitle, subtitle }: TeamCardExp
             key="expanded-card"
             item={activeItem}
             allItems={items}
+            designSystem={designSystem}
             onSelect={(id) => setActiveId(id)}
             rect={activeRect} 
             onClose={() => {
@@ -66,8 +71,38 @@ export function TeamCardExpansion({ items, sectionTitle, subtitle }: TeamCardExp
   );
 }
 
-function GridCard({ item, onClick }: { item: TeamMember, onClick: (rect: DOMRect) => void }) {
+function GridCard({ item, designSystem, onClick }: { item: TeamMember, designSystem?: string, onClick: (rect: DOMRect) => void }) {
   const ref = useRef<HTMLDivElement>(null);
+
+  if (designSystem === "ebay") {
+    return (
+      <div 
+        ref={ref}
+        onClick={() => {
+          if (ref.current) onClick(ref.current.getBoundingClientRect());
+        }}
+        className="w-full cursor-pointer rounded-[24px] overflow-hidden flex flex-col bg-white dark:bg-[#111] border border-[#E5E5E5] dark:border-[#333] transition-all duration-300 hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] hover:-translate-y-1 group h-[420px] md:h-[460px]"
+      >
+        <div className="w-full h-[65%] overflow-hidden bg-[#F5F5F5] dark:bg-[#222]">
+          <img src={item.image} alt={item.name} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" />
+        </div>
+        <div className="p-6 flex flex-col flex-grow justify-between">
+          <div>
+            <h3 className="text-[#111] dark:text-white text-[22px] font-bold tracking-tight mb-1">{item.name}</h3>
+            <p className="text-[var(--primary)] text-xs font-bold uppercase tracking-wider">{item.role}</p>
+          </div>
+          <div className="flex items-center justify-end opacity-0 group-hover:opacity-100 transition-opacity">
+             <div className="w-8 h-8 rounded-full bg-[#F5F5F5] dark:bg-[#333] flex items-center justify-center">
+               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-[#111] dark:text-white" strokeWidth="2">
+                 <path d="M5 12h14"></path>
+                 <path d="m12 5 7 7-7 7"></path>
+               </svg>
+             </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div 
@@ -78,9 +113,9 @@ function GridCard({ item, onClick }: { item: TeamMember, onClick: (rect: DOMRect
       className="w-full cursor-pointer rounded-[24px] overflow-hidden flex flex-col relative group h-[420px] md:h-[460px] p-[2px] shadow-lg hover:shadow-[0_8px_30px_rgba(0,93,255,0.25)] transition-all duration-500"
     >
       {/* Animated Rotating Border Effect (visible on hover) */}
-      <div className="absolute inset-[-100%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg,transparent_0%,transparent_60%,rgba(0,64,193,0.5)_80%,rgba(0,64,193,1)_100%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+      <div className="absolute inset-[-100%] animate-[spin_4s_linear_infinite] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" style={{ backgroundImage: 'conic-gradient(from 90deg, transparent 0%, transparent 60%, color-mix(in srgb, var(--primary) 50%, transparent) 80%, var(--primary) 100%)' }} />
       {/* Blurred copy for the neon glow bleed */}
-      <div className="absolute inset-[-100%] animate-[spin_4s_linear_infinite] bg-[conic-gradient(from_90deg,transparent_0%,transparent_60%,rgba(0,64,193,0.5)_80%,rgba(0,64,193,1)_100%)] blur-[16px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+      <div className="absolute inset-[-100%] animate-[spin_4s_linear_infinite] blur-[16px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" style={{ backgroundImage: 'conic-gradient(from 90deg, transparent 0%, transparent 60%, color-mix(in srgb, var(--primary) 50%, transparent) 80%, var(--primary) 100%)' }} />
       
       {/* Static subtle border (visible when not hovered) */}
       <div className="absolute inset-0 border border-white/5 rounded-[24px] group-hover:opacity-0 transition-opacity duration-500 pointer-events-none z-10" />
@@ -111,7 +146,7 @@ function GridCard({ item, onClick }: { item: TeamMember, onClick: (rect: DOMRect
   );
 }
 
-function ExpandedCard({ item: initialItem, allItems, rect, onClose }: { item: TeamMember, allItems: TeamMember[], rect: DOMRect, onClose: () => void }) {
+function ExpandedCard({ item: initialItem, allItems, rect, designSystem, onClose }: { item: TeamMember, allItems: TeamMember[], rect: DOMRect, designSystem?: string, onClose: () => void }) {
   const containerControls = useAnimation();
   const contentControls = useAnimation();
   const clipControls = useAnimation();
@@ -211,49 +246,51 @@ function ExpandedCard({ item: initialItem, allItems, rect, onClose }: { item: Te
 
   const otherItems = allItems.filter(i => i.id !== currentItem.id);
 
+  const isEbay = designSystem === "ebay";
+
   return (
     <div className="fixed inset-0 z-[200] pointer-events-none">
        <motion.div 
          initial={{ opacity: 0 }} 
          animate={{ opacity: 1 }} 
          exit={{ opacity: 0 }} 
-         className="absolute inset-0 bg-black/80 backdrop-blur-md pointer-events-auto"
+         className={`absolute inset-0 ${isEbay ? 'bg-black/60' : 'bg-black/80'} backdrop-blur-md pointer-events-auto`}
          onClick={handleClose}
        />
 
        <motion.div 
          animate={containerControls}
-         className="absolute bg-[#000411] border border-white/10 overflow-hidden flex flex-col pointer-events-auto shadow-2xl"
+         className={`absolute ${isEbay ? 'bg-[#F9F9F9] dark:bg-[#111] border-[#E5E5E5] dark:border-[#333]' : 'bg-[#000411] border-white/10'} border overflow-hidden flex flex-col pointer-events-auto shadow-2xl`}
          style={{ top: rect.top, left: rect.left, width: rect.width, height: rect.height, borderRadius: 16 }}
        >
          <button 
            onClick={handleClose}
-           className="absolute top-6 right-6 z-50 text-white bg-black/40 p-3 rounded-full hover:bg-primary transition-colors"
+           className={`absolute top-6 right-6 z-50 p-3 rounded-full transition-colors ${isEbay ? 'text-[#111] dark:text-white bg-white/50 dark:bg-black/40 hover:bg-[#E5E5E5] dark:hover:bg-[#333]' : 'text-white bg-black/40 hover:bg-primary'}`}
          >
            <X size={24} />
          </button>
 
-         <motion.div animate={clipControls} className="relative w-full h-full bg-[#000411]">
-            <div className="absolute top-0 left-0 w-full h-[55vh] md:h-[65vh] flex justify-center bg-[#000411]">
+         <motion.div animate={clipControls} className={`relative w-full h-full ${isEbay ? 'bg-[#F9F9F9] dark:bg-[#111]' : 'bg-[#000411]'}`}>
+            <div className={`absolute top-0 left-0 w-full h-[55vh] md:h-[65vh] flex justify-center ${isEbay ? 'bg-[#F5F5F5] dark:bg-[#222]' : 'bg-[#000411]'}`}>
               <img 
                 src={currentItem.image} 
                 alt={currentItem.name} 
                 className="w-full h-full object-cover object-top md:object-contain md:object-top" 
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#000411] via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-0 left-0 w-full h-[30%] bg-gradient-to-t from-[#000411] to-transparent pointer-events-none" />
+              <div className={`absolute inset-0 bg-gradient-to-t ${isEbay ? 'from-[#F9F9F9] dark:from-[#111] via-transparent to-transparent' : 'from-[#000411] via-transparent to-transparent'} pointer-events-none`} />
+              <div className={`absolute bottom-0 left-0 w-full h-[30%] bg-gradient-to-t ${isEbay ? 'from-[#F9F9F9] dark:from-[#111]' : 'from-[#000411]'} to-transparent pointer-events-none`} />
             </div>
             
             <motion.div 
               animate={contentControls} 
-              className="absolute bottom-0 left-0 w-full p-8 md:p-16 z-10 text-white flex flex-col justify-end pointer-events-none"
+              className="absolute bottom-0 left-0 w-full p-8 md:p-16 z-10 flex flex-col justify-end pointer-events-none"
             >
               <div className="max-w-[1200px] w-full mx-auto relative pointer-events-auto">
                 <div>
-                  <h3 className="text-white text-4xl md:text-6xl font-bold mb-2 font-['Mirage_Display_Medium','Mirage_Display_Medium_Placeholder',sans-serif]">{currentItem.name}</h3>
-                  <p className="text-primary text-xl font-semibold tracking-wide mb-8">{currentItem.role}</p>
+                  <h3 className={`${isEbay ? 'text-[#111] dark:text-white text-4xl md:text-5xl tracking-tight font-sans' : 'text-white text-4xl md:text-6xl font-[\'Mirage_Display_Medium\',\'Mirage_Display_Medium_Placeholder\',sans-serif]'} font-bold mb-2`}>{currentItem.name}</h3>
+                  <p className={`${isEbay ? 'text-[var(--primary)] text-sm md:text-base uppercase tracking-wider' : 'text-primary text-xl tracking-wide'} font-semibold mb-8`}>{currentItem.role}</p>
                   
-                  <p className="text-lg md:text-xl text-white/90 leading-relaxed font-light max-w-[800px]">{currentItem.desc}</p>
+                  <p className={`text-lg md:text-xl leading-relaxed max-w-[800px] ${isEbay ? 'text-[#555] dark:text-[#A6A6A6] font-medium' : 'text-white/90 font-light'}`}>{currentItem.desc}</p>
                 </div>
 
                 {/* Other Team Members Nav */}
@@ -272,10 +309,11 @@ function ExpandedCard({ item: initialItem, allItems, rect, onClose }: { item: Te
                           className="absolute inset-0 w-full h-full object-cover object-top rounded-full group-hover:scale-110 transition-transform duration-500" 
                         />
                         {/* Dark Overlay */}
-                        <div className="absolute inset-0 bg-black/50 group-hover:bg-black/10 transition-colors z-10" />
+                        <div className={`absolute inset-0 group-hover:bg-transparent transition-colors z-10 ${isEbay ? 'bg-black/20' : 'bg-black/50 group-hover:bg-black/10'}`} />
                         
                         {/* The AI Loader Spinning Ring */}
-                        <div className="absolute inset-0 rounded-full animate-loaderCircle pointer-events-none z-20"></div>
+                        {!isEbay && <div className="absolute inset-0 rounded-full animate-loaderCircle pointer-events-none z-20"></div>}
+                        {isEbay && <div className="absolute inset-0 rounded-full border-2 border-transparent group-hover:border-[var(--primary)] transition-colors pointer-events-none z-20"></div>}
                       </div>
                     </div>
                   ))}
@@ -291,29 +329,29 @@ function ExpandedCard({ item: initialItem, allItems, rect, onClose }: { item: Te
           0% {
             transform: rotate(90deg);
             box-shadow:
-              0 6px 12px 0 rgba(0, 64, 193, 0.4) inset,
-              0 12px 18px 0 rgba(0, 64, 193, 0.6) inset,
-              0 36px 36px 0 rgba(0, 64, 193, 0.8) inset,
-              0 0 3px 1.2px rgba(0, 64, 193, 0.3),
-              0 0 6px 1.8px rgba(0, 64, 193, 0.2);
+              0 6px 12px 0 color-mix(in srgb, var(--primary) 40%, transparent) inset,
+              0 12px 18px 0 color-mix(in srgb, var(--primary) 60%, transparent) inset,
+              0 36px 36px 0 color-mix(in srgb, var(--primary) 80%, transparent) inset,
+              0 0 3px 1.2px color-mix(in srgb, var(--primary) 30%, transparent),
+              0 0 6px 1.8px color-mix(in srgb, var(--primary) 20%, transparent);
           }
           50% {
             transform: rotate(270deg);
             box-shadow:
-              0 6px 12px 0 rgba(0, 64, 193, 0.5) inset,
-              0 12px 6px 0 rgba(0, 64, 193, 0.7) inset,
-              0 24px 36px 0 rgba(0, 64, 193, 0.9) inset,
-              0 0 3px 1.2px rgba(0, 64, 193, 0.3),
-              0 0 6px 1.8px rgba(0, 64, 193, 0.2);
+              0 6px 12px 0 color-mix(in srgb, var(--primary) 50%, transparent) inset,
+              0 12px 6px 0 color-mix(in srgb, var(--primary) 70%, transparent) inset,
+              0 24px 36px 0 color-mix(in srgb, var(--primary) 90%, transparent) inset,
+              0 0 3px 1.2px color-mix(in srgb, var(--primary) 30%, transparent),
+              0 0 6px 1.8px color-mix(in srgb, var(--primary) 20%, transparent);
           }
           100% {
             transform: rotate(450deg);
             box-shadow:
-              0 6px 12px 0 rgba(0, 64, 193, 0.4) inset,
-              0 12px 18px 0 rgba(0, 64, 193, 0.6) inset,
-              0 36px 36px 0 rgba(0, 64, 193, 0.8) inset,
-              0 0 3px 1.2px rgba(0, 64, 193, 0.3),
-              0 0 6px 1.8px rgba(0, 64, 193, 0.2);
+              0 6px 12px 0 color-mix(in srgb, var(--primary) 40%, transparent) inset,
+              0 12px 18px 0 color-mix(in srgb, var(--primary) 60%, transparent) inset,
+              0 36px 36px 0 color-mix(in srgb, var(--primary) 80%, transparent) inset,
+              0 0 3px 1.2px color-mix(in srgb, var(--primary) 30%, transparent),
+              0 0 6px 1.8px color-mix(in srgb, var(--primary) 20%, transparent);
           }
         }
 

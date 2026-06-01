@@ -130,9 +130,9 @@ const CosmicParallaxBg: React.FC<CosmicParallaxBgProps> = ({
           background: transparent;
           z-index: 3;
           box-shadow:
-            0 -4px 25px 4px rgba(60, 150, 255, 0.6),
-            0 -8px 50px 8px rgba(40, 120, 240, 0.4),
-            0 -12px 100px 15px rgba(20, 80, 200, 0.25);
+            0 -4px 25px 4px color-mix(in srgb, var(--glow-secondary) 60%, transparent),
+            0 -8px 50px 8px color-mix(in srgb, var(--glow-primary) 40%, transparent),
+            0 -12px 100px 15px color-mix(in srgb, var(--brand-900) 25%, transparent);
         }
 
         /* ---- Crisp atmosphere edge line ---- */
@@ -144,7 +144,7 @@ const CosmicParallaxBg: React.FC<CosmicParallaxBgProps> = ({
           bottom: -165%;
           border-radius: 50%;
           z-index: 4;
-          border-top: 2px solid rgba(120, 190, 255, 0.9);
+          border-top: 2px solid color-mix(in srgb, var(--glow-secondary) 90%, transparent);
           background: transparent;
         }
 

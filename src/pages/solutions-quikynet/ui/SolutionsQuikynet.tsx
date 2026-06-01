@@ -1,10 +1,12 @@
-import { motion } from "motion/react";
+import { motion, useScroll, useMotionValueEvent, AnimatePresence, useTransform } from "motion/react";
+import React, { useRef, useState } from "react";
 import ImageReveal from "@/components/ui/image-reveal";
 import { Footer } from "@/widgets/footer/ui/Footer";
 import MagicRings from "@/widgets/hero/ui/MagicRings";
 import { GlareCard } from "@/ui/glare-card";
 import { Timeline } from "@/components/ui/timeline";
 import { Newsletter } from "@/widgets/newsletter/ui/Newsletter";
+import { useThemeCustomizer } from "@/contexts/ThemeCustomizerContext";
 
 // Import real product images
 import metalCardImg from "@/assets/quikynet_metal_card.png";
@@ -29,7 +31,130 @@ import indVis1 from "@/assets/ind_visitor_1.png";
 import indVis2 from "@/assets/ind_visitor_2.png";
 import indVis3 from "@/assets/ind_visitor_3.png";
 
+const EbayDialStepsSection = ({ titles, descs, images }: { titles: string[], descs: string[], images: string[] }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end end"] });
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Smooth continuous rotation of the dial directly mapped to scroll
+  const smoothRotation = useTransform(scrollYProgress, [0, 1], [0, 180]);
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    const index = Math.min(3, Math.floor(latest * 4));
+    setActiveIndex(index);
+  });
+
+  return (
+    <div ref={containerRef} className="w-full h-[250vh] relative mt-20 mb-32">
+      <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
+        
+        <div className="max-w-[1280px] w-full mx-auto px-6 h-full flex flex-col md:flex-row items-center justify-between">
+          
+          {/* Left Side: Steps List */}
+          <div className="w-full md:w-[35%] flex flex-col justify-center gap-10 relative z-10 pl-4 md:pl-8">
+            {titles.map((title, idx) => {
+              const isActive = idx === activeIndex;
+              return (
+                <div key={idx} className="relative flex items-center cursor-pointer" onClick={() => setActiveIndex(idx)}>
+                  <div className={`flex items-center gap-5 transition-all duration-700 ease-out ${isActive ? 'opacity-100 scale-[1.02]' : 'opacity-40 scale-100'}`} style={{ transformOrigin: 'left' }}>
+                    {/* Thumbnail Icon */}
+                    <div className={`w-[50px] h-[50px] shrink-0 rounded-[12px] overflow-hidden transition-all duration-700 ${isActive ? 'shadow-[0_8px_24px_rgba(0,0,0,0.15)] ring-2 ring-[var(--primary)]' : 'shadow-sm'}`}>
+                      <img src={images[idx]} className="w-full h-full object-cover" />
+                    </div>
+                    {/* Title */}
+                    <span className={`text-[15px] md:text-[17px] whitespace-nowrap transition-all duration-700 ease-out ${isActive ? 'font-bold text-[#111] dark:text-white' : 'font-medium text-[#666] dark:text-[#A6A6A6]'}`}>
+                      {title}
+                    </span>
+                  </div>
+                  
+                  {/* Connecting Line */}
+                  <div className={`absolute left-full ml-4 w-[40px] md:w-[60px] h-[3px] bg-[var(--primary)] rounded-full transition-all duration-500 ease-out ${isActive ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'}`} style={{ transformOrigin: 'left' }} />
+                </div>
+              )
+            })}
+          </div>
+
+          {/* Right Side: Dial & Content */}
+          <div className="w-full md:w-[65%] h-full relative flex items-center justify-center">
+            
+            {/* Tick Marks Circle Background */}
+            <motion.div 
+              style={{ rotate: smoothRotation }}
+              className="absolute w-[1000px] h-[1000px] rounded-full flex items-center justify-center opacity-40 dark:opacity-20 pointer-events-none" 
+            >
+               {Array.from({ length: 60 }).map((_, i) => (
+                 <div 
+                   key={i} 
+                   className="absolute w-[2px] h-[12px] bg-[#999] dark:bg-[#fff] rounded-full" 
+                   style={{ transform: `rotate(${i * 6}deg) translateY(-490px)` }} 
+                 />
+               ))}
+               {/* 4 decorative highlighted ticks */}
+               <div className="absolute w-[4px] h-[18px] bg-[var(--primary)] rounded-full" style={{ transform: `rotate(0deg) translateY(-490px)` }} />
+               <div className="absolute w-[4px] h-[18px] bg-[var(--primary)] rounded-full" style={{ transform: `rotate(90deg) translateY(-490px)` }} />
+               <div className="absolute w-[4px] h-[18px] bg-[var(--primary)] rounded-full" style={{ transform: `rotate(180deg) translateY(-490px)` }} />
+               <div className="absolute w-[4px] h-[18px] bg-[var(--primary)] rounded-full" style={{ transform: `rotate(270deg) translateY(-490px)` }} />
+            </motion.div>
+            
+            {/* Center Content */}
+            <div className="relative z-10 flex flex-col items-center text-center max-w-[480px]">
+              <span className="bg-[#f0f9ff] text-[var(--primary)] text-[11px] font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-8">
+                HOW TO START
+              </span>
+              
+              <div className="min-h-[140px] flex flex-col items-center justify-center">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeIndex}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3 }}
+                    className="flex flex-col items-center"
+                  >
+                    <h2 className="text-[36px] md:text-[48px] font-sans font-bold tracking-tight text-[#111] dark:text-white leading-[1.15] mb-4">
+                      {titles[activeIndex]}
+                    </h2>
+                    <p className="text-[15px] md:text-[17px] text-[#666] dark:text-[#A6A6A6] leading-[1.6]">
+                      {descs[activeIndex]}
+                    </p>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              {/* Bottom Card Image */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeIndex}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.4 }}
+                  className="mt-10 bg-[#f4f5f6] dark:bg-[#1a1a1a] rounded-[24px] p-5 shadow-[0_10px_40px_rgba(0,0,0,0.05)] dark:shadow-none flex flex-col items-center w-full max-w-[480px]"
+                >
+                  <div className="flex items-center gap-3 w-full mb-4 px-2">
+                    <img src={images[activeIndex]} className="w-8 h-8 rounded-[8px] object-cover border border-[#e5e5e5] dark:border-[#333]" />
+                    <span className="font-bold text-[14px] text-[#111] dark:text-white">{titles[activeIndex]}</span>
+                  </div>
+                  <div className="w-full h-[240px] rounded-[16px] overflow-hidden flex items-center justify-center bg-white dark:bg-[#111] border border-[#e5e5e5] dark:border-[#333]">
+                    <img src={images[activeIndex]} className="w-full h-full object-contain rounded-[16px]" />
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function SolutionsQuikynet() {
+  const { palette, shadeMapping, designSystem } = useThemeCustomizer();
+  const primaryShadeKey = shadeMapping[palette.id] || "800";
+  // Use the exact same shade for both colors to avoid any blue/hue shifts
+  const secondaryShadeKey = primaryShadeKey;
   const handleStartClick = () => {
     window.location.hash = "#/contact";
   };
@@ -168,6 +293,153 @@ export default function SolutionsQuikynet() {
     }
   ];
 
+  const timelineTitles = [
+    "Create your account",
+    "Pick your plan and pay securely",
+    "Enter details and upload your photo",
+    "Select your theme and submit"
+  ];
+  
+  const timelineDescs = [
+    "Sign up in seconds to access your personalized Quikynet dashboard and start building your digital identity.",
+    "Choose the perfect networking package that fits your business needs, and check out with our secure payment gateway.",
+    "Personalize your profile with your professional information, contact details, and a high-quality headshot.",
+    "Finalize your aesthetic by picking a custom theme layout, and publish your new digital business card!"
+  ];
+
+  if (designSystem === "ebay") {
+    return (
+      <div className="bg-[#FAFAF9] dark:bg-[#111111] text-[#111] dark:text-white min-h-screen w-full flex flex-col font-sans pt-32 pb-16">
+        
+        {/* Hero Section */}
+        <div className="max-w-[1280px] w-full mx-auto px-6 md:px-12 flex flex-col mt-12 gap-6 relative">
+          <span className="text-[11px] font-bold tracking-widest text-[var(--primary)] uppercase flex items-center gap-2">
+            <div className="w-1.5 h-1.5 bg-[var(--primary)] rounded-sm" />
+            QUIKYNET
+          </span>
+          <h1 className="text-[56px] md:text-[72px] font-serif leading-[1.05] tracking-tight max-w-[900px] text-[#111] dark:text-white">
+            Your Digital Business Card & B2B Sales Agent
+          </h1>
+          <p className="text-[18px] font-medium leading-[1.6] text-[#555] dark:text-[#A6A6A6] max-w-[800px]">
+            Quikynet is a smart networking platform designed to simplify how professionals, businesses, and institutions connect, share, and grow.
+          </p>
+          <div className="mt-4">
+            <button onClick={handleStartClick} className="bg-[var(--primary)] text-white px-8 py-3 rounded-full font-semibold hover:opacity-90 transition-opacity shadow-lg shadow-[var(--primary)]/20">
+              Get Started Today
+            </button>
+          </div>
+        </div>
+
+        {/* Features Section */}
+        <div className="w-full mt-32 px-6">
+          <div className="max-w-[1280px] mx-auto flex flex-col gap-12">
+            <div className="flex flex-col gap-4">
+              <span className="text-[11px] font-bold tracking-widest text-[var(--primary)] uppercase flex items-center gap-2">
+                <div className="w-1.5 h-1.5 bg-[var(--primary)] rounded-sm" />
+                QUIKYNET FEATURES
+              </span>
+              <div className="flex flex-col md:flex-row gap-8 justify-between items-start md:items-end">
+                <h2 className="text-[44px] md:text-[56px] font-serif font-bold tracking-tight text-[#111] dark:text-white leading-[1.1] max-w-[500px]">
+                  Features
+                </h2>
+                <p className="text-[16px] text-[#777] dark:text-[#A6A6A6] max-w-[500px] leading-[1.5]">
+                  Simplify how professionals, businesses, and institutions connect, share, and grow. Modular & Flexible: Start Small, Scale Limitlessly.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {featureImages.map((feat, idx) => (
+                <div key={idx} className="bg-white dark:bg-[#1a1a1a] border border-[#e5e5e5] dark:border-[#333] rounded-[24px] overflow-hidden group shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.08)] transition-shadow flex flex-col">
+                  <div className="p-8 pb-0">
+                    <h3 className="text-[24px] font-semibold text-[#111] dark:text-white mb-2">{feat.alt}</h3>
+                    <p className="text-[15px] text-[#555] dark:text-[#A6A6A6] leading-[1.6]">{feat.desc}</p>
+                  </div>
+                  <div className="flex-1 mt-8 bg-[#fafafa] dark:bg-[#111] p-8 border-t border-[#e5e5e5] dark:border-[#333] flex items-center justify-center">
+                    <img src={feat.images[0]} alt={feat.alt} className="w-full h-auto object-contain max-h-[300px] rounded-[12px] group-hover:scale-105 transition-transform duration-500" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* How to Start Section */}
+        <EbayDialStepsSection 
+          titles={timelineTitles} 
+          descs={timelineDescs} 
+          images={[step1Img, step2Img, step3Img, step4Img]} 
+        />
+
+        {/* Products Section */}
+        <div className="w-full mt-32 px-6">
+          <div className="max-w-[1280px] mx-auto bg-[#f8f6f5] dark:bg-[#151515] rounded-[32px] p-8 md:p-12 lg:p-16">
+            
+            {/* Header */}
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-[#e5e5e5] dark:border-[#333] pb-10 mb-12 gap-12">
+              <p className="italic text-[#666] dark:text-[#A6A6A6] text-[18px] md:text-[22px] max-w-[280px]">
+                — Smart networking solutions built for modern professionals.
+              </p>
+              <h2 className="text-[32px] md:text-[44px] lg:text-[52px] font-sans tracking-tight text-[#111] dark:text-white max-w-[700px] leading-[1.05]">
+                We craft premium, high-impact NFC products <span className="font-bold">for professionals who refuse to blend in.</span>
+              </h2>
+            </div>
+            
+            {/* Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {products.map((prod, idx) => (
+                <div key={idx} className="group cursor-pointer flex flex-col">
+                  {/* Image Container */}
+                  <div className="relative w-full h-[320px] md:h-[450px] rounded-[16px] overflow-hidden bg-[#ebebeb] dark:bg-[#222] mb-6 flex items-center justify-center">
+                    <img 
+                      src={prod.image} 
+                      className="w-full h-full object-contain p-6 md:p-8 transition-transform duration-700 group-hover:scale-105" 
+                      alt={prod.title} 
+                    />
+                  </div>
+                  
+                  {/* Text Container */}
+                  <div>
+                    <h3 className="text-[20px] font-bold text-[#111] dark:text-white mb-1">{prod.title}</h3>
+                    <p className="text-[14px] text-[#666] dark:text-[#A6A6A6]">{prod.tagline}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+          </div>
+        </div>
+
+        {/* Convergence Section */}
+        <div className="w-full mt-32 px-6 mb-32">
+          <div className="max-w-[1280px] mx-auto bg-[#111] text-white rounded-[32px] overflow-hidden flex flex-col md:flex-row items-center border border-[#333] shadow-lg">
+            <div className="p-12 md:p-16 flex-1 flex flex-col gap-6">
+              <h2 className="text-[40px] md:text-[48px] font-serif font-bold tracking-tight leading-[1.1]">
+                Quikynet × QuGenie
+              </h2>
+              <p className="text-[16px] text-white/80 leading-[1.6]">
+                Quikynet and QuGenie are complementary products from QuGates Technologies. Quikynet manages your external identity and connections; QuGenie manages your internal operations. Together they form a complete digital framework for modern Indian businesses.
+              </p>
+            </div>
+            <div className="flex-1 w-full h-[300px] md:h-[400px]">
+              <img src={convergenceImg} className="w-full h-full object-cover" alt="Convergence" />
+            </div>
+          </div>
+        </div>
+
+        {/* Newsletter */}
+        <div className="mb-20">
+          <Newsletter 
+            title="Experience how digital identity, smart networking, and real-time connections work together — tailored to your business."
+            description=""
+            buttonText="Get Started Today"
+            onButtonClick={handleStartClick}
+          />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="w-full flex flex-col items-center min-h-screen bg-[#03010a] text-foreground font-['Mirage_Display_Medium','Mirage_Display_Medium_Placeholder',sans-serif]" data-name="SolutionsQuikynetPage">
 
@@ -177,8 +449,8 @@ export default function SolutionsQuikynet() {
         {/* MagicRings Canvas covering the entire section background exactly as the component */}
         <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
           <MagicRings
-            color="#0040C1"
-            colorTwo="#155EEF"
+            color={palette.shades[primaryShadeKey]}
+            colorTwo={palette.shades[secondaryShadeKey]}
             ringCount={6}
             speed={1}
             attenuation={10}
@@ -206,7 +478,7 @@ export default function SolutionsQuikynet() {
           <motion.span
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-[12px] font-bold uppercase tracking-[4px] text-[#5586ff] opacity-80"
+            className="text-[12px] font-bold uppercase tracking-[4px] text-[var(--glow-secondary)] opacity-80"
           >
             QUIKYNET
           </motion.span>
@@ -234,7 +506,7 @@ export default function SolutionsQuikynet() {
       <section className="w-full max-w-[1200px] px-6 py-[120px] mx-auto relative z-10 flex flex-col gap-6 md:gap-12">
         <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-start mb-4">
           <div className="flex flex-col gap-4">
-            <span className="text-[12px] font-bold uppercase tracking-[4px] text-[#5586ff] opacity-80">
+            <span className="text-[12px] font-bold uppercase tracking-[4px] text-[var(--glow-secondary)] opacity-80">
               QUIKYNET FEATURES
             </span>
             <h2 className="text-[48px] leading-[60px] md:text-[72px] md:leading-[90px] font-bold tracking-tight text-white font-['Mirage_Display_Medium','Mirage_Display_Medium_Placeholder',sans-serif]">
@@ -257,7 +529,7 @@ export default function SolutionsQuikynet() {
           <h2 className="text-[24px] leading-[32px] md:text-[36px] md:leading-[44px] font-bold tracking-tight text-white font-['Mirage_Display_Medium','Mirage_Display_Medium_Placeholder',sans-serif] uppercase">
             HOW TO START
           </h2>
-          <div className="w-[60px] h-[3px] bg-[#5586ff]" />
+          <div className="w-[60px] h-[3px] bg-[var(--glow-secondary)]" />
         </div>
 
         <Timeline data={timelineData} />
@@ -277,7 +549,7 @@ export default function SolutionsQuikynet() {
           <h2 className="text-[32px] font-semibold tracking-tight text-foreground">
             Products
           </h2>
-          <div className="w-[80px] h-[3px] bg-[#0040C1]" />
+          <div className="w-[80px] h-[3px] bg-[var(--primary)]" />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">

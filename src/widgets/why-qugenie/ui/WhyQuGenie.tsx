@@ -1,4 +1,7 @@
+import { useRef, useState } from "react";
 import { ShieldCheck, Coins, BookOpenCheck, PackagePlus, EyeOff, Gauge } from "lucide-react";
+import { useThemeCustomizer } from "@/contexts/ThemeCustomizerContext";
+import { motion, useScroll, useTransform } from "motion/react";
 
 const FONT = "'Mirage Display Medium','Mirage Display Medium Placeholder',sans-serif";
 
@@ -12,6 +15,93 @@ const reasons = [
 ];
 
 export function WhyQuGenie() {
+  const { designSystem } = useThemeCustomizer();
+
+  const [containerNode, setContainerNode] = useState<HTMLDivElement | null>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerNode ? { current: containerNode } : undefined,
+    offset: ["start start", "end end"]
+  });
+
+  // Mathematically perfect 3x3 grid zoom-out:
+  // Scale from 8x down to 1x, perfectly centered on the grid's middle cell (50% 50%).
+  const scale = useTransform(scrollYProgress, [0, 1], [8, 1]);
+  
+  // Inverse scale for the center card content to prevent text from bleeding off screen
+  // Starts at 0.25 (which at 8x grid scale results in 2x physical size) and ends at 1x.
+  const contentScale = useTransform(scrollYProgress, [0, 1], [0.25, 1]);
+
+  if (designSystem === "ebay") {
+    // 3x3 Grid layout map. 'null' = empty space, 'center' = hero card, number = reasons index.
+    const gridLayout = [
+      0, null, 1,
+      2, "center", 3,
+      4, null, 5
+    ];
+
+    return (
+      <div ref={setContainerNode} className="w-full bg-[#FAFAF9] dark:bg-background h-[150vh] relative">
+        <div className="sticky top-0 w-full h-screen overflow-hidden flex flex-col items-center justify-center">
+
+          <motion.div 
+            style={{ scale, transformOrigin: "50% 50%" }}
+            className="grid grid-cols-3 grid-rows-3 gap-4 lg:gap-6 w-[90vw] max-w-[1100px] h-[85vh] max-h-[900px] z-10"
+          >
+            {gridLayout.map((item, i) => {
+              // Empty corner slots
+              if (item === null) {
+                return <div key={i} className="w-full h-full" />;
+              }
+
+              // The Center Hero Card
+              if (item === "center") {
+                return (
+                  <div 
+                    key={i} 
+                    className="w-full h-full bg-[var(--primary)] rounded-[24px] lg:rounded-[32px] p-6 lg:p-10 flex flex-col items-center justify-center text-center shadow-2xl border border-black/5 overflow-hidden"
+                  >
+                    <motion.div style={{ scale: contentScale }} className="flex flex-col items-center justify-center w-full">
+                      <span className="text-[12px] lg:text-[13px] font-bold text-white/90 mb-4 lg:mb-6 uppercase tracking-[0.15em]">
+                        Why QuGenie
+                      </span>
+                      <h2 className="text-[26px] md:text-[34px] lg:text-[40px] font-sans font-medium leading-[1.05] tracking-tight text-white">
+                        Six reasons QuGenie wins where the giants stall.
+                      </h2>
+                    </motion.div>
+                  </div>
+                );
+              }
+
+              // The 6 Reason Cards
+              const r = reasons[item as number];
+              return (
+                <div 
+                  key={i} 
+                  className="w-full h-full bg-white dark:bg-[#111111] rounded-[24px] lg:rounded-[32px] p-6 lg:p-8 flex flex-col justify-between shadow-xl border border-gray-100 dark:border-[#333] overflow-hidden"
+                >
+                  <div className="flex justify-between items-start w-full">
+                    <span className="text-[13px] lg:text-[14px] font-bold text-[#111] dark:text-white tracking-wider">
+                      0{(item as number) + 1}
+                    </span>
+                    <div className="w-7 h-7 lg:w-8 lg:h-8 rounded-full border border-black/5 bg-[#fcfcfc] dark:bg-[#222] flex items-center justify-center text-[#111] dark:text-white">
+                      <r.icon size={13} strokeWidth={2.5} />
+                    </div>
+                  </div>
+                  
+                  <div className="flex flex-col gap-2 lg:gap-3">
+                    <h3 className="text-[22px] md:text-[24px] lg:text-[28px] font-medium leading-[1.05] tracking-tighter text-[#111] dark:text-white">{r.title}</h3>
+                    <p className="text-[12px] lg:text-[13.5px] leading-[1.4] lg:leading-[1.5] text-[#555] dark:text-[#A6A6A6] font-normal">{r.description}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </motion.div>
+          
+        </div>
+      </div>
+    );
+  }
+
   return (
     <section
       className="w-full bg-[#03010a] text-white flex flex-col items-center py-[100px]"

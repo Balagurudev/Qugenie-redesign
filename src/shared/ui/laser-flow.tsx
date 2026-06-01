@@ -244,8 +244,7 @@ void mainImage(out vec4 fc,in vec2 frag){
     float dith=(h21(frag)-0.5)*(DITHER_STRENGTH/255.0);
     float toneLF=g(LF);
     float toneW=g(max(0.0, w));
-    vec3 vibrantBlue = vec3(0.0, 0.05, 1.0);
-    vec3 col=toneLF*uColor + toneW*vibrantBlue*2.0 + dith;
+    vec3 col=toneLF*uColor + toneW*uColor*2.0 + dith;
     float alpha=clamp(g(L+w*0.6)+dith*0.6,0.0,1.0);
     float nxE=abs((frag.x-C.x)*invW),xF=pow(clamp(1.0-smoothstep(EDGE_X0,EDGE_X1,nxE),0.0,1.0),EDGE_X_GAMMA);
     float scene=LF+max(0.0,w)*0.5,hi=smoothstep(EDGE_LUMA_T0,EDGE_LUMA_T1,scene);

@@ -1,8 +1,13 @@
+import { useThemeCustomizer } from "@/contexts/ThemeCustomizerContext";
+import { EbaySolutionTemplate } from "@/widgets/ebay/EbaySolutionTemplate";
 import { motion } from "motion/react";
 import { Footer } from "@/widgets/footer/ui/Footer";
 import BorderGlow from "@/components/ui/border-glow";
 
 export default function SolutionsCommunications() {
+  const { designSystem } = useThemeCustomizer();
+
+
   const handleDemoClick = () => {
     window.location.hash = "#/contact";
   };
@@ -34,6 +39,18 @@ export default function SolutionsCommunications() {
     }
 ];
 
+  if (designSystem === "ebay") {
+    return (
+      <EbaySolutionTemplate 
+        tagline="COMMUNICATIONS" 
+        title="COMMUNICATIONS" 
+        subtitle="One Platform for Every Employee Conversation" 
+        description="Identity-anchored multi-channel communication. In-app notifications, organisation newsfeed, polls and pulse surveys, broadcast announcements. Delivery via in-app, email, SMS, and integrated messengers. Audit-traced for compliance-sensitive communications." 
+        features={features}
+      />
+    );
+  }
+
   return (
     <div className="w-full flex flex-col items-center min-h-screen bg-background text-foreground pt-[120px] font-['Mirage_Display_Medium','Mirage_Display_Medium_Placeholder',sans-serif]" data-name="SolutionsCommunicationsPage">
       
@@ -58,7 +75,7 @@ export default function SolutionsCommunications() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-blue-500/20 via-transparent to-transparent pointer-events-none" />
           
           <div className="relative z-10 max-w-[600px] flex flex-col gap-2">
-            <span className="bg-white/10 text-white font-semibold text-[12px] uppercase tracking-widest px-3 py-1 rounded-[4px] self-start mb-2">ENTERPRISE READY</span>
+            <span className="bg-white dark:bg-[#111111]/10 text-white font-semibold text-[12px] uppercase tracking-widest px-3 py-1 rounded-[4px] self-start mb-2">ENTERPRISE READY</span>
             <h1 className="text-[38px] md:text-[48px] font-semibold text-white tracking-tight leading-none">
               COMMUNICATIONS
             </h1>
@@ -113,7 +130,7 @@ export default function SolutionsCommunications() {
               <div className="p-6 h-full flex flex-col gap-3 group">
 
               <div className="relative z-10 flex flex-col gap-3 h-full">
-                <div className="w-[36px] h-[36px] rounded-[8px] bg-white/5 flex items-center justify-center text-white mt-1 shrink-0">
+                <div className="w-[36px] h-[36px] rounded-[8px] bg-white dark:bg-[#111111]/5 flex items-center justify-center text-white mt-1 shrink-0">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                   </svg>
