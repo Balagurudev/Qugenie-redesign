@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import logo from "@/assets/ea704c2933abe54013cfbbb25cf752fbf9a97143.png";
 import { ThemeCustomizerPanel } from "@/components/ui/ThemeCustomizerPanel";
 
 const FONT = "var(--font-family, 'Market Sans', 'DM Sans', sans-serif)";
@@ -161,10 +160,11 @@ export function EbayHeader() {
           className="flex items-center gap-2 cursor-pointer group"
           onClick={() => { window.location.hash = "#/"; window.scrollTo({ top: 0, behavior: "smooth" }); }}
         >
-          <div className="w-8 h-8 bg-[#111] dark:bg-white rounded-full flex items-center justify-center text-white dark:text-[#111] font-serif font-bold text-lg group-hover:scale-105 transition-transform">
-            Q
+          <div className="relative shrink-0 size-[48px] mr-1">
+            <img alt="QuGenie Logo" className="absolute inset-0 object-contain pointer-events-none size-full dark:hidden" src="/qugenie-logo-2.png" />
+            <img alt="QuGenie Logo" className="absolute inset-0 object-contain pointer-events-none size-full hidden dark:block" src="/qugenie-logo-1.png" />
           </div>
-          <span className="text-[20px] font-bold tracking-tight text-[#111] dark:text-white">
+          <span className="text-[22px] font-bold tracking-tight text-[#111] dark:text-white">
             QuGenie
           </span>
         </div>

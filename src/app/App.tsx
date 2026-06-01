@@ -125,8 +125,6 @@ function AppContent() {
           {/* <AgenticCoreLandingV2 /> */}
           {/* <Infrastructure /> */}
           <FAQ />
-          {/* <Newsletter /> */}
-          <Footer />
         </>
       )}
 
@@ -152,6 +150,9 @@ function AppContent() {
       {page === "solutions-analytics" && <SolutionsAnalytics />}
       {page === "about-us" && <AboutUsPage />}
       {page === "contact" && <ContactPage />}
+
+      <Newsletter />
+      <Footer />
       </div>
     </>
   );

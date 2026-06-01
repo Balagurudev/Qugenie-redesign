@@ -3,7 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 
 const FONT = "var(--font-family, 'Market Sans', 'DM Sans', sans-serif)";
 
-export function Footer() {
+export function EbayFooter() {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -21,11 +21,11 @@ export function Footer() {
             </p>
           </div>
           <div className="flex flex-col gap-4 min-w-[200px]">
-            <button className="bg-[var(--primary)] text-white hover:bg-white hover:text-black transition-colors px-6 py-4 rounded-[8px] font-bold flex items-center justify-between group">
+            <button className="bg-[var(--primary)] text-white hover:bg-white hover:text-black transition-colors px-6 py-4 rounded-full font-bold flex items-center justify-between group">
               Start Free Trial 
               <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
             </button>
-            <button className="bg-transparent text-white border border-[#333] hover:border-white transition-colors px-6 py-4 rounded-[8px] font-bold flex items-center justify-center">
+            <button className="bg-transparent text-white border border-[#333] hover:border-white transition-colors px-6 py-4 rounded-full font-bold flex items-center justify-center">
               Contact Sales
             </button>
           </div>
@@ -80,13 +80,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-[14px] font-medium text-[#A6A6A6]">
           <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
-            <div className="flex items-center gap-2">
-              <div className="relative shrink-0 size-[48px] mr-1">
-                <img alt="QuGenie Logo" className="absolute inset-0 object-contain pointer-events-none size-full dark:hidden" src="/qugenie-logo-2.png" />
-                <img alt="QuGenie Logo" className="absolute inset-0 object-contain pointer-events-none size-full hidden dark:block" src="/qugenie-logo-1.png" />
-              </div>
-              <span className="text-[22px] font-bold text-white tracking-tight">QuGenie</span>
-            </div>
+            <span className="text-[20px] font-bold text-white tracking-tight">QuGenie</span>
             <span className="hidden sm:block w-1 h-1 rounded-full bg-[#333]" />
             <span>© {currentYear} QuGates Technologies Pvt. Ltd.</span>
           </div>
