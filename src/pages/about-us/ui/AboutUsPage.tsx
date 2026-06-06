@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
-import { Footer } from "@/widgets/footer/ui/Footer";
+
 import { ThreeDCarousel } from "@/components/ui/three-d-carousel";
 import { TeamCardExpansion } from "@/components/ui/card-expansion";
-import { Newsletter } from "@/widgets/newsletter/ui/Newsletter";
+
 import { useThemeCustomizer } from "@/contexts/ThemeCustomizerContext";
 import FlowArt, { FlowSection } from "@/components/ui/flow-art";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
@@ -506,7 +506,7 @@ export default function AboutUsPage() {
         <div
           className="absolute inset-0 z-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-700"
           style={{
-            background: `radial-gradient(800px circle at ${mousePos.x}px ${mousePos.y}px, rgba(0, 64, 193, 0.25) 0%, transparent 60%)`
+            background: `radial-gradient(800px circle at ${mousePos.x}px ${mousePos.y}px, color-mix(in srgb, var(--primary) 25%, transparent) 0%, transparent 60%)`
           }}
         />
         <div
@@ -528,7 +528,7 @@ export default function AboutUsPage() {
         />
 
         {/* Ambient static fallback glow (hides when hovering) */}
-        <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[80%] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#0040C1]/40 via-[#0040C1]/5 to-transparent blur-[100px] pointer-events-none group-hover:opacity-0 transition-opacity duration-700" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[80%] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[var(--primary)]/40 via-[var(--primary)]/5 to-transparent blur-[100px] pointer-events-none group-hover:opacity-0 transition-opacity duration-700" />
 
         <div className="w-full max-w-[1120px] mx-auto flex flex-col justify-between flex-grow">
           {/* Top tag and Heading */}
@@ -579,7 +579,10 @@ export default function AboutUsPage() {
               <div key={idx} className="flex flex-col group cursor-default">
                 <div className="relative w-full h-[1px] bg-border mb-6">
                   {/* Animated Glowing Light Effect */}
-                  <div className="absolute top-0 left-0 h-[1px] w-0 bg-primary group-hover:w-full transition-all duration-700 ease-out shadow-[0_0_12px_rgba(0,64,193,1)]" />
+                  <div 
+                    className="absolute top-0 left-0 h-[1px] w-0 bg-primary group-hover:w-full transition-all duration-700 ease-out" 
+                    style={{ boxShadow: '0 0 12px var(--primary)' }}
+                  />
                 </div>
                 <div className="flex items-baseline gap-3 mb-6">
                   <h3 className="text-[36px] md:text-[44px] font-semibold leading-none tracking-tight">
@@ -649,7 +652,7 @@ export default function AboutUsPage() {
             <div
               className="absolute inset-0 pointer-events-none opacity-0 group-hover/grid:opacity-100 transition-opacity duration-700 z-20 mix-blend-screen"
               style={{
-                background: `radial-gradient(600px circle at ${gridMousePos.x}px ${gridMousePos.y}px, rgba(0, 64, 193, 0.15) 0%, rgba(255, 255, 255, 0.05) 20%, transparent 50%)`
+                background: `radial-gradient(600px circle at ${gridMousePos.x}px ${gridMousePos.y}px, color-mix(in srgb, var(--primary) 15%, transparent) 0%, rgba(255, 255, 255, 0.05) 20%, transparent 50%)`
               }}
             />
           </div>

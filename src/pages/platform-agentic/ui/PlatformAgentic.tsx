@@ -1,10 +1,10 @@
 import { motion, AnimatePresence, useScroll, useMotionValueEvent, useSpring, useTransform } from "motion/react";
 import { useState, useRef, useEffect } from "react";
-import { Footer } from "@/widgets/footer/ui/Footer";
+
 import Lenis from "lenis";
 import { Brain, BarChart3, ShieldCheck, Zap, GitBranch, Eye, RefreshCw, Cpu, ArrowRight, ArrowDown, Check, X, ArrowUpRight } from "lucide-react";
 import StackingCards from "@/widgets/stacking-cards/ui/StackingCards";
-import { Newsletter } from "@/widgets/newsletter/ui/Newsletter";
+
 import { useThemeCustomizer } from "@/contexts/ThemeCustomizerContext";
 
 const FONT = "'Mirage Display Medium','Mirage Display Medium Placeholder',sans-serif";
@@ -95,13 +95,13 @@ const stats = [
 ];
 
 const AIERPHeroBackground = () => (
-  <div className="absolute inset-0 z-0 overflow-hidden bg-[#020614] pointer-events-none">
+  <div className="absolute inset-0 z-0 overflow-hidden bg-[var(--brand-950)] pointer-events-none">
     {/* Deep background ambient light */}
-    <div className="absolute top-0 right-0 w-[100%] h-[100%] bg-[radial-gradient(ellipse_at_top_right,_#0B2466_0%,_transparent_75%)] opacity-90" />
+    <div className="absolute top-0 right-0 w-[100%] h-[100%] bg-[radial-gradient(ellipse_at_top_right,_var(--brand-900)_0%,_transparent_75%)] opacity-90" />
     
     {/* Top Right intense light flare */}
-    <div className="absolute top-[-10%] right-[-10%] w-[50%] aspect-square rounded-full bg-[#004EEB] opacity-50 blur-[100px]" />
-    <div className="absolute top-[-5%] right-[-5%] w-[30%] aspect-square rounded-full bg-[#2986FF] opacity-80 blur-[60px]" />
+    <div className="absolute top-[-10%] right-[-10%] w-[50%] aspect-square rounded-full bg-[var(--primary)] opacity-50 blur-[100px]" />
+    <div className="absolute top-[-5%] right-[-5%] w-[30%] aspect-square rounded-full bg-[var(--brand-500)] opacity-80 blur-[60px]" />
     <div className="absolute top-[-5%] right-[-2%] w-[15%] aspect-square rounded-full bg-[#FFFFFF] opacity-100 blur-[20px]" />
     
     {/* Sharp Diagonal Light Rays (Lens Flare) */}
@@ -114,10 +114,10 @@ const AIERPHeroBackground = () => (
       <svg className="w-full h-full" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMax slice">
         <defs>
           <linearGradient id="arch-grad" x1="0%" y1="100%" x2="0%" y2="0%">
-            <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.8" />
-            <stop offset="10%" stopColor="#00D4FF" stopOpacity="0.7" />
-            <stop offset="30%" stopColor="#1B52EB" stopOpacity="0.4" />
-            <stop offset="60%" stopColor="#020614" stopOpacity="0" />
+            <stop offset="0%" stopColor="var(--brand-100)" stopOpacity="0.8" />
+            <stop offset="10%" stopColor="var(--brand-400)" stopOpacity="0.7" />
+            <stop offset="30%" stopColor="var(--primary)" stopOpacity="0.4" />
+            <stop offset="60%" stopColor="transparent" stopOpacity="0" />
           </linearGradient>
         </defs>
 
@@ -149,7 +149,7 @@ export default function PlatformAgentic() {
       <div className="relative w-full min-h-[95vh] flex flex-col justify-center pt-[120px] pb-[80px]">
         <AIERPHeroBackground />
         <section className="w-full max-w-[1120px] mx-auto px-6 flex flex-col gap-6 relative z-10 items-start text-left">
-          <motion.span initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="text-[#0040C1] text-[12px] font-bold tracking-[4px] uppercase block">
+          <motion.span initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="text-[var(--primary)] text-[12px] font-bold tracking-[4px] uppercase block">
             AI-DRIVEN ERP
           </motion.span>
           
@@ -167,7 +167,7 @@ export default function PlatformAgentic() {
           
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.22 }} className="flex flex-wrap gap-4 mt-2 justify-start">
             <motion.button whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.98 }} onClick={() => nav("#/contact")}
-              className="bg-[#0040C1] text-white font-semibold text-[15px] px-[26px] py-[14px] rounded-[8px] cursor-pointer shadow-sm hover:shadow-[0_8px_20px_rgba(0,64,193,0.3)] transition-all flex items-center gap-2">
+              className="bg-[var(--primary)] text-white font-semibold text-[15px] px-[26px] py-[14px] rounded-[8px] cursor-pointer shadow-sm hover:shadow-[0_8px_20px_var(--glow-primary)] transition-all flex items-center gap-2">
               Book a Free Demo <ArrowRight size={16} />
             </motion.button>
             <motion.button whileHover={{ scale: 1.03, y: -2 }} whileTap={{ scale: 0.98 }} onClick={() => nav("#/platform/silos")}
@@ -263,16 +263,7 @@ export default function PlatformAgentic() {
         </div>
       </section> */}
 
-      <Newsletter 
-        title="See AI ERP reasoning over your own operational data."
-        description="Book a live session where we run QuGenie against your actual workflows — HR, Finance, Inventory, or all three."
-        buttonText="Book a Free Demo"
-        onButtonClick={() => nav("#/contact")}
-        secondaryButtonText="Explore Architecture"
-        onSecondaryButtonClick={() => nav("#/platform/silos")}
-      />
 
-      <Footer />
     </div>
   );
 }

@@ -90,6 +90,7 @@ export default class MSDFText {
     const msdfOpacity = textMaterial.opacityNode;
     textMaterial.opacityNode = msdfOpacity.mul(dissolve);
     textMaterial.mrtNode = mrt({
+      output: textMaterial.colorNode,
       bloomIntensity: float(0.4).mul(dissolve),
     });
 

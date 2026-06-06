@@ -120,12 +120,26 @@ export default class PetalParticles {
     const uBendSpeed = uniform(1.0);
     const uSpinSpeed = uniform(2.0);
     const uSpinAmp = uniform(0.45); // overall rotation amount
-    const uRedColor = uniform(new THREE.Color('#0040C1'));
-    const uWhiteColor = uniform(new THREE.Color('#5586ff'));
+    const uTime = uniform(0);
+    const animate = () => {
+      uTime.value = performance.now() * 0.001;
+      requestAnimationFrame(animate);
+    };
+    animate();
+
+    const getCssVar = (name, fallback) => {
+      const val = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+      return val ? val : fallback;
+    };
+    const primaryHex = getCssVar('--primary', '#0040C1');
+    const brand400Hex = getCssVar('--brand-400', '#5586ff');
+
+    const uRedColor = uniform(new THREE.Color(primaryHex));
+    const uWhiteColor = uniform(new THREE.Color(brand400Hex));
     const uLightPosition = uniform(new THREE.Vector3(0, 0, 5));
 
     // Age of the dust in seconds
-    const dustAge = time.sub(aBirth);
+    const dustAge = uTime.sub(aBirth);
     const lifeInterpolation = clamp(dustAge.div(aLife), 0, 1);
 
     // Use noise
@@ -196,6 +210,7 @@ export default class PetalParticles {
     material.opacityNode = fadingOut;
 
     material.mrtNode = mrt({
+      output: material.colorNode,
       bloomIntensity: float(0.7).mul(fadingOut),
     });
 

@@ -54,7 +54,7 @@ export function GlareCard({
   return (
     <motion.div
       ref={ref}
-      className={`relative overflow-hidden rounded-[24px] border border-[#1e2d45] bg-[#0c101b]/90 backdrop-blur-md transition-all duration-300 shadow-xl hover:shadow-[#0040c1]/15 hover:border-[#0040c1]/40 ${className ?? ""}`}
+      className={`relative overflow-hidden rounded-[24px] border border-[#1e2d45] bg-[#0c101b]/90 backdrop-blur-md transition-all duration-300 shadow-xl hover:shadow-[var(--primary)]/15 hover:border-[var(--primary)]/40 ${className ?? ""}`}
       style={{ 
         perspective: perspective, 
         rotateX: rotateXClamped, 

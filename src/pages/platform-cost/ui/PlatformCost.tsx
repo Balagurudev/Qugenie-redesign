@@ -1,9 +1,9 @@
 import { motion, useScroll, useTransform, useMotionValueEvent, AnimatePresence, MotionValue } from "motion/react";
 import { useRef, useState } from "react";
-import { Footer } from "@/widgets/footer/ui/Footer";
+
 import { Box, Lock, Search, Settings, Sparkles, CreditCard, Users, Network, BarChart3, Database, Server, TrendingUp, User, MapPin, FileText, AlertTriangle, CheckCircle2 } from "lucide-react";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
-import { Newsletter } from "@/widgets/newsletter/ui/Newsletter";
+
 import BorderGlow from "@/components/ui/border-glow";
 import { useThemeCustomizer } from "@/contexts/ThemeCustomizerContext";
 import imgHeroMockup from "@/assets/hero_mockup.png";
@@ -45,8 +45,8 @@ function ExponentialGrowthCarousel() {
         
         {/* Header Content */}
         <div className="text-center max-w-[800px] px-6 z-20 flex flex-col items-center gap-6">
-          <span className="text-[11px] font-bold uppercase tracking-[3px] text-[#0040C1] bg-[#0040C1]/10 px-3 py-1.5 rounded-md border border-[#0040C1]/20 flex items-center gap-2">
-            <span className="w-1.5 h-1.5 bg-[#0040C1] rounded-full animate-pulse" />
+          <span className="text-[11px] font-bold uppercase tracking-[3px] text-[var(--primary)] bg-[var(--primary)]/10 px-3 py-1.5 rounded-md border border-[var(--primary)]/20 flex items-center gap-2">
+            <span className="w-1.5 h-1.5 bg-[var(--primary)] rounded-full animate-pulse" />
             [ Data Growth ]
           </span>
           <h2 className="text-[36px] md:text-[56px] font-['Mirage_Display_Medium','Mirage_Display_Medium_Placeholder',sans-serif] font-medium leading-[1.1] tracking-[-0.02em] text-white">
@@ -57,7 +57,7 @@ function ExponentialGrowthCarousel() {
         {/* Curved Carousel */}
         <div className="relative w-[1400px] h-[1400px] shrink-0 mt-[100px] pointer-events-none">
           {/* Subtle Ambient Glow inside Arch */}
-          <div className="absolute top-[100px] left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#0040C1]/20 blur-[120px] rounded-full pointer-events-none" />
+          <div className="absolute top-[100px] left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[var(--primary)]/20 blur-[120px] rounded-full pointer-events-none" />
 
           {/* The Arch Line (Background) */}
           <div className="absolute inset-0 rounded-full border border-white/5 border-t-white/20" />
@@ -130,7 +130,7 @@ function IconItem({ icon: Icon, isCurrent, angle }: IconItemProps) {
     >
       {/* Active Glow */}
       <div 
-        className={`absolute inset-0 rounded-full bg-[#0040C1] transition-opacity duration-500 ${
+        className={`absolute inset-0 rounded-full bg-[var(--primary)] transition-opacity duration-500 ${
           isCurrent ? "opacity-30 blur-[25px]" : "opacity-0"
         }`} 
       />
@@ -139,8 +139,6 @@ function IconItem({ icon: Icon, isCurrent, angle }: IconItemProps) {
       <BorderGlow
         animated={isCurrent}
         loop={true}
-        glowColor="220 100 60"
-        colors={['#5586ff', '#0040C1', '#002060']}
         backgroundColor="rgba(3, 1, 10, 0.8)"
         borderRadius={100}
         glowRadius={isCurrent ? 20 : 10}
@@ -151,7 +149,10 @@ function IconItem({ icon: Icon, isCurrent, angle }: IconItemProps) {
         <div className="w-full h-full flex items-center justify-center relative z-10 rounded-full overflow-hidden">
            {/* Inner glass overlay to retain some 3D feel */}
            <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none mix-blend-overlay" />
-           <Icon className={`relative z-10 transition-all duration-500 ${isCurrent ? "text-white w-8 h-8 drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]" : "text-[#5586ff] w-5 h-5 drop-shadow-[0_0_8px_rgba(85,134,255,0.6)]"}`} />
+           <Icon 
+             className={`relative z-10 transition-all duration-500 ${isCurrent ? "text-white w-8 h-8" : "text-[var(--primary)] w-5 h-5"}`} 
+             style={{ filter: isCurrent ? 'drop-shadow(0 0 10px rgba(255,255,255,0.8))' : 'drop-shadow(0 0 8px var(--primary))' }}
+           />
         </div>
       </BorderGlow>
     </div>
@@ -170,7 +171,7 @@ export default function PlatformCost() {
     { text: "Vendor lock-in pricing (switching becomes costly once data is large)", icon: Lock }
   ];
 
-  const { designSystem } = useThemeCustomizer();
+  const { designSystem, palette } = useThemeCustomizer();
 
   if (designSystem === "ebay") {
     return (
@@ -181,11 +182,7 @@ export default function PlatformCost() {
         <EbayCostSection />
 
         {/* <div className="mt-32">
-          <Newsletter 
-            title="See how QuGenie's on-premise and hybrid models give you predictable costs, full ownership, and long-term savings without hidden SaaS escalations."
-            description=""
-            buttonText="Book a Free Demo"
-          />
+          
         </div> */}
       </div>
     );
@@ -197,7 +194,7 @@ export default function PlatformCost() {
       {/* Top Split Section */}
       <section className="w-full max-w-[1200px] px-6 py-[80px] grid grid-cols-1 lg:grid-cols-12 gap-12 items-start relative">
         {/* Subtle background radial glow */}
-        <div className="absolute top-[10%] left-[5%] w-[400px] h-[400px] bg-blue-600/5 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-[10%] left-[5%] w-[400px] h-[400px] bg-[var(--primary)]/5 blur-[120px] rounded-full pointer-events-none" />
 
         {/* Left Column Header */}
         <div className="lg:col-span-7 flex flex-col items-start gap-4">
@@ -228,13 +225,13 @@ export default function PlatformCost() {
 
       {/* Middle Cost Grid translation details */}
       <section className="w-full max-w-[1200px] px-6 py-[120px] flex flex-col lg:flex-row gap-16 items-start relative z-10 border-t border-white/10 mt-10">
-        <div className="absolute bottom-[10%] right-[5%] w-[400px] h-[400px] bg-[#5586ff]/5 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute bottom-[10%] right-[5%] w-[400px] h-[400px] bg-[var(--primary)]/5 blur-[120px] rounded-full pointer-events-none" />
         
         {/* Left Column */}
         <div className="flex-1 flex flex-col justify-between items-start gap-[40px] lg:sticky lg:top-[120px]">
           <div className="flex flex-col gap-6">
-            <span className="text-[11px] font-bold uppercase tracking-[3px] text-[#5586ff] bg-[#5586ff]/10 px-3 py-1.5 rounded-md border border-[#5586ff]/20 flex items-center gap-2 w-max">
-              <span className="w-1.5 h-1.5 bg-[#5586ff] rounded-full animate-pulse" />
+            <span className="text-[11px] font-bold uppercase tracking-[3px] text-[#5586ff] bg-[var(--primary)]/10 px-3 py-1.5 rounded-md border border-[#5586ff]/20 flex items-center gap-2 w-max">
+              <span className="w-1.5 h-1.5 bg-[var(--primary)] rounded-full animate-pulse" />
               [ Impact Analysis ]
             </span>
             <h3 className="text-[36px] md:text-[44px] font-['Mirage_Display_Medium','Mirage_Display_Medium_Placeholder',sans-serif] font-medium leading-[1.1] tracking-[-0.02em] text-white max-w-[480px]">
@@ -264,13 +261,16 @@ export default function PlatformCost() {
                 className="flex flex-col gap-6 group"
               >
                 {/* Glowing Icon Box */}
-                <div className="w-[64px] h-[64px] bg-[#5586ff] rounded-[16px] flex items-center justify-center text-white text-[20px] font-bold shadow-[0_0_24px_rgba(85,134,255,0.3)] relative overflow-hidden transition-transform duration-500 group-hover:scale-105">
+                <div 
+                  className="w-[64px] h-[64px] bg-[var(--primary)] rounded-[16px] flex items-center justify-center text-white text-[20px] font-bold relative overflow-hidden transition-transform duration-500 group-hover:scale-105"
+                  style={{ boxShadow: '0 0 24px color-mix(in srgb, var(--primary) 30%, transparent)' }}
+                >
                   <div className="absolute inset-0 bg-white dark:bg-[#111111]/20 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-out" />
                   <Icon className="w-7 h-7 relative z-10" />
                 </div>
                 
                 {/* Separator Line */}
-                <div className="w-full h-[1px] bg-white dark:bg-[#111111]/10 group-hover:bg-[#5586ff]/50 transition-colors duration-500" />
+                <div className="w-full h-[1px] bg-white dark:bg-[#111111]/10 group-hover:bg-[var(--primary)]/50 transition-colors duration-500" />
 
                 {/* Title & Description */}
                 <div className="flex flex-col gap-2 pr-4">
@@ -303,39 +303,35 @@ export default function PlatformCost() {
         <ul className="grid grid-cols-1 grid-rows-none gap-4 md:grid-cols-12 md:grid-rows-3 lg:gap-4 xl:max-h-[34rem] xl:grid-rows-2 mt-4">
           <GridItem
             area="md:[grid-area:1/1/2/7] xl:[grid-area:1/1/2/5]"
-            icon={<Box className="h-4 w-4 text-black dark:text-[#5586ff]" />}
+            icon={<Box className="h-4 w-4 text-black dark:text-[var(--primary)]" />}
             title="Infrastructure Investment"
             description="Your server cost is largely upfront or predictable. Data growth does not trigger recurring vendor charges." />
           <GridItem
             area="md:[grid-area:1/7/2/13] xl:[grid-area:2/1/3/5]"
-            icon={<Settings className="h-4 w-4 text-black dark:text-[#5586ff]" />}
+            icon={<Settings className="h-4 w-4 text-black dark:text-[var(--primary)]" />}
             title="Zero Data-Aligned Billing"
             description="Whether you store 10 GB or 10 TB — your ERP cost does not increase proportionally." />
           <GridItem
             area="md:[grid-area:2/1/3/7] xl:[grid-area:1/5/3/8]"
-            icon={<Lock className="h-4 w-4 text-black dark:text-[#5586ff]" />}
+            icon={<Lock className="h-4 w-4 text-black dark:text-[var(--primary)]" />}
             title="No Per-User Escalator Pressure"
             description="Growth in team size does not force constant pricing tier upgrades." />
           <GridItem
             area="md:[grid-area:2/7/3/13] xl:[grid-area:1/8/2/13]"
-            icon={<Sparkles className="h-4 w-4 text-black dark:text-[#5586ff]" />}
+            icon={<Sparkles className="h-4 w-4 text-black dark:text-[var(--primary)]" />}
             title="No Forced Subscription Cycles"
             description="You run software on your own terms, without driven pricing updates." />
           <GridItem
             area="md:[grid-area:3/1/4/13] xl:[grid-area:2/8/3/13]"
-            icon={<Search className="h-4 w-4 text-black dark:text-[#5586ff]" />}
+            icon={<Search className="h-4 w-4 text-black dark:text-[var(--primary)]" />}
             title="Higher Long-Term ROI"
             description="Over 3-5 years, total cost of ownership falls significantly compared to SaaS alternatives." />
         </ul>
       </section>
 
-      {/* <Newsletter 
-        title="See how QuGenie's on-premise and hybrid models give you predictable costs, full ownership, and long-term savings without hidden SaaS escalations."
-        description=""
-        buttonText="Book a Free Demo"
-      /> */}
+      {/*  */}
 
-      <Footer />
+      
     </div>
   );
 }

@@ -1,11 +1,11 @@
 import { useThemeCustomizer } from "@/contexts/ThemeCustomizerContext";
 import { EbaySolutionTemplate } from "@/widgets/ebay/EbaySolutionTemplate";
 import { motion } from "motion/react";
-import { Footer } from "@/widgets/footer/ui/Footer";
+
 import BorderGlow from "@/components/ui/border-glow";
 
 export default function SolutionsHRMS() {
-  const { designSystem } = useThemeCustomizer();
+  const { designSystem, palette } = useThemeCustomizer();
 
 
   const handleDemoClick = () => {
@@ -71,7 +71,7 @@ export default function SolutionsHRMS() {
         <motion.span 
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-[14px] font-semibold uppercase tracking-[3px] text-[#0040C1]"
+          className="text-[14px] font-semibold uppercase tracking-[3px] text-[var(--primary)]"
         >
           HRMS SOLUTION
         </motion.span>
@@ -82,7 +82,7 @@ export default function SolutionsHRMS() {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="h-[360px] w-full rounded-[24px] relative overflow-hidden bg-gradient-to-br from-[#0040C1] via-[#002266] to-[#03010a] flex flex-col justify-end p-8 md:p-12 shadow-lg"
+          className="h-[360px] w-full rounded-[24px] relative overflow-hidden bg-gradient-to-br from-[var(--primary)] via-[#002266] to-[#03010a] flex flex-col justify-end p-8 md:p-12 shadow-lg"
         >
           {/* Decorative network grid overlay */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-blue-500/20 via-transparent to-transparent pointer-events-none" />
@@ -115,7 +115,7 @@ export default function SolutionsHRMS() {
             whileHover={{ scale: 1.03, y: -2 }}
             whileTap={{ scale: 0.98 }}
             onClick={handleDemoClick}
-            className="bg-[#0040C1] text-white font-semibold text-[15px] px-[26px] py-[14px] rounded-[8px] cursor-pointer shadow-sm hover:shadow-[0px_8px_16px_rgba(0,64,193,0.25)] transition-all"
+            className="bg-[var(--primary)] text-white font-semibold text-[15px] px-[26px] py-[14px] rounded-[8px] cursor-pointer shadow-sm hover:shadow-[0px_8px_16px_rgba(0,64,193,0.25)] transition-all"
           >
             Book a Free Demo
           </motion.button>
@@ -138,7 +138,7 @@ export default function SolutionsHRMS() {
               glowIntensity={2.1}
               coneSpread={25}
               animated={false}
-              colors={['#5586ff', '#0040C1', '#002060']}
+              colors={[palette.shades['400'], palette.shades['800'], palette.shades['950']]}
             >
               <div className="p-6 h-full flex flex-col gap-3 group">
 
@@ -165,7 +165,7 @@ export default function SolutionsHRMS() {
       {/* Standard bottom space before footer */}
       <div className="w-full h-[60px]" />
 
-      <Footer />
+      
     </div>
   );
 }

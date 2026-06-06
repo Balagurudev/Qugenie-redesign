@@ -170,7 +170,7 @@ function injectHardcodedOverrides(palette: ColorPalette) {
     // lowercase variants
     "#f5f8ff": s["25"],  "#eff4ff": s["50"],  "#d1e0ff": s["100"], "#b2ccff": s["200"],
     "#84adff": s["300"], "#528bff": s["400"], "#2970ff": s["500"], "#155eef": s["600"],
-    "#004eeb": s["700"], "#0040c1": s["800"], "#00359e": s["900"], "#002266": s["950"],
+    "#004eeb": s["700"], "#0040c1": s["800"], "#00359e": s["900"],
   };
 
   // Build attribute selector CSS for bg, text, border, fill, stroke

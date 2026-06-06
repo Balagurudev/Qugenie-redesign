@@ -138,6 +138,8 @@ export function UnifiedEcosystem() {
           alt="Unified Ecosystem Background" 
           className="absolute inset-0 w-full h-full object-cover opacity-90"
         />
+        {/* Dynamic theme color tint overlay */}
+        <div className="absolute inset-0 bg-[var(--primary)] mix-blend-color opacity-100 pointer-events-none" />
         {/* Deep fade out to match the page background */}
         <div className="absolute bottom-0 left-0 right-0 h-[250px] bg-gradient-to-t from-background to-transparent" />
         <div className="absolute inset-0 bg-background/20" /> {/* Slight dark wash to ensure text readability */}

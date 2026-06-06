@@ -138,7 +138,7 @@ export function WhyQuGenie() {
                 <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#155EEF]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
                 {/* Top Border Stroke - Layer 2 (Bright core blue) */}
-                <div className="absolute top-0 left-[20%] w-[60%] h-[1px] bg-gradient-to-r from-transparent via-[#5586ff] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className="absolute top-0 left-[20%] w-[60%] h-[1px] bg-gradient-to-r from-transparent via-[var(--primary)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 
                 {/* Top Border Stroke - Layer 3 (Intense white glare) */}
                 <div className="absolute top-0 left-[35%] w-[30%] h-[1px] bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 shadow-[0_0_12px_3px_rgba(85,134,255,0.8)]" />

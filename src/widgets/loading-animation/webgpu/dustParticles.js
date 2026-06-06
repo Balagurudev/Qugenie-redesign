@@ -77,7 +77,20 @@ export default class DustParticles {
     const aSeed = aBirthLifeSeedScale.z;
     const aScale = aBirthLifeSeedScale.w;
 
-    const uDustColor = uniform(new THREE.Color('#5586ff'));
+    const getCssVar = (name, fallback) => {
+      const val = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+      return val ? val : fallback;
+    };
+    const dustColorHex = getCssVar('--brand-400', '#5586ff');
+    const uDustColor = uniform(new THREE.Color(dustColorHex));
+    
+    const uTime = uniform(0);
+    const animate = () => {
+      uTime.value = performance.now() * 0.001;
+      requestAnimationFrame(animate);
+    };
+    animate();
+
     const uWindDirection = uniform(new THREE.Vector3(-1, 0, 0).normalize());
     const uWindStrength = uniform(0.3);
     const uRiseSpeed = uniform(0.1); // constant lift
@@ -86,7 +99,7 @@ export default class DustParticles {
     const uWobbleAmp = uniform(0.6); // vertical wobble amplitude
 
     // Age of the dust in seconds
-    const dustAge = time.sub(aBirth);
+    const dustAge = uTime.sub(aBirth);
     const lifeInterpolation = clamp(dustAge.div(aLife), 0, 1);
 
     // Use noise
@@ -124,6 +137,7 @@ export default class DustParticles {
     material.opacityNode = fadingOut;
 
     material.mrtNode = mrt({
+      output: material.colorNode,
       bloomIntensity: float(0.5).mul(fadingOut),
     });
 

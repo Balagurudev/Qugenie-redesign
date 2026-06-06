@@ -2,8 +2,8 @@ import { motion, useScroll, useTransform, MotionValue } from "motion/react";
 import { useRef } from "react";
 import { Shield, WifiOff, Building2, Server, HardDrive, Settings } from "lucide-react";
 import { CosmicParallaxBg } from '@/components/ui/parallax-cosmic-background';
-import { Footer } from "@/widgets/footer/ui/Footer";
-import { Newsletter } from "@/widgets/newsletter/ui/Newsletter";
+
+
 import { useThemeCustomizer } from "@/contexts/ThemeCustomizerContext";
 import imgHeroMockup from "@/assets/hero_mockup.png";
 
@@ -111,7 +111,7 @@ export default function PlatformOnPremise() {
         <WhatYouGetSection />
       </section>
 
-      <Footer />
+      
     </div>
   );
 }

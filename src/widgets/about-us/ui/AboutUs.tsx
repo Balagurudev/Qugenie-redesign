@@ -85,7 +85,7 @@ export function AboutUs() {
           </div>
 
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="w-[600px] h-[600px] bg-blue-600/20 blur-[120px] rounded-full" />
+            <div className="w-[600px] h-[600px] bg-[var(--primary)]/20 blur-[120px] rounded-full" />
           </div>
 
           <div className="relative z-10 w-full flex flex-col md:flex-row items-center justify-between px-12 py-16 gap-12">

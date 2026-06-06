@@ -23,6 +23,30 @@ function parseHSL(hslStr: string): { h: number; s: number; l: number } {
   return { h: parseFloat(match[1]), s: parseFloat(match[2]), l: parseFloat(match[3]) };
 }
 
+function hexToHSL(hex: string): string {
+  hex = hex.replace(/^#/, '');
+  if (hex.length === 3) hex = hex.split('').map(c => c + c).join('');
+  const r = parseInt(hex.substring(0, 2), 16) / 255;
+  const g = parseInt(hex.substring(2, 4), 16) / 255;
+  const b = parseInt(hex.substring(4, 6), 16) / 255;
+  
+  const max = Math.max(r, g, b), min = Math.min(r, g, b);
+  let h = 0, s = 0, l = (max + min) / 2;
+
+  if (max !== min) {
+    const d = max - min;
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    switch (max) {
+      case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+      case g: h = (b - r) / d + 2; break;
+      case b: h = (r - g) / d + 4; break;
+    }
+    h /= 6;
+  }
+
+  return `${Math.round(h * 360)} ${Math.round(s * 100)} ${Math.round(l * 100)}`;
+}
+
 function buildBoxShadow(glowColor: string, intensity: number): string {
   const { h, s, l } = parseHSL(glowColor);
   const base = `${h}deg ${s}% ${l}%`;
@@ -87,7 +111,7 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
   colors = ['#c084fc', '#f472b6', '#38bdf8'],
   fillOpacity = 0.5,
 }) => {
-  const { designSystem } = useThemeCustomizer();
+  const { designSystem, palette } = useThemeCustomizer();
   if (designSystem === 'ebay') {
     return (
       <div className={`relative p-2 rounded-[16px] border border-[#333] bg-[#111] hover:-translate-y-2 transition-transform h-full ${className}`}>
@@ -95,6 +119,10 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
       </div>
     );
   }
+
+  // Forcefully override colors with theme
+  const activeGlowColor = palette ? hexToHSL(palette.shades['500']) : glowColor;
+  const activeColors = palette ? [palette.shades['400'], palette.shades['600'], palette.shades['800']] : colors;
 
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -208,7 +236,7 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
     ? Math.max(0, (edgeProximity * 100 - edgeSensitivity) / (100 - edgeSensitivity))
     : 0;
 
-  const meshGradients = buildMeshGradients(colors);
+  const meshGradients = buildMeshGradients(activeColors);
   const borderBg = meshGradients.map(g => `${g} border-box`);
   const fillBg = meshGradients.map(g => `${g} padding-box`);
   const angleDeg = `${cursorAngle.toFixed(3)}deg`;
@@ -292,7 +320,7 @@ const BorderGlow: React.FC<BorderGlowProps> = ({
           className="absolute rounded-[inherit]"
           style={{
             inset: `${glowRadius}px`,
-            boxShadow: buildBoxShadow(glowColor, glowIntensity),
+            boxShadow: buildBoxShadow(activeGlowColor, glowIntensity),
           }}
         />
       </span>

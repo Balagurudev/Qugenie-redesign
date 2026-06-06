@@ -39,11 +39,11 @@ function Actions() {
         </div>
         <div aria-hidden="true" className="absolute border border-[#d0d5dd] border-solid inset-0 pointer-events-none rounded-[8px] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]" />
       </div>
-      <div className="bg-[#0040c1] relative rounded-[8px] shrink-0" data-name="Button">
+      <div className="bg-[var(--primary)] relative rounded-[8px] shrink-0" data-name="Button">
         <div className="content-stretch flex gap-[12px] items-center justify-center overflow-clip px-[28px] py-[16px] relative rounded-[inherit]">
           <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[28px] not-italic relative shrink-0 text-[18px] text-white whitespace-nowrap">Sign up</p>
         </div>
-        <div aria-hidden="true" className="absolute border border-[#0040c1] border-solid inset-0 pointer-events-none rounded-[8px] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]" />
+        <div aria-hidden="true" className="absolute border border-[var(--primary)] border-solid inset-0 pointer-events-none rounded-[8px] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]" />
       </div>
     </div>
   );
@@ -312,11 +312,11 @@ function Container1() {
         <div className="content-stretch flex gap-[8px] items-center justify-center overflow-clip px-[18px] py-[10px] relative rounded-[8px] shrink-0" data-name="Button">
           <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[24px] not-italic relative shrink-0 text-[#eaecf0] text-[16px] whitespace-nowrap">Log in</p>
         </div>
-        <div className="bg-[#0040c1] relative rounded-[8px] shrink-0" data-name="Button">
+        <div className="bg-[var(--primary)] relative rounded-[8px] shrink-0" data-name="Button">
           <div className="content-stretch flex gap-[8px] items-center justify-center overflow-clip px-[18px] py-[10px] relative rounded-[inherit]">
             <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[24px] not-italic relative shrink-0 text-[16px] text-white whitespace-nowrap">Sign up</p>
           </div>
-          <div aria-hidden="true" className="absolute border border-[#0040c1] border-solid inset-0 pointer-events-none rounded-[8px] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]" />
+          <div aria-hidden="true" className="absolute border border-[var(--primary)] border-solid inset-0 pointer-events-none rounded-[8px] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]" />
         </div>
       </div>
     </div>
@@ -418,11 +418,11 @@ function Frame6() {
       <div className="flex flex-col font-['Mirage_Display_Medium','Mirage_Display_Medium_Placeholder',sans-serif] justify-center leading-[0] not-italic relative shrink-0 text-[#808080] text-[16px] w-[492px]">
         <p className="leading-[24px]">Choose where you need to start: HR, Sales, CRM, or Finance. Every module connects to a single shared database for total visibility.</p>
       </div>
-      <div className="bg-[#0040c1] relative rounded-[8px] shrink-0" data-name="Button">
+      <div className="bg-[var(--primary)] relative rounded-[8px] shrink-0" data-name="Button">
         <div className="content-stretch flex gap-[8px] items-center justify-center overflow-clip px-[18px] py-[10px] relative rounded-[inherit]">
           <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[24px] not-italic relative shrink-0 text-[16px] text-white whitespace-nowrap">Sign up</p>
         </div>
-        <div aria-hidden="true" className="absolute border border-[#0040c1] border-solid inset-0 pointer-events-none rounded-[8px] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]" />
+        <div aria-hidden="true" className="absolute border border-[var(--primary)] border-solid inset-0 pointer-events-none rounded-[8px] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]" />
       </div>
     </div>
   );
@@ -457,7 +457,7 @@ function Frame10() {
         <p className="leading-[24px]">Hire, onboard, manage leaves, run payroll, and track employee performance — all from a single HR command centre.</p>
       </div>
       <div className="content-stretch flex gap-[8px] items-center justify-center overflow-clip relative shrink-0" data-name="Button">
-        <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[24px] not-italic relative shrink-0 text-[#0040c1] text-[16px] whitespace-nowrap">Know more</p>
+        <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[24px] not-italic relative shrink-0 text-[var(--primary)] text-[16px] whitespace-nowrap">Know more</p>
         <div className="overflow-clip relative shrink-0 size-[20px]" data-name="arrow-right">
           <div className="absolute inset-[20.83%]" data-name="Icon">
             <div className="absolute inset-[-7.14%]">
@@ -492,7 +492,7 @@ function Frame12() {
         <p className="leading-[24px]">Manage leads, quotations, purchase orders, invoicing, and delivery tracking in one connected sales pipeline.</p>
       </div>
       <div className="content-stretch flex gap-[8px] items-center justify-center overflow-clip relative shrink-0" data-name="Button">
-        <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[24px] not-italic relative shrink-0 text-[#0040c1] text-[16px] whitespace-nowrap">Know more</p>
+        <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[24px] not-italic relative shrink-0 text-[var(--primary)] text-[16px] whitespace-nowrap">Know more</p>
         <div className="overflow-clip relative shrink-0 size-[20px]" data-name="arrow-right">
           <div className="absolute inset-[20.83%]" data-name="Icon">
             <div className="absolute inset-[-7.14%]">
@@ -543,7 +543,7 @@ function Frame16() {
         <p className="leading-[24px]">Track every customer interaction, manage follow-ups, and convert more leads with a CRM built into your ERP — not bolted on.</p>
       </div>
       <div className="content-stretch flex gap-[8px] items-center justify-center overflow-clip relative shrink-0" data-name="Button">
-        <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[24px] not-italic relative shrink-0 text-[#0040c1] text-[16px] whitespace-nowrap">Know more</p>
+        <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[24px] not-italic relative shrink-0 text-[var(--primary)] text-[16px] whitespace-nowrap">Know more</p>
         <div className="overflow-clip relative shrink-0 size-[20px]" data-name="arrow-right">
           <div className="absolute inset-[20.83%]" data-name="Icon">
             <div className="absolute inset-[-7.14%]">
@@ -578,7 +578,7 @@ function Frame18() {
         <p className="leading-[24px]">GST-compliant accounting, accounts payable/receivable, balance sheets, and real-time financial dashboards at your fingertips.</p>
       </div>
       <div className="content-stretch flex gap-[8px] items-center justify-center overflow-clip relative shrink-0" data-name="Button">
-        <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[24px] not-italic relative shrink-0 text-[#0040c1] text-[16px] whitespace-nowrap">Know more</p>
+        <p className="font-['Inter:Semi_Bold',sans-serif] font-semibold leading-[24px] not-italic relative shrink-0 text-[var(--primary)] text-[16px] whitespace-nowrap">Know more</p>
         <div className="overflow-clip relative shrink-0 size-[20px]" data-name="arrow-right">
           <div className="absolute inset-[20.83%]" data-name="Icon">
             <div className="absolute inset-[-7.14%]">

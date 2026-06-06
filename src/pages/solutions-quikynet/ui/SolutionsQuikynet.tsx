@@ -1,11 +1,11 @@
 import { motion, useScroll, useMotionValueEvent, AnimatePresence, useTransform } from "motion/react";
 import React, { useRef, useState } from "react";
 import ImageReveal from "@/components/ui/image-reveal";
-import { Footer } from "@/widgets/footer/ui/Footer";
+
 import MagicRings from "@/widgets/hero/ui/MagicRings";
 import { GlareCard } from "@/ui/glare-card";
 import { Timeline } from "@/components/ui/timeline";
-import { Newsletter } from "@/widgets/newsletter/ui/Newsletter";
+
 import { useThemeCustomizer } from "@/contexts/ThemeCustomizerContext";
 
 // Import real product images
@@ -147,8 +147,8 @@ const EbayDialStepsSection = ({ titles, descs, images }: { titles: string[], des
 }
 
 export default function SolutionsQuikynet() {
-  const { palette, shadeMapping, designSystem } = useThemeCustomizer();
-  const primaryShadeKey = shadeMapping[palette.id] || "800";
+  const { pendingPalette, pendingShadeMapping, designSystem } = useThemeCustomizer();
+  const primaryShadeKey = pendingShadeMapping[pendingPalette.id] || "800";
   // Use the exact same shade for both colors to avoid any blue/hue shifts
   const secondaryShadeKey = primaryShadeKey;
   const handleStartClick = () => {
@@ -425,12 +425,7 @@ export default function SolutionsQuikynet() {
 
         {/* Newsletter */}
         <div className="mb-20">
-          <Newsletter 
-            title="Experience how digital identity, smart networking, and real-time connections work together — tailored to your business."
-            description=""
-            buttonText="Get Started Today"
-            onButtonClick={handleStartClick}
-          />
+          
         </div>
       </div>
     );
@@ -445,8 +440,8 @@ export default function SolutionsQuikynet() {
         {/* MagicRings Canvas covering the entire section background exactly as the component */}
         <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
           <MagicRings
-            color={palette.shades[primaryShadeKey]}
-            colorTwo={palette.shades[secondaryShadeKey]}
+            color={pendingPalette.shades[primaryShadeKey]}
+            colorTwo={pendingPalette.shades[secondaryShadeKey]}
             ringCount={6}
             speed={1}
             attenuation={10}
@@ -532,12 +527,7 @@ export default function SolutionsQuikynet() {
       </section>
 
       {/* Middle Banner Callout */}
-      <Newsletter 
-        title="Experience how digital identity, smart networking, and real-time connections work together — tailored to your business."
-        description=""
-        buttonText="Get Started Today"
-        onButtonClick={handleStartClick}
-      />
+      
 
       {/* Products NFC Cards Section */}
       <section className="w-full max-w-[1120px] px-6 py-[80px] flex flex-col gap-12">
@@ -593,7 +583,7 @@ export default function SolutionsQuikynet() {
         </div>
       </section>
 
-      <Footer />
+      
     </div>
   );
 }
