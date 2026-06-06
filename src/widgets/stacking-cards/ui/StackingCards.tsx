@@ -1,5 +1,5 @@
 'use client';
-import { useTransform, motion, useScroll, type MotionValue } from 'motion/react';
+import { useTransform, motion, useScroll, useSpring, type MotionValue } from 'motion/react';
 import { useRef, forwardRef } from 'react';
 import { Sparkles, Shield, Workflow, Cpu } from 'lucide-react';
 
@@ -33,9 +33,15 @@ export const Card = ({
   const container = useRef<HTMLDivElement>(null);
   
   // local scroll progress to track active state in viewport
-  const { scrollYProgress } = useScroll({
+  const { scrollYProgress: rawScrollYProgress } = useScroll({
     target: container,
     offset: ['start end', 'center center'],
+  });
+
+  const scrollYProgress = useSpring(rawScrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
   });
 
   // Scale of the card managed by the parent scroll progress
@@ -51,9 +57,7 @@ export const Card = ({
     ['1px solid rgba(255, 255, 255, 0.05)', '1px solid rgba(0, 82, 235, 0.4)']
   );
 
-  // Active icon background transition - we can't interpolate var() directly to var() smoothly with framer motion
-  // unless we use useTransform to return the var string, but then it snaps.
-  // Instead, we'll keep the background transparent and use a pseudo element or just let the opacity handle it.
+  // Active icon background transition
   const iconBgOpacity = useTransform(scrollYProgress, [0.3, 0.85], [0.1, 0.25]);
 
   // Active icon color transition
@@ -146,9 +150,15 @@ export const Card = ({
 
 const StackingCards = forwardRef<HTMLElement>((_, ref) => {
   const container = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
+  const { scrollYProgress: rawScrollYProgress } = useScroll({
     target: container,
     offset: ['start start', 'end end'],
+  });
+
+  const scrollYProgress = useSpring(rawScrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
   });
 
   const projects = [

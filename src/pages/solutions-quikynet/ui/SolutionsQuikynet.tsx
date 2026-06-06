@@ -132,10 +132,6 @@ const EbayDialStepsSection = ({ titles, descs, images }: { titles: string[], des
                   transition={{ duration: 0.4 }}
                   className="mt-10 bg-[#f4f5f6] dark:bg-[#1a1a1a] rounded-[24px] p-5 shadow-[0_10px_40px_rgba(0,0,0,0.05)] dark:shadow-none flex flex-col items-center w-full max-w-[480px]"
                 >
-                  <div className="flex items-center gap-3 w-full mb-4 px-2">
-                    <img src={images[activeIndex]} className="w-8 h-8 rounded-[8px] object-cover border border-[#e5e5e5] dark:border-[#333]" />
-                    <span className="font-bold text-[14px] text-[#111] dark:text-white">{titles[activeIndex]}</span>
-                  </div>
                   <div className="w-full h-[240px] rounded-[16px] overflow-hidden flex items-center justify-center bg-white dark:bg-[#111] border border-[#e5e5e5] dark:border-[#333]">
                     <img src={images[activeIndex]} className="w-full h-full object-contain rounded-[16px]" />
                   </div>

@@ -38,7 +38,7 @@ export function EbaySolutionTemplate({ tagline, title, subtitle, description, fe
           <p className="text-[18px] font-medium leading-[1.6] text-[#555]">
             {description}
           </p>
-          <button className="self-start bg-[#111] text-white border-none px-8 py-4 text-[16px] font-medium rounded-full hover:bg-[#333] transition-colors cursor-pointer">
+          <button className="self-start bg-[var(--primary)] text-white border-none px-8 py-4 text-[16px] font-medium rounded-full hover:opacity-90 transition-opacity cursor-pointer">
             Book a Free Demo
           </button>
         </div>
@@ -48,16 +48,25 @@ export function EbaySolutionTemplate({ tagline, title, subtitle, description, fe
       <div className="max-w-[1280px] w-full mx-auto px-6 md:px-12 mt-32">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((item, idx) => {
-            const bgClass = idx % 2 === 0 ? "bg-[#F9F9F9]" : "bg-[#F2F4F7]";
+            const bgClass = idx % 2 === 0 ? "bg-white" : "bg-[#F9F9F9]";
 
             return (
               <div 
                 key={idx} 
-                className={`relative p-8 rounded-[24px] h-[280px] flex flex-col ${bgClass} transition-all hover:scale-[1.02] cursor-pointer group shadow-sm`}
+                className={`relative p-6 md:p-8 h-[280px] md:h-[320px] flex flex-col justify-between ${bgClass} hover:bg-[var(--primary)] rounded-[16px] border border-[#e5e5e5] hover:border-transparent shadow-sm transition-all duration-500 hover:scale-[1.03] cursor-pointer group`}
               >
-                <div className="flex-1">
-                  <h3 className="text-[22px] font-semibold leading-[1.2] tracking-tight text-[#111] mb-3">{item.title}</h3>
-                  <p className="text-[15px] font-medium leading-[1.5] text-[#666] group-hover:text-[#333] transition-colors">{item.desc}</p>
+                {/* Top Row: Title */}
+                <div className="flex justify-between items-start w-full">
+                  <h3 className="text-[20px] md:text-[24px] uppercase font-medium leading-[1.1] tracking-tight max-w-[90%] text-[#111] group-hover:text-white transition-colors duration-500">
+                    {item.title}
+                  </h3>
+                </div>
+
+                {/* Bottom Row: Description */}
+                <div className="w-full flex justify-end mt-auto">
+                  <p className="text-[10px] md:text-[11px] uppercase font-semibold leading-[1.5] max-w-[85%] text-right tracking-wide text-[#777] group-hover:text-white/90 transition-colors duration-500">
+                    {item.desc}
+                  </p>
                 </div>
               </div>
             );

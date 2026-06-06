@@ -1,5 +1,7 @@
 import { motion } from "motion/react";
 import { Footer } from "@/widgets/footer/ui/Footer";
+import { Newsletter } from "@/widgets/newsletter/ui/Newsletter";
+import { useThemeCustomizer } from "@/contexts/ThemeCustomizerContext";
 
 export default function PlatformDeployment() {
   const handleHash = (hash: string) => {
@@ -47,6 +49,130 @@ export default function PlatformDeployment() {
       onprem: "Your team, on your policies — or a managed option."
     }
   ];
+
+  const { designSystem } = useThemeCustomizer();
+
+  if (designSystem === "ebay") {
+    return (
+      <div className="bg-[#FAFAF9] dark:bg-background text-[#111] dark:text-white min-h-screen w-full flex flex-col pt-32 pb-0" style={{ fontFamily: "var(--font-family, 'Market Sans', 'DM Sans', sans-serif)" }}>
+        
+        {/* Minimal Hero Section */}
+        <div className="max-w-[1280px] w-full mx-auto px-6 md:px-12 flex flex-col items-center justify-center text-center min-h-[50vh] gap-6 mb-16">
+          <span className="inline-flex items-center gap-2 border border-[#d1d1d1] dark:border-[#333] text-[#555] dark:text-[#A6A6A6] text-[11px] font-bold px-4 py-1.5 rounded-full w-fit uppercase tracking-widest bg-white dark:bg-[#111111] shadow-sm">
+            <div className="w-1.5 h-1.5 bg-[var(--primary)] rounded-full animate-pulse" />
+            DEPLOYMENT
+          </span>
+          <h1 className="text-[56px] md:text-[80px] lg:text-[96px] font-sans font-bold leading-[1.1] tracking-tight text-[#111] dark:text-white uppercase mt-6 max-w-[1000px]">
+            Your infrastructure. <br/>
+            <span className="text-[#999] dark:text-[#A6A6A6]">Your call.</span>
+          </h1>
+          <p className="text-[18px] md:text-[22px] font-medium leading-[1.6] text-[#555] dark:text-[#A6A6A6] max-w-[800px] mt-8">
+            Cloud SaaS for speed, on-premise for sovereignty. Same platform, same data model, same audit trail. Pick what fits your operational posture today; switch when it doesn't.
+          </p>
+        </div>
+
+        {/* Cloud vs On-Prem Side-by-Side Cards */}
+        <div className="w-full border-t border-[#E5E5E5] dark:border-[#222] bg-white dark:bg-[#0a0a0a]">
+          <div className="max-w-[1280px] w-full mx-auto px-6 md:px-12 py-24">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+              {/* Cloud Card */}
+              <div className="bg-[#FAFAF9] dark:bg-[#111] border border-[#E5E5E5] dark:border-[#333] p-10 rounded-[16px] flex flex-col justify-between min-h-[500px]">
+                <div>
+                  <div className="flex items-center gap-3 mb-8">
+                    <span className="text-[12px] font-bold uppercase tracking-[2px] text-[var(--primary)]">CLOUD SaaS</span>
+                  </div>
+                  <h3 className="text-[32px] md:text-[40px] font-bold text-[#111] dark:text-white tracking-tight leading-tight mb-6">
+                    Managed by us.<br />Run anywhere.
+                  </h3>
+                  <p className="text-[16px] leading-[1.6] text-[#555] dark:text-[#A6A6A6] border-b border-[#E5E5E5] dark:border-[#333] pb-8 mb-8 font-medium">
+                    Sovereign cloud hosted in India, with the operational simplicity of SaaS. We manage updates, backups, and infrastructure; you pay per user per month.
+                  </p>
+                  <ul className="flex flex-col gap-4">
+                    {cloudBullets.map((bullet, idx) => (
+                      <li key={idx} className="flex items-start gap-3 text-[15px] font-medium text-[#111] dark:text-white">
+                        <svg className="w-5 h-5 text-[var(--primary)] shrink-0 mt-[1px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* On-Premise Card */}
+              <div className="bg-[var(--primary)] text-white border border-transparent p-10 rounded-[16px] flex flex-col justify-between min-h-[500px] shadow-lg relative overflow-hidden">
+                <div className="absolute top-0 right-0 bg-white/10 text-white text-[10px] font-bold uppercase tracking-[2px] px-5 py-2 rounded-bl-[12px] shadow-sm">
+                  RECOMMENDED
+                </div>
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-8">
+                    <span className="text-[12px] font-bold uppercase tracking-[2px] text-white/90">ON-PREMISE</span>
+                  </div>
+                  <h3 className="text-[32px] md:text-[40px] font-bold text-white tracking-tight leading-tight mb-6">
+                    Your servers.<br />Your sovereignty.
+                  </h3>
+                  <p className="text-[16px] leading-[1.6] text-white/90 border-b border-white/20 pb-8 mb-8 font-medium">
+                    Run the entire QuGenie stack on infrastructure you control. No telemetry pipelines, no data leaving your perimeter, no SaaS vendor between you and your operational truth.
+                  </p>
+                  <ul className="flex flex-col gap-4">
+                    {onPremBullets.map((bullet, idx) => (
+                      <li key={idx} className="flex items-start gap-3 text-[15px] font-medium text-white">
+                        <svg className="w-5 h-5 text-white shrink-0 mt-[1px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Factor Comparison Table */}
+        <div className="w-full border-t border-[#E5E5E5] dark:border-[#222] bg-[#FAFAF9] dark:bg-[#000000]">
+          <div className="max-w-[1280px] w-full mx-auto px-6 md:px-12 py-24">
+            <h2 className="text-[36px] md:text-[48px] font-bold tracking-tight text-[#111] dark:text-white uppercase mb-12 text-center">
+              Which is right for you?
+            </h2>
+            <div className="w-full overflow-x-auto border border-[#E5E5E5] dark:border-[#333] rounded-[16px] bg-white dark:bg-[#111] shadow-sm">
+              <table className="w-full text-left border-collapse min-w-[800px]">
+                <thead>
+                  <tr className="border-b border-[#E5E5E5] dark:border-[#333] bg-[#F5F5F5] dark:bg-[#222]">
+                    <th className="px-8 py-6 text-[12px] font-bold uppercase tracking-[2px] text-[#555] dark:text-[#A6A6A6] w-1/4">FACTOR</th>
+                    <th className="px-8 py-6 text-[12px] font-bold uppercase tracking-[2px] text-[var(--primary)] w-3/8">CLOUD SaaS</th>
+                    <th className="px-8 py-6 text-[12px] font-bold uppercase tracking-[2px] text-[#111] dark:text-white w-3/8">ON-PREMISE</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {tableRows.map((row, idx) => (
+                    <tr key={idx} className="border-b border-[#E5E5E5] dark:border-[#333] hover:bg-[#FAFAF9] dark:hover:bg-[#1a1a1a] transition-colors">
+                      <td className="px-8 py-6 text-[16px] font-bold text-[#111] dark:text-white align-top">{row.factor}</td>
+                      <td className="px-8 py-6 text-[16px] font-medium text-[#555] dark:text-[#A6A6A6] align-top leading-[1.6]">{row.cloud}</td>
+                      <td className="px-8 py-6 text-[16px] font-medium text-[#555] dark:text-[#A6A6A6] align-top leading-[1.6]">{row.onprem}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+
+
+        <Newsletter 
+          title="Not sure which fits? We will walk your team through both."
+          description="We'll help you evaluate your infrastructure needs and show you how QuGenie adapts to either."
+          buttonText="Book a Free Demo"
+          onButtonClick={() => handleHash("#/contact")}
+        />
+
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="w-full flex flex-col items-center min-h-screen bg-background text-foreground pt-[120px] font-['Mirage_Display_Medium','Mirage_Display_Medium_Placeholder',sans-serif] relative overflow-hidden" data-name="PlatformDeploymentPage">

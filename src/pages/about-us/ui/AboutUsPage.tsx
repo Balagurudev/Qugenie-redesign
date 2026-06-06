@@ -6,6 +6,8 @@ import { TeamCardExpansion } from "@/components/ui/card-expansion";
 import { Newsletter } from "@/widgets/newsletter/ui/Newsletter";
 import { useThemeCustomizer } from "@/contexts/ThemeCustomizerContext";
 import FlowArt, { FlowSection } from "@/components/ui/flow-art";
+import { GlowingEffect } from "@/components/ui/glowing-effect";
+import { Layers, Blocks, ShieldCheck } from "lucide-react";
 
 export default function AboutUsPage() {
   const { designSystem } = useThemeCustomizer();
@@ -14,6 +16,8 @@ export default function AboutUsPage() {
   };
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [gridMousePos, setGridMousePos] = useState({ x: 0, y: 0 });
+  const [visionHoverIdx, setVisionHoverIdx] = useState<number | null>(null);
+  const [missionHoverIdx, setMissionHoverIdx] = useState<number | null>(null);
 
   // ── Data arrays must be defined BEFORE any conditional return ──
   const founderItems = [
@@ -247,6 +251,52 @@ export default function AboutUsPage() {
       ScrollTrigger.refresh();
     });
 
+    // eBay layout cards interactions
+    const visionStickyCards = gsap.utils.toArray('.gsap-vision-sticky-card');
+    if (visionStickyCards.length > 0) {
+      visionStickyCards.forEach((el: any) => {
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 15%',
+            end: 'max',
+            scrub: true
+          }
+        })
+        .to(el, {
+          ease: 'none',
+          startAt: {filter: 'blur(0px)'},
+          filter: 'blur(3px)',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 15%',
+            end: '+=100%',
+            scrub: true
+          }
+        }, 0)
+        .to(el, {
+          ease: 'none',
+          scale: 0.4,
+          yPercent: -50
+        }, 0);
+      });
+    }
+
+    const missionCards = gsap.utils.toArray('.gsap-mission-card');
+    if (missionCards.length > 0) {
+      gsap.fromTo(missionCards,
+        { x: 40, opacity: 0 },
+        {
+          x: 0, opacity: 1, duration: 0.8, ease: "power3.out", stagger: 0.15,
+          scrollTrigger: {
+            trigger: missionCards[0].parentElement,
+            start: "top 85%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    }
+
     return () => {
       splitMap.forEach((split) => {
         if (split && split.revert) split.revert();
@@ -258,98 +308,173 @@ export default function AboutUsPage() {
   // ── Conditional return for eBay design system (placed AFTER all hooks) ──
   if (designSystem === "ebay") {
     return (
-      <div className="text-[#111] dark:text-white w-full" style={{ fontFamily: "var(--font-family, 'Market Sans', 'DM Sans', sans-serif)" }}>
-        <FlowArt>
-          {/* Hero Section */}
-          <FlowSection className="bg-[#FAFAF9] dark:bg-[#000000] border-b border-[#E5E5E5] dark:border-[#222]">
-            <div className="flex flex-col gap-4 mt-24">
-              <span className="text-[14px] font-bold tracking-[2px] uppercase text-[var(--primary)]">
-                ABOUT US
-              </span>
-              <h1 className="text-[64px] md:text-[96px] font-bold leading-[0.95] tracking-[-0.04em] max-w-[900px] uppercase text-[#111] dark:text-white">
-                The people behind QuGenie.
-              </h1>
-            </div>
-            <p className="text-[20px] font-medium leading-[1.4] max-w-[800px] text-[#555] dark:text-[#A6A6A6]">
-              QuGenie is built by QuGates Technologies — a deep technology company founded in December 2023 in Bengaluru. We are engineers, operators, and domain practitioners who believe India's businesses deserve software that is sovereign by construction, thermal-hardened, and genuinely intelligent. This page is about the people who carry that conviction, and the values and mission that reaction to it.
-            </p>
-          </FlowSection>
+      <div className="bg-[#FAFAF9] dark:bg-background text-[#111] dark:text-white min-h-screen w-full flex flex-col pt-32 pb-0" style={{ fontFamily: "var(--font-family, 'Market Sans', 'DM Sans', sans-serif)" }}>
+        
+        {/* Minimal Hero Section */}
+        <div className="max-w-[1280px] w-full mx-auto px-6 md:px-12 flex flex-col items-center justify-center text-center min-h-[60vh] gap-6 mb-16">
+          <span className="inline-flex items-center gap-2 border border-[#d1d1d1] dark:border-[#333] text-[#555] dark:text-[#A6A6A6] text-[11px] font-bold px-4 py-1.5 rounded-full w-fit uppercase tracking-widest bg-white dark:bg-[#111111] shadow-sm">
+            <div className="w-1.5 h-1.5 bg-[#111] dark:bg-white rounded-full animate-pulse" />
+            ABOUT US
+          </span>
+          <h1 className="text-[60px] md:text-[96px] lg:text-[120px] font-sans leading-[1.1] tracking-tight text-[#111] dark:text-white uppercase mt-6">
+            The people <br/>
+            <span className="text-[#999] dark:text-[#A6A6A6]">behind QuGenie.</span>
+          </h1>
+          <p className="text-[18px] md:text-[22px] font-medium leading-[1.6] text-[#555] dark:text-[#A6A6A6] max-w-[800px] mt-8">
+            QuGenie is built by QuGates Technologies. We are engineers, operators, and domain practitioners who believe India's businesses deserve software that is sovereign by construction, thermal-hardened, and genuinely intelligent.
+          </p>
+        </div>
 
-          {/* Vision Section */}
-          <FlowSection className="bg-white dark:bg-[#0a0a0a] shadow-[0_-10px_30px_rgba(0,0,0,0.05)] border-t border-[#E5E5E5] dark:border-[#333]">
-            <div className="flex flex-col gap-4">
-              <span className="text-[14px] font-bold tracking-[2px] uppercase text-[var(--primary)] block">
-                OUR VISION
-              </span>
-              <h2 className="text-[32px] md:text-[44px] lg:text-[56px] font-sans font-medium tracking-tighter uppercase leading-[1.1] text-transparent bg-clip-text bg-gradient-to-b from-[#111] to-[#666] dark:from-white dark:to-[#8a93a2] max-w-[900px]">
-                An India where every enterprise — from a single-store MSME to a multi-state institution — runs on intelligent, self-sovereign software, on infrastructure it controls, without surrendering its data or its sovereignty to anyone.
+        {/* Vision Section (Image Layout Replication) */}
+        <div className="w-full border-t border-[#E5E5E5] dark:border-[#222] bg-white dark:bg-[#0a0a0a]">
+          <div className="max-w-[1280px] w-full mx-auto px-6 md:px-12 py-24 md:py-32">
+            
+            {/* Top Heading */}
+            <div className="mb-16 max-w-[900px]">
+              <h2 className="text-[48px] md:text-[64px] font-bold leading-[1] tracking-tight text-[#111] dark:text-white mb-6">
+                Our Vision
               </h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-[1440px]">
-              {[
-                { stat: "01", label: "Sovereignty", desc: "Sovereignty by construction — No dependency on SaaS vendors' decisions." },
-                { stat: "02", label: "Intelligent", desc: "Genuinely intelligent — Software that actually does work, not just stores data." },
-                { stat: "03", label: "A Right", desc: "Intelligence as a right, not a luxury reserved for large enterprises." }
-              ].map((item, idx) => (
-                <div key={idx} className="bg-[#FAFAF9] dark:bg-[#111] border border-[#E5E5E5] dark:border-[#333] p-8 flex flex-col min-h-[280px]">
-                  <div className="w-10 h-10 flex items-center justify-center bg-white dark:bg-[#222] text-[#111] dark:text-white font-bold mb-auto">
-                    {item.stat}
-                  </div>
-                  <div className="mt-auto pt-12">
-                    <h4 className="text-[24px] font-bold tracking-tight mb-2 text-[#111] dark:text-white">{item.label}</h4>
-                    <p className="text-[16px] leading-[1.4] text-[#555] dark:text-[#A6A6A6]">{item.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </FlowSection>
-
-          {/* Mission Section */}
-          <FlowSection className="bg-[#FAFAF9] dark:bg-[#000000] shadow-[0_-10px_30px_rgba(0,0,0,0.05)] border-t border-[#E5E5E5] dark:border-[#222]">
-            <div className="flex flex-col gap-4">
-              <span className="text-[14px] font-bold tracking-[2px] uppercase text-[var(--primary)] block">
-                OUR MISSION
-              </span>
-              <p className="text-[20px] md:text-[28px] font-medium leading-[1.4] max-w-[800px] text-[#555] dark:text-[#A6A6A6]">
-                To build and deliver QuGenie — a modular, sovereign, agentic ERP — so that any Indian organization can run HR, Finance, CRM, Sales, Inventory, Operations, and compliance from one sovereign platform, configured to the way it actually works.
+              <p className="text-[24px] md:text-[32px] font-medium tracking-tight text-[#555] dark:text-[#A6A6A6] leading-[1.3]">
+                An India where every enterprise — from a single-shop MSME to a multi-state institution — runs on intelligent software it actually owns, on infrastructure it controls, without surrendering its data or its sovereignty to anyone.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-[1440px]">
+            {/* Vertical Sticky Cards Stack (Index 8 Interaction) */}
+            <div className="w-full flex flex-col gap-[5vh] pb-[20vh]">
               {[
-                { stat: "04", label: "Platform", desc: "Single platform that is configurable, pluggable, and reliable." },
-                { stat: "05", label: "Modularity", desc: "True modularity where the architecture, not the vendor, decides the roadmap." },
-                { stat: "06", label: "Guaranteed", desc: "Stand behind every deployment with a named partner and an honest, written guarantee." }
-              ].map((item, idx) => (
-                <div key={idx} className="bg-white dark:bg-[#111] border border-[#E5E5E5] dark:border-[#333] p-8 flex flex-col min-h-[280px]">
-                  <div className="w-10 h-10 flex items-center justify-center bg-[#F5F5F5] dark:bg-[#222] text-[#111] dark:text-white font-bold mb-auto">
-                    {item.stat}
+                { label: "Sovereign by construction", desc: "The data stays with the business that earned it." },
+                { label: "Convergence over collection", desc: "One platform that talks to itself, not a dozen that don't." },
+                { label: "Intelligence as a right", desc: "Not a luxury reserved for large enterprises." }
+              ].map((item, idx) => {
+                const isHighlighted = visionHoverIdx === idx;
+                return (
+                  <div 
+                    key={idx} 
+                    onMouseEnter={() => setVisionHoverIdx(idx)}
+                    onMouseLeave={() => setVisionHoverIdx(null)}
+                    className={`gsap-vision-sticky-card sticky top-[15vh] w-full max-w-[800px] mx-auto p-12 rounded-[24px] flex flex-col justify-between min-h-[50vh] border transition-colors duration-300 origin-top shadow-xl ${
+                    isHighlighted 
+                      ? "text-white shadow-2xl" 
+                      : "bg-white dark:bg-[#111] border-[#E5E5E5] dark:border-[#333] text-[#111] dark:text-white"
+                  }`}
+                  style={isHighlighted ? { backgroundColor: 'var(--primary)', borderColor: 'var(--primary)' } : undefined}>
+                    {/* Top Icon Area */}
+                    <div className={`w-16 h-16 rounded-full flex items-center justify-center font-bold text-[20px] ${
+                      isHighlighted ? "bg-white" : "bg-[#111] dark:bg-white text-white dark:text-[#111]"
+                    }`}
+                    style={isHighlighted ? { color: 'var(--primary)' } : undefined}>
+                      0{idx + 1}
+                    </div>
+
+                    {/* Middle Title */}
+                    <div className="mt-12 mb-auto">
+                      <h4 className="text-[32px] md:text-[40px] font-bold tracking-tight">
+                        {item.label}
+                      </h4>
+                    </div>
+
+                    {/* Bottom Paragraph & Link */}
+                    <div className="mt-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+                      <p className={`text-[18px] leading-[1.6] font-medium max-w-[400px] ${
+                        isHighlighted ? "text-white/90" : "text-[#555] dark:text-[#A6A6A6]"
+                      }`}>
+                        {item.desc}
+                      </p>
+                      
+                      <button className={`text-[16px] font-bold tracking-tight flex items-center gap-2 hover:opacity-80 transition-opacity ${
+                        isHighlighted ? "text-white" : "text-[#111] dark:text-white"
+                      }`}>
+                        {isHighlighted ? "Get started" : "Learn more"}
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                      </button>
+                    </div>
                   </div>
-                  <div className="mt-auto pt-12">
-                    <h4 className="text-[24px] font-bold tracking-tight mb-2 text-[#111] dark:text-white">{item.label}</h4>
-                    <p className="text-[16px] leading-[1.4] text-[#555] dark:text-[#A6A6A6]">{item.desc}</p>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
-          </FlowSection>
 
-          {/* Founders Section */}
-          <FlowSection className="bg-white dark:bg-[#0a0a0a] shadow-[0_-10px_30px_rgba(0,0,0,0.05)] border-t border-[#E5E5E5] dark:border-[#333]">
-             <div className="w-full h-full flex flex-col justify-center">
-                 <TeamCardExpansion items={founderItems} sectionTitle="Founders" subtitle="QuGenie exists because its founders chose to build the sovereign alternative rather than wait for one." />
-             </div>
-          </FlowSection>
+          </div>
+        </div>
 
-          {/* Team Section */}
-          <FlowSection className="bg-[#FAFAF9] dark:bg-[#000000] shadow-[0_-10px_30px_rgba(0,0,0,0.05)] border-t border-[#E5E5E5] dark:border-[#222]">
-             <div className="w-full h-full flex flex-col justify-center">
-                 <TeamCardExpansion items={teamItems} sectionTitle="The Team" />
-             </div>
-          </FlowSection>
+        {/* Mission Section (Image Layout Replication) */}
+        <div className="w-full border-t border-[#E5E5E5] dark:border-[#222] bg-white dark:bg-[#0a0a0a]">
+          <div className="max-w-[1280px] w-full mx-auto px-6 md:px-12 py-24 md:py-32">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 w-full items-stretch">
+              
+              {/* Left Column */}
+              <div className="lg:col-span-5 flex flex-col justify-between py-4 relative">
+                <div>
+                  <span className="text-[13px] font-medium text-[#555] dark:text-[#A6A6A6] block mb-16 lg:mb-24">
+                    Key Value
+                  </span>
+                  <h2 className="text-[64px] md:text-[80px] font-bold leading-[1] tracking-tight text-[#111] dark:text-white mb-8">
+                    Our<br/>Mission
+                  </h2>
+                  <p className="text-[16px] md:text-[18px] font-medium leading-[1.6] text-[#555] dark:text-[#A6A6A6] max-w-[400px]">
+                    To build and deliver QuGenie — a modular, sovereign, agentic ERP — so that any Indian organization can run HR, Finance, CRM, Sales, Inventory, Operations, and compliance from one sovereign platform, configured to the way it actually works.
+                  </p>
+                </div>
 
-        </FlowArt>
+              </div>
+
+              {/* Right Column Grid */}
+              <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {[
+                  { label: "Platform", desc: "Single platform that is configurable, pluggable, and reliable.", icon: <Layers className="w-8 h-8" strokeWidth={1.5} /> },
+                  { label: "Modularity", desc: "True modularity where the architecture, not the vendor, decides the roadmap.", icon: <Blocks className="w-8 h-8" strokeWidth={1.5} /> },
+                  { label: "Guaranteed", desc: "Stand behind every deployment with a named partner and an honest, written guarantee.", icon: <ShieldCheck className="w-8 h-8" strokeWidth={1.5} /> }
+                ].map((item, idx) => {
+                  const isFirst = missionHoverIdx === idx;
+                  return (
+                    <div 
+                      key={idx} 
+                      onMouseEnter={() => setMissionHoverIdx(idx)}
+                      onMouseLeave={() => setMissionHoverIdx(null)}
+                      className={`gsap-mission-card p-8 rounded-[16px] flex flex-col justify-between min-h-[340px] transition-all duration-300 border ${
+                      isFirst 
+                        ? "text-white shadow-xl scale-[1.02] border-transparent" 
+                        : "bg-[#FAFAF9] dark:bg-[#111] text-[#111] dark:text-white border-[#E5E5E5] dark:border-[#333]"
+                    }`}
+                    style={isFirst ? { backgroundColor: 'var(--primary)' } : undefined}>
+                      <div className="mb-12 transition-colors duration-300">
+                        {item.icon}
+                      </div>
+                      <div>
+                        <p className={`text-[15px] leading-[1.5] font-medium mb-6 ${
+                          isFirst ? "text-white/90" : "text-[#555] dark:text-[#A6A6A6]"
+                        }`}>
+                          {item.desc}
+                        </p>
+                        <div className={`w-full h-px mb-6 ${
+                          isFirst ? "bg-white/30" : "bg-[#E5E5E5] dark:bg-[#333]"
+                        }`} />
+                        <h4 className="text-[16px] font-semibold tracking-tight">
+                          {item.label}
+                        </h4>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        {/* Founders Section */}
+        <div className="w-full border-t border-[#E5E5E5] dark:border-[#333] bg-white dark:bg-[#0a0a0a]">
+          <div className="max-w-[1280px] w-full mx-auto px-6 md:px-12 py-24 flex flex-col justify-center">
+            <TeamCardExpansion items={founderItems} sectionTitle="Founders" subtitle="QuGenie exists because its founders chose to build the sovereign alternative rather than wait for one." />
+          </div>
+        </div>
+
+        {/* Team Section */}
+        <div className="w-full border-t border-[#E5E5E5] dark:border-[#222] bg-[#FAFAF9] dark:bg-[#000000]">
+          <div className="max-w-[1280px] w-full mx-auto px-6 md:px-12 py-24 flex flex-col justify-center">
+            <TeamCardExpansion items={teamItems} sectionTitle="The Team" />
+          </div>
+        </div>
+
       </div>
     );
   }
@@ -544,15 +669,6 @@ export default function AboutUsPage() {
         />
       </div>
 
-      {/* Bottom Conversion Band */}
-      <Newsletter 
-        title="Want to build the sovereign alternative with us?"
-        description="Whether you are evaluating QuGenie for your business or looking to join the team, let's talk."
-        buttonText="Get in Touch"
-        onButtonClick={handleContactClick}
-      />
-
-      <Footer />
     </div>
   );
 }

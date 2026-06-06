@@ -180,13 +180,13 @@ export default function PlatformCost() {
 
         <EbayCostSection />
 
-        <div className="mt-32">
+        {/* <div className="mt-32">
           <Newsletter 
             title="See how QuGenie's on-premise and hybrid models give you predictable costs, full ownership, and long-term savings without hidden SaaS escalations."
             description=""
             buttonText="Book a Free Demo"
           />
-        </div>
+        </div> */}
       </div>
     );
   }
@@ -329,11 +329,11 @@ export default function PlatformCost() {
         </ul>
       </section>
 
-      <Newsletter 
+      {/* <Newsletter 
         title="See how QuGenie's on-premise and hybrid models give you predictable costs, full ownership, and long-term savings without hidden SaaS escalations."
         description=""
         buttonText="Book a Free Demo"
-      />
+      /> */}
 
       <Footer />
     </div>

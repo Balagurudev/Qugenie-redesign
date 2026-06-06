@@ -76,14 +76,14 @@ export function AboutEbay({ content }: { content: typeof AboutContent }) {
         {/* Founders Section */}
         <FlowSection className="bg-white dark:bg-[#0a0a0a] shadow-[0_-10px_30px_rgba(0,0,0,0.05)] border-t border-[#E5E5E5] dark:border-[#333]">
            <div className="w-full h-full flex flex-col justify-center">
-               <TeamCardExpansion items={content.founders.items} sectionTitle={content.founders.title} subtitle={content.founders.subtitle} />
+               <TeamCardExpansion items={content.founders.items} sectionTitle={content.founders.title} subtitle={content.founders.subtitle} designSystem="ebay" />
            </div>
         </FlowSection>
 
         {/* Team Section */}
         <FlowSection className="bg-[#FAFAF9] dark:bg-[#000000] shadow-[0_-10px_30px_rgba(0,0,0,0.05)] border-t border-[#E5E5E5] dark:border-[#222]">
            <div className="w-full h-full flex flex-col justify-center">
-               <TeamCardExpansion items={content.team.items} sectionTitle={content.team.title} />
+               <TeamCardExpansion items={content.team.items} sectionTitle={content.team.title} designSystem="ebay" />
            </div>
         </FlowSection>
 

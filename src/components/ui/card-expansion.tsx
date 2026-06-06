@@ -16,15 +16,17 @@ interface TeamCardExpansionProps {
   items: TeamMember[];
   sectionTitle: string;
   subtitle?: string;
+  designSystem?: string;
 }
 
 import { useThemeCustomizer } from "@/contexts/ThemeCustomizerContext";
 
-export function TeamCardExpansion({ items, sectionTitle, subtitle }: TeamCardExpansionProps) {
+export function TeamCardExpansion({ items, sectionTitle, subtitle, designSystem: propDesignSystem }: TeamCardExpansionProps) {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [activeRect, setActiveRect] = useState<DOMRect | null>(null);
   const activeItem = items.find(item => item.id === activeId);
-  const { designSystem } = useThemeCustomizer();
+  const { designSystem: contextDesignSystem } = useThemeCustomizer();
+  const designSystem = propDesignSystem || contextDesignSystem;
 
   return (
     <div className={`w-full max-w-[1120px] mx-auto px-6 py-12 mt-12 border-t border-[#E5E5E5] dark:border-white/5 relative ${activeId ? 'z-[100]' : 'z-20'}`}>
@@ -37,19 +39,35 @@ export function TeamCardExpansion({ items, sectionTitle, subtitle }: TeamCardExp
         )}
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      <motion.div 
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={{
+          hidden: {},
+          visible: { transition: { staggerChildren: 0.1 } }
+        }}
+      >
         {items.map((item) => (
-          <GridCard 
-            key={item.id} 
-            item={item} 
-            designSystem={designSystem}
-            onClick={(rect) => {
-              setActiveRect(rect);
-              setActiveId(item.id);
-            }} 
-          />
+          <motion.div 
+            key={item.id}
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
+            }}
+          >
+            <GridCard 
+              item={item} 
+              designSystem={designSystem}
+              onClick={(rect) => {
+                setActiveRect(rect);
+                setActiveId(item.id);
+              }} 
+            />
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       <AnimatePresence>
         {activeId && activeItem && activeRect && (

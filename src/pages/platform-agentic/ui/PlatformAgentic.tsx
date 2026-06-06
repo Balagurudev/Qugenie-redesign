@@ -1,6 +1,7 @@
 import { motion, AnimatePresence, useScroll, useMotionValueEvent, useSpring, useTransform } from "motion/react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Footer } from "@/widgets/footer/ui/Footer";
+import Lenis from "lenis";
 import { Brain, BarChart3, ShieldCheck, Zap, GitBranch, Eye, RefreshCw, Cpu, ArrowRight, ArrowDown, Check, X, ArrowUpRight } from "lucide-react";
 import StackingCards from "@/widgets/stacking-cards/ui/StackingCards";
 import { Newsletter } from "@/widgets/newsletter/ui/Newsletter";
@@ -285,27 +286,33 @@ function EbayAgenticLayout() {
     offset: ["start start", "end end"]
   });
 
-  const smoothProgress = useSpring(scrollYProgress, { 
-    stiffness: 30, 
-    damping: 25, 
-    mass: 1.5,
-    restDelta: 0.001 
-  });
-
-  useMotionValueEvent(smoothProgress, "change", (latest) => {
-    // Determine active index based on super-smoothed scroll progress (4 items)
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    // Determine active index based on immediate scroll progress (no lag)
     if (latest < 0.25) setOpenIndex(0);
     else if (latest < 0.5) setOpenIndex(1);
     else if (latest < 0.75) setOpenIndex(2);
     else setOpenIndex(3);
   });
 
+  useEffect(() => {
+    const lenis = new Lenis({
+      lerp: 0.1,
+      smoothWheel: true,
+    });
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+    return () => lenis.destroy();
+  }, []);
+
   return (
     <div className="bg-[#FAFAF9] dark:bg-background text-[#111111] dark:text-white min-h-screen w-full flex flex-col pt-32 pb-32" style={{ fontFamily: "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" }}>
       
       {/* ── Top Header ── */}
       <div className="max-w-[1280px] w-full mx-auto px-6 md:px-12 flex flex-col gap-6 items-start mb-16 md:mb-24">
-        <span className="inline-block border border-[#d1d1d1] dark:border-[#333] text-[#555] dark:text-[#A6A6A6] text-[11px] font-bold px-4 py-1.5 rounded-full w-fit uppercase tracking-widest bg-white dark:bg-[#111111] shadow-sm flex items-center gap-2">
+        <span className="inline-flex items-center gap-2 border border-[#d1d1d1] dark:border-[#333] text-[#555] dark:text-[#A6A6A6] text-[11px] font-bold px-4 py-1.5 rounded-full w-fit uppercase tracking-widest bg-white dark:bg-[#111111] shadow-sm">
           <div className="w-1.5 h-1.5 bg-[#111] rounded-full" />
           AI-DRIVEN ERP
         </span>
@@ -316,7 +323,7 @@ function EbayAgenticLayout() {
           Four pillars of intelligence. Four operational outcomes. Not chatbots, not autocomplete — concrete signal that surfaces exactly where you act on it, reasoning over a single sovereign data core.
         </p>
         <div className="flex flex-wrap gap-4 mt-2">
-          <button className="bg-[#111] text-white font-medium text-[15px] px-[26px] py-[14px] rounded-full cursor-pointer hover:bg-[#333] transition-colors flex items-center gap-2" onClick={() => window.location.hash = "#/contact"}>
+          <button className="bg-[var(--primary)] text-white font-medium text-[15px] px-[26px] py-[14px] rounded-full cursor-pointer hover:opacity-90 transition-opacity flex items-center gap-2" onClick={() => window.location.hash = "#/contact"}>
             Book a Free Demo <ArrowRight size={16} />
           </button>
           <button className="bg-white dark:bg-[#111111] text-[#111] dark:text-white border border-[#d1d1d1] dark:border-[#333] font-medium text-[15px] px-[26px] py-[14px] rounded-full cursor-pointer hover:bg-[#f5f5f5] transition-colors" onClick={() => window.location.hash = "#/platform/silos"}>
@@ -371,21 +378,7 @@ function EbayAgenticLayout() {
                     >
                       <div className="w-full bg-[#F5F5F5] rounded-[24px] p-6 md:p-12 my-6 flex flex-col lg:flex-row gap-8 lg:gap-24 relative shadow-sm border border-[#ebebeb]">
                         
-                        {/* Left: White Card */}
-                        <div className="w-full lg:w-[320px] shrink-0 bg-white dark:bg-[#111111] rounded-[20px] p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] flex flex-col justify-between h-[200px] mt-8 lg:mt-16">
-                          <div className="flex justify-between items-start">
-                            <div className="w-14 h-14 bg-[#f0f4ff] text-[#155EEF] rounded-full flex items-center justify-center">
-                              <Icon size={24} strokeWidth={2} />
-                            </div>
-                            <span className="text-[28px] font-medium tracking-tight text-[#111] dark:text-white">{p.num}</span>
-                          </div>
-                          <div className="flex justify-between items-end">
-                            <div className="flex flex-col gap-1">
-                              <span className="text-[11px] font-bold text-[#999] dark:text-[#A6A6A6] uppercase tracking-widest">MODULE</span>
-                              <span className="text-[14px] font-medium tracking-tight text-[#111] dark:text-white">{p.title}</span>
-                            </div>
-                          </div>
-                        </div>
+
 
                         {/* Right: Text Content */}
                         <div className="flex-1 flex flex-col pt-4">
@@ -415,7 +408,7 @@ function EbayAgenticLayout() {
                           </p>
 
                           <div className="mt-auto self-start lg:absolute lg:bottom-12 lg:right-12">
-                             <button className="bg-[#111] text-white px-8 py-3.5 rounded-full font-medium text-[14px] hover:bg-[#333] transition-colors cursor-pointer border-none shadow-md" onClick={() => window.location.hash = "#/contact"}>
+                             <button className="bg-[var(--primary)] text-white px-8 py-3.5 rounded-full font-medium text-[14px] hover:opacity-90 transition-opacity cursor-pointer border-none shadow-md" onClick={() => window.location.hash = "#/contact"}>
                                Book a Free Demo
                              </button>
                           </div>

@@ -67,15 +67,17 @@ export default function PlatformOnPremise() {
           </p>
         </div>
 
-        <EbayWhatYouGetSection />
-
-        <div className="mt-32">
-          <Newsletter 
-            title="QuGenie's on-premise-first architecture gives you full control over your data, infrastructure, and costs — without relying on vendor-controlled cloud systems."
-            description=""
-            buttonText="Request Demo"
-          />
+        {/* New Added Section: High Availability */}
+        <div className="max-w-[1280px] w-full mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start pt-16 mt-16 border-t border-[#E5E5E5] dark:border-[#333]">
+          <h2 className="text-[32px] leading-[40px] md:text-[36px] md:leading-[48px] font-sans font-medium tracking-tight text-[#111] dark:text-white pr-8">
+            High Availability. Total Sovereignty.<br />Your Infrastructure.
+          </h2>
+          <p className="text-[18px] leading-[28px] md:text-[18px] md:leading-[28px] text-[#555] dark:text-[#A6A6A6] lg:pt-2">
+            Most ERP companies default to cloud-only and charge you forever. QuGenie leads with on-premise because we believe your data should live on your servers, under your control, with zero dependency on our uptime, our pricing, or our business decisions.
+          </p>
         </div>
+
+        <EbayWhatYouGetSection />
       </div>
     );
   }
@@ -108,12 +110,6 @@ export default function PlatformOnPremise() {
       <section className="w-full max-w-[1120px] px-6 mx-auto relative z-10 mb-[120px] mt-10">
         <WhatYouGetSection />
       </section>
-
-      <Newsletter 
-        title="QuGenie's on-premise-first architecture gives you full control over your data, infrastructure, and costs — without relying on vendor-controlled cloud systems."
-        description=""
-        buttonText="Request Demo"
-      />
 
       <Footer />
     </div>
