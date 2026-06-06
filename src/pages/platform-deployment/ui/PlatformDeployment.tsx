@@ -379,67 +379,6 @@ export default function PlatformDeployment() {
         </div>
       </section>
 
-      {/* Deep Dives Section */}
-      <section className="w-full max-w-[1120px] px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
-        
-        {/* Why On-Premise Case */}
-        <GlareCard className="p-8 cursor-pointer flex flex-col items-start gap-4 h-full">
-          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[var(--primary)]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <span className="text-[10px] font-bold uppercase tracking-[2px] text-[var(--primary)]">DEEP DIVE</span>
-          <h4 className="text-[22px] font-semibold text-foreground tracking-tight group-hover:text-[var(--primary)] transition-colors">
-            Why On-Premise
-          </h4>
-          <p className="text-[14px] leading-[1.6] text-muted-foreground flex-1">
-            The full case for sovereign, in-perimeter deployment — data control, no vendor lock-in, air-gapped operation.
-          </p>
-          <button onClick={() => handleHash("#/platform/on-premise")} className="text-[14px] font-semibold text-[var(--primary)] flex items-center gap-2 mt-4 hover:translate-x-1 transition-transform">
-            Read the On-Premise case <span className="group-hover:translate-x-1 transition-transform">→</span>
-          </button>
-        </GlareCard>
-
-        {/* Why QuGenie is Cost Effective */}
-        <GlareCard className="p-8 cursor-pointer flex flex-col items-start gap-4 h-full">
-          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[var(--primary)]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <span className="text-[10px] font-bold uppercase tracking-[2px] text-[var(--primary)]">DEEP DIVE</span>
-          <h4 className="text-[22px] font-semibold text-foreground tracking-tight group-hover:text-[var(--primary)] transition-colors">
-            Why QuGenie is Cost Effective
-          </h4>
-          <p className="text-[14px] leading-[1.6] text-muted-foreground flex-1">
-            How on-premise stabilises total cost of ownership while SaaS pricing keeps escalating with your data growth.
-          </p>
-          <button onClick={() => handleHash("#/platform/cost-effective")} className="text-[14px] font-semibold text-[var(--primary)] flex items-center gap-2 mt-4 hover:translate-x-1 transition-transform">
-            See the cost argument <span className="group-hover:translate-x-1 transition-transform">→</span>
-          </button>
-        </GlareCard>
-
-      </section>
-
-      {/* Bottom Conversion Band (Using the newly redesigned Newsletter look) */}
-      <section className="w-full max-w-[1280px] mx-auto px-6 py-[100px] relative z-10">
-        <div className="relative overflow-hidden bg-card/40 border border-border/60 rounded-[24px] p-10 md:p-16 flex flex-col items-center justify-center text-center shadow-2xl backdrop-blur-md">
-          <div className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle at center, var(--foreground) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
-          <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[var(--primary)] to-transparent opacity-80" />
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[90%] h-[120px] bg-[var(--primary)] opacity-30 blur-[70px] rounded-full pointer-events-none" />
-
-          <div className="relative z-10 flex flex-col items-center gap-6">
-            <h2 className="text-[32px] md:text-[44px] lg:text-[56px] font-sans font-medium tracking-tighter uppercase leading-[1.1] text-transparent bg-clip-text bg-gradient-to-b from-white to-[#8a93a2]">
-              Not sure which fits? We will walk your team through both.
-            </h2>
-            <motion.div className="mt-4">
-              <motion.button 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => handleHash("#/contact")}
-                className="bg-[var(--primary)] text-white font-semibold text-[15px] px-8 py-3 rounded-[8px] hover:shadow-[0_8px_20px_var(--glow-primary)] transition-all cursor-pointer"
-              >
-                Book a Free Demo
-              </motion.button>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      
     </div>
   );
 }

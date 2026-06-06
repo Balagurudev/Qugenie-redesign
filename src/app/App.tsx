@@ -151,7 +151,38 @@ function AppContent() {
       {page === "about-us" && <AboutUsPage />}
       {page === "contact" && <ContactPage />}
 
-      <Newsletter />
+      {(() => {
+        let title = "One platform for every department. See it\nrun on your data.";
+        let buttonText = "Book a Free Demo";
+        
+        switch (page) {
+          case "platform-silos":
+            title = "Break down your data silos.\nExperience a unified ecosystem.";
+            break;
+          case "platform-deployment":
+            title = "NOT SURE WHICH FITS? WE WILL WALK\nYOUR TEAM THROUGH BOTH.";
+            break;
+          case "platform-onpremise":
+            title = "Ensure total data sovereignty.\nTalk to our deployment engineers.";
+            break;
+          case "platform-cost":
+            title = "Stop paying the integration tax.\nSee the true ROI of one platform.";
+            break;
+          case "platform-agentic":
+            title = "Experience true agentic automation.\nWatch it work on your live data.";
+            break;
+          case "about-us":
+            title = "Ready to build sovereign infrastructure?\nJoin our mission today.";
+            buttonText = "View Open Roles";
+            break;
+          case "contact":
+            title = "Have questions about QuGenie?\nOur team is here to help.";
+            buttonText = "Contact Support";
+            break;
+        }
+
+        return <Newsletter title={title} buttonText={buttonText} />;
+      })()}
       <Footer />
       </div>
     </>
